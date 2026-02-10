@@ -139,44 +139,33 @@
     }
 
     /* ===== MAIN AREA ===== */
-    .main {
-      flex: 1;
-      padding: 30px;
-      overflow-y: auto;
-    }
+.main {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  display: block;
+}
 
-    .screen { display: none; }
-    .screen.active { display: block; }
+.screen {
+  width: 100%;
+  display: none;
+}
 
-    /* ===== INTRO SCREEN ===== */
-    .question-box {
-      background: #cfd8df;
-      padding: 25px;
-      border-radius: 4px;
-      max-width: 900px;
-    }
+.screen.active {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
 
-    .instruction {
-      font-size: 22px;
-      margin-bottom: 15px;
-    }
-
-    .japanese-text {
-      font-size: 32px;
-      line-height: 1.6;
-      letter-spacing: 2px;
-    }
-
-    /* ===== QUIZ SCREEN ===== */
-    .container {
-      width: 900px;
-      max-width: 95%;
-      background: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-      overflow: hidden;
-    }
-
+.container {
+  width: 900px;
+  max-width: 900px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  overflow: hidden;
+  height: auto;
+}
     .header {
       background: #1f4fa3;
       color: white;
@@ -307,19 +296,12 @@
 
     <div id="intro" class="screen">
       <div class="question-box">
-        <div class="instruction">
-          Read the sentence and choose the kanji word that fits in (  ) the most.
-        </div>
-        <div class="japanese-text">
-          とうきょうタワーが よる あかるく（ ）いて、<br>
-          とても きれいでした。
-        </div>
       </div>
     </div>
 
     <div id="quiz" class="screen active">
       <div class="container">
-        <div class="header">JFT Basic サンプルテスト</div>
+        <div class="header">Latihan soal</div>
         <div class="content">
           <div class="question-number" id="qNumber"></div>
           <div class="audio-player" id="audioContainer"></div>
