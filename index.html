@@ -427,6 +427,65 @@ body {
   }
 
 }
+/* =========================
+   DEFAULT TEXT CHOICES
+========================= */
+.choices {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.choices button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #cfd8dc;
+  background: #f9fbfd;
+  cursor: pointer;
+  text-align: left;
+}
+
+/* =========================
+   IMAGE CHOICE GRID (KHUSUS)
+========================= */
+.choices.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.choices.image-grid button {
+  padding: 6px;
+  height: auto;
+}
+
+.choices.image-grid button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.choices.image-grid button img {
+  width: 100%;
+  height: 120px;        /* 🔥 KUNCI UTAMA */
+  max-height: 120px;    /* jaga-jaga */
+  object-fit: cover;    /* isi kotak rapi */
+  border-radius: 6px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .choices.image-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .choices.image-grid button img {
+    height: 90px;      /* 🔥 pas di HP */
+    max-height: 90px;
+  }
+}
 
   </style>
 </head>
@@ -651,7 +710,7 @@ const sections = {
    target: { kanji: "天気", hiragana: "てんき" },
   choices: [
       { kanji: "天気", hiragana: "てんき" },
-      { kanji: "天気", hiragana: "てんぎ" },
+      { kanji: "気天", hiragana: "てんぎ" },
       { kanji: "電気", hiragana: "でんぎ" }
     ],
     correct: 0
@@ -688,7 +747,7 @@ const sections = {
    target: { kanji: "映画", hiragana: "えいが" },
   choices: [
       { kanji: "映画", hiragana: "えいが" },
-      { kanji: "学校", hiragana: "がっか" },
+      { kanji: "画映", hiragana: "がっか" },
       { kanji: "英語", hiragana: "えいご" }
     ],
     correct: 0
@@ -841,13 +900,13 @@ scri: [
 
   co: [
 {
-  text: "忙しいので手伝えません。",
+  text: "休日は何をしていますか？",
   choices: [
-    { kanji: "いそがしい", hiragana: "いそがしい" },
-    { kanji: "たのしい", hiragana: "たのしい" },
-    { kanji: "むずかしい", hiragana: "むずかしい" }
+    { img: "https://i.pinimg.com/1200x/a0/d1/a8/a0d1a86492ed3e6355dee848353e3f3d.jpg" },
+    { img: "https://i.pinimg.com/736x/28/eb/89/28eb894b008ef17dc45d6b5e52b1da33.jpg" },
+    { img: "https://i.pinimg.com/1200x/a4/c2/91/a4c291bf492603a05ebc458c53eb083b.jpg" }
   ],
-  correct: 0
+  correct: 1
 },
     {
       text: "これは わたしの ______ です。",
@@ -985,15 +1044,42 @@ questionText.style.whiteSpace = "pre-line"; // 🔥 INI KUNCINYA
   }
 
   // ===== CHOICES =====
-  const choicesEl = document.getElementById("choices");
-  choicesEl.innerHTML = "";
+const choicesEl = document.getElementById("choices");
+choicesEl.innerHTML = "";
 
-  q.choices.forEach((choice, i) => {
-    const btn = document.createElement("button");
+/* 🔥 RESET CLASS */
+choicesEl.className = "choices";
+
+/* 🔥 CEK APAKAH PILIHAN GAMBAR */
+if (
+  q.choices &&
+  typeof q.choices[0] === "object" &&
+  q.choices[0].img
+) {
+  choicesEl.classList.add("image-grid");
+}
+
+q.choices.forEach((choice, i) => {
+  const btn = document.createElement("button");
+  btn.onclick = () => checkAnswer(i);
+
+  // 🔹 JAWABAN GAMBAR
+  if (typeof choice === "object" && choice.img) {
+    const img = document.createElement("img");
+    img.src = choice.img;
+    img.style.maxWidth = "100%";
+    img.style.borderRadius = "6px";
+    btn.appendChild(img);
+  }
+
+  // 🔹 JAWABAN TEKS
+  else {
     btn.textContent = choice;
-    btn.onclick = () => checkAnswer(i);
-    choicesEl.appendChild(btn);
-  });
+  }
+
+  choicesEl.appendChild(btn);
+});
+
 const saved = answered[currentSection][currentQuestion];
 if (saved !== null) {
   const buttons = document.querySelectorAll("#choices button");
