@@ -16,20 +16,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background: #f4f4f4;
 }
-
-    .step.answered {
-  background: #9e9e9e; /* abu-abu: sudah dijawab */
-}
-
-.step.correct {
-  background: #2e7d32; /* hijau */
-}
-
-.step.wrong {
-  background: #c62828; /* merah */
-}
-
-
     /* ===== LEFT SIDEBAR ===== */
 .sidebar {
   width: 70px;
@@ -81,7 +67,7 @@ body {
   margin: 6px 0 10px;
 }
 
-    .side-fill {
+.side-fill {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -107,32 +93,32 @@ body {
   overflow-y: auto;
 }
 
-/* tombol nomor */
+/* default = belum dijawab */
 .step {
   width: 52px;
   height: 40px;
-
-  background: #6aa037;
+  background: #d0d0d0;  /* abu default */
   color: white;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-weight: bold;
   font-size: 15px;
-
   border-radius: 6px;
   cursor: pointer;
-
   flex-shrink: 0;
 }
 
-    .step.active {
-      position: relative;
-      background: #4f7f22;
-    }
+/* sudah dijawab */
+.step.answered {
+  background: #6aa037; /* hijau */
+}
 
+/* soal aktif */
+.step.active {
+  position: relative;
+  background: #4f7f22; /* hijau tua */
+}
     .step.active::after {
       content: "";
       position: absolute;
@@ -349,7 +335,14 @@ body {
     padding: 10px;
   }
 }
-
+.choices button.selected {
+  background: #6aa037;
+  color: white;
+  border-color: #4f7f22;
+}
+.choices button {
+  transition: all 0.2s ease;
+}
   </style>
 </head>
 <body>
@@ -595,7 +588,7 @@ function goToSection(sectionKey) {
 
   if (!answered[sectionKey].length) {
     answered[sectionKey] =
-      new Array(sections[sectionKey].length).fill(false);
+      new Array(sections[sectionKey].length).fill(null);
   }
 
   document.getElementById("intro").classList.remove("active");
@@ -656,16 +649,26 @@ function loadQuestion() {
     btn.onclick = () => checkAnswer(i);
     choicesEl.appendChild(btn);
   });
-
+const saved = answered[currentSection][currentQuestion];
+if (saved !== null) {
+  const buttons = document.querySelectorAll("#choices button");
+  buttons[saved].classList.add("selected");
+}
   document.getElementById("result").textContent = "";
 }
 
-
 function checkAnswer(choice) {
-  answered[currentSection][currentQuestion] = true;
+
+  // simpan index pilihan
+  answered[currentSection][currentQuestion] = choice;
+
+  const buttons = document.querySelectorAll("#choices button");
+  buttons.forEach(btn => btn.classList.remove("selected"));
+
+  buttons[choice].classList.add("selected");
+
   updateSideProgress();
   renderSteps();
-  document.getElementById("result").textContent = "OK";
 }
 
   loadQuestion();
@@ -714,7 +717,9 @@ function goToIntro() {
 
 function updateSideProgress() {
   const total = answered[currentSection].length;
-  const done = answered[currentSection].filter(v => v).length;
+
+  const done = answered[currentSection]
+    .filter(v => v !== null).length;
 
   const percent = (done / total) * 100;
 
@@ -731,9 +736,9 @@ function renderSteps() {
     step.className = "step";
     step.textContent = index + 1;
 
-    if (answered[currentSection][index]) {
-      step.classList.add("answered");
-    }
+    if (answered[currentSection][index] !== null) {
+  step.classList.add("answered");
+}
 
     if (index === currentQuestion) {
       step.classList.add("active");
