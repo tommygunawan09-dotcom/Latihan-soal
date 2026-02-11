@@ -387,6 +387,84 @@ body {
   border-radius: 10px;
   background: linear-gradient(to right, orange, yellowgreen);
 }
+@media (max-width: 768px) {
+
+  .certificate {
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* HEADER */
+  .header {
+    padding: 10px;
+    text-align: center;
+  }
+
+  .header h1 {
+    font-size: 18px;
+    margin: 0;
+  }
+
+  .header h2 {
+    font-size: 13px;
+    margin: 4px 0 0;
+  }
+
+  /* PROFILE */
+  .profile-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .photo img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .info p {
+    font-size: 12px;
+    margin: 2px 0;
+  }
+
+  /* SCORE */
+  .score-title {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .bar-container {
+    height: 12px;
+  }
+
+  .marker {
+    width: 12px;
+    height: 12px;
+    top: -4px;
+  }
+
+  .bar-labels {
+    font-size: 10px;
+  }
+
+  /* SECTION SCORES */
+  .section-item span,
+  .percent-text {
+    font-size: 11px;
+  }
+
+  .percent-bar {
+    height: 10px;
+  }
+
+}
 
   </style>
 </head>
