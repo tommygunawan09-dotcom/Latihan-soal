@@ -640,6 +640,9 @@ function shuffleChoices(question) {
 <script>
 const SCRIPTS = ["kanji", "hiragana"];
 const ACTIVE_SCRIPT = SCRIPTS[Math.floor(Math.random() * SCRIPTS.length)];
+const MAX_AUDIO_PLAY = 2;
+const audioPlaysPerQuestion = {}; // 🔥 kunci per soal
+let audioLocked = false;
 function renderQuestionText(q) {
   if (!q.target) return q.text;
 
@@ -899,24 +902,38 @@ scri: [
 
   co: [
 {
-  text: "休日は何をしていますか？",
-  choices: [
-    { img: "https://i.pinimg.com/1200x/2c/ee/db/2ceedb58f38645c744b38bd814bbcd69.jpg" },
-    { img: "https://i.pinimg.com/1200x/68/5e/cb/685ecb763242063b7066bc751a3c1ae4.jpg" },
-    { img: "https://i.pinimg.com/1200x/2e/12/de/2e12decbf42afe2077e8947f8c0fc187.jpg" }
-  ],
-  correct: 1
+  text: "日にほんご 本語がわからないとき、どう言いいましたか。",
+  image: "img/boy.png",        // ⬅️ gambar
+  audio: "https://www.irodori.jpf.go.jp/assets/data/starter/audio/02/X_[02-01]_kiku1.mp3",      // ⬅️ suara
+    choices: [
+      { kanji: "よく分かりません", hiragana: "よくわかりません" },
+      { kanji: "もういちど、お願ねがいします", hiragana: "もういちど、おねがいします" },
+      { kanji: "もう少すこし、ゆっくり言いってください。", hiragana: "もうすこし、ゆっくりいいってください。" }
+    ],
+  correct: 0
 },
-    {
-      text: "これは わたしの ______ です。",
-      choices: [
-        { kanji: "ほん", hiragana: "ほん" },
-        { kanji: "さかな", hiragana: "さかな" },
-        { kanji: "くるま", hiragana: "くるま" },
-        { kanji: "みず", hiragana: "みず" }
-      ],
-      correct: 1
-    }
+{
+  text: "	何なにを注ちゅうもん文したいですか。",
+  image: "img/boy.png",        // ⬅️ gambar
+  audio: "https://www.irodori.jpf.go.jp/assets/data/starter/audio/06/X_[06-02]_kiku2.mp3",      // ⬅️ suara
+    choices: [
+      { kanji: "チーズバーガー,てりやきバーガー,フィッシュバーガー", hiragana: "ちーず" },
+      { kanji: "チーズバーガー,てりやきバーガー,フライドポテトバーガー", hiragana: "もういちど、おねがいします" },
+      { kanji: "ハンバーガー,てりやきバーガー,フィッシュバーガー", hiragana: "もうすこし、ゆっくりいいってください。" }
+    ],
+  correct: 0
+},
+{
+  text: "	どんな天てんき気ですか。",
+  image: "img/boy.png",        // ⬅️ gambar
+  audio: "https://www.irodori.jpf.go.jp/assets/data/elementary01/audio/04/Y_[04-04]_kiku2.mp3",      // ⬅️ suara
+    choices: [
+      { kanji: "晴れ／晴れる／いい天気", hiragana: "はれ／はれる／いいてんき" },
+      { kanji: "雨あめ／雨あめが降ふる", hiragana: "あめ／あめがふる" },
+      { kanji: "風かぜ／風かぜが吹ふく", hiragana: "かぜ／かぜがふく" }
+    ],
+  correct: 0
+}
   ],
 
   list: [
@@ -1031,16 +1048,53 @@ questionText.style.whiteSpace = "pre-line"; // 🔥 INI KUNCINYA
     imageBox.appendChild(img);
   }
 
-  // ===== AUDIO =====
-  const audioBox = document.getElementById("audioContainer");
-  audioBox.innerHTML = "";
+// ===== AUDIO =====
+const audioBox = document.getElementById("audioContainer");
+audioBox.innerHTML = "";
 
-  if (q.audio) {
-    const audio = document.createElement("audio");
-    audio.controls = true;
-    audio.src = q.audio;
-    audioBox.appendChild(audio);
+if (q.audio) {
+  const qIndex = currentQuestion;
+
+  // init kalau belum ada
+  if (audioPlaysPerQuestion[qIndex] === undefined) {
+    audioPlaysPerQuestion[qIndex] = 0;
   }
+
+  // 🔒 kalau soal ini sudah habis jatahnya
+  if (audioPlaysPerQuestion[qIndex] >= MAX_AUDIO_PLAY) {
+    audioBox.innerHTML = `
+      <div style="color:#888;font-size:12px;opacity:.6">
+        Audio sudah diputar 2x
+      </div>
+    `;
+    return;
+  }
+
+  const audio = document.createElement("audio");
+  audio.src = q.audio;
+  audio.controls = true;
+
+  audio.addEventListener("ended", () => {
+    audioPlaysPerQuestion[qIndex]++;
+
+    if (audioPlaysPerQuestion[qIndex] >= MAX_AUDIO_PLAY) {
+      audio.controls = false;
+      audio.src = "";
+      audio.load();
+
+      audio.style.pointerEvents = "none";
+      audio.style.opacity = "0.4";
+
+      audioBox.insertAdjacentHTML(
+        "beforeend",
+        "<div style='color:#888;font-size:12px'>Batas audio tercapai</div>"
+      );
+    }
+  });
+
+  audioBox.appendChild(audio);
+}
+
 
   // ===== CHOICES =====
 const choicesEl = document.getElementById("choices");
