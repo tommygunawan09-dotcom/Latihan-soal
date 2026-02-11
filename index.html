@@ -911,23 +911,18 @@ function checkAllFinished() {
 
 function showResult() {
 
+  // ===== HITUNG SKOR (TETAP) =====
   let totalCorrect = 0;
   let totalQuestions = 0;
-
   let sectionHTML = "";
 
   for (let key in sections) {
-
     let correct = 0;
-
     sections[key].forEach((q, i) => {
-      if (answered[key][i] === q.correct) {
-        correct++;
-      }
+      if (answered[key][i] === q.correct) correct++;
     });
 
     let percent = Math.round((correct / sections[key].length) * 100);
-
     totalCorrect += correct;
     totalQuestions += sections[key].length;
 
@@ -942,10 +937,9 @@ function showResult() {
     `;
   }
 
-let maxScore = totalQuestions * POINT_PER_QUESTION;
-let totalPercent = Math.round((totalScore / maxScore) * 100);
-
-let score250 = Math.round((totalScore / maxScore) * 250);
+  let maxScore = totalQuestions * POINT_PER_QUESTION;
+  let totalPercent = Math.round((totalScore / maxScore) * 100);
+  let score250 = Math.round((totalScore / maxScore) * 250);
 
   document.getElementById("totalScoreText").textContent =
     `Total Score: ${score250} points`;
@@ -956,9 +950,14 @@ let score250 = Math.round((totalScore / maxScore) * 250);
   document.getElementById("sectionScores").innerHTML =
     sectionHTML;
 
-  document.getElementById("quiz").classList.remove("active");
-  document.getElementById("resultScreen").classList.add("active");
+  // ===== 🔥 INI KUNCI UTAMA 🔥 =====
+  const quiz = document.getElementById("quiz");
+  const result = document.getElementById("resultScreen");
+
+  quiz.style.display = "none";        // ❌ soal HILANG total
+  result.style.display = "block";     // ✅ hasil saja yang tampil
 }
+
 
 
 </script>
