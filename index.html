@@ -463,6 +463,38 @@ body {
     margin-bottom: 20px;
   }
 }
+@media (max-width: 768px) {
+
+  html, body {
+    height: 100dvh;
+    overflow: hidden;   /* 🔒 MATI TOTAL SCROLL */
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+}
+@media (max-width: 768px) {
+
+  .sidebar {
+    height: 60px;
+  }
+
+  .step-column {
+    height: 56px;
+  }
+
+  .main {
+    flex: 1;
+    height: calc(100dvh - 116px); 
+    /* 60 + 56 = sidebar + step */
+    overflow: hidden;   /* ❌ no scroll */
+    padding: 8px;
+  }
+
+}
 
   </style>
 </head>
