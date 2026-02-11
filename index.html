@@ -553,8 +553,8 @@ function shuffleArray(array) {
 }
 
 function shuffleChoices(question) {
-  const combined = question.choices.map((text, index) => ({
-    text,
+  const combined = question.choices.map((choice, index) => ({
+    text: choice[ACTIVE_SCRIPT], // 🔥 kanji / hiragana
     isCorrect: index === question.correct
   }));
 
@@ -566,126 +566,219 @@ function shuffleChoices(question) {
   question.choices = combined.map(item => item.text);
   question.correct = combined.findIndex(item => item.isCorrect);
 }
+
 </script>
 
 <script>
+const SCRIPTS = ["kanji", "hiragana"];
+const ACTIVE_SCRIPT = SCRIPTS[Math.floor(Math.random() * SCRIPTS.length)];
 const sections = {
     gra: [
-  {
-    text: "忙しいので手伝えません。",
-    choices: ["いそがしい", "たのしい", "むずかしい"],
-    correct: 1
-  },
-  {
-    text: "あまいものは 苦手  です。",
-    choices: ["じめじめ", "おおい", "にがて"],
-    correct: 1
-  }
+{
+  image: "img/boy.png",        // ⬅️ gambar
+  choices: [
+    { kanji: "財布", hiragana: "さいふ" },
+    { kanji: "財", hiragana: "さいふう"},
+    { kanji: "布財", hiragana: "サイフ" }
+  ],
+  correct: 0
+}
+,
+{
+  text: "これは だれ ですか。",
+  image: "img/boy.png",        // ⬅️ gambar
+  audio: "audio/boy.mp3",      // ⬅️ suara
+    choices: [
+      { kanji: "今年", hiragana: "ことし" },
+      { kanji: "来年", hiragana: "らいねん" },
+      { kanji: "去年", hiragana: "きょねん" }
+    ],
+  correct: 0
+}
   ,{
-    text: "昨日は雨が降るのであまり_______",
-    choices: ["おもしろくなかった", "おもしました", "おもしろい"],
-    correct: 1
+    text: "きょうねんさくらさんに日本へ散歩しました",
+    choices: [
+      { kanji: "今年", hiragana: "ことし" },
+      { kanji: "来年", hiragana: "らいねん" },
+      { kanji: "去年", hiragana: "きょねん" }
+    ],
+    correct: 2
   },
   {
     text: "今は図書館にいます。",
-    choices: ["はくぶつかん", "ゆびんきょうく", "としょかん"],
-    correct: 1
+    choices: [
+      { kanji: "図書館", hiragana: "はくぶつかん" },
+      { kanji: "郵便局", hiragana: "ゆびんきょうく" },
+      { kanji: "図書館", hiragana: "としょかん" }
+    ],
+    correct: 2
   },
   {
     text: "あそいだあとで, シャワーを________。",
-    choices: ["浴びます", "乗ります", "行きます"],
-    correct: 1
+    choices: [
+      { kanji: "浴びます", hiragana: "あびます" },
+      { kanji: "裕びます", hiragana: "のります" },
+      { kanji: "容びます", hiragana: "いきます" }
+    ],
+    correct: 0
   },
   {
     text: "明日はいい天気でしょう。",
-    choices: ["てんぎ", "てんき", "でんぎ"],
+    choices: [
+      { kanji: "天気", hiragana: "てんき" },
+      { kanji: "天気", hiragana: "てんぎ" },
+      { kanji: "電気", hiragana: "でんぎ" }
+    ],
     correct: 1
   }
   ,{
     text: "________かれのさいふは歩いているときに取られたかもしれない",
-    choices: ["もしかしたら", "かならず", "できれば"],
-    correct: 1
+    choices: [
+      { kanji: "もしかしたら", hiragana: "もしかしたら" },
+      { kanji: "かならず", hiragana: "かならず" },
+      { kanji: "できれば", hiragana: "できれば" }
+    ],
+    correct: 0
   },
   {
     text: "きっと______ことができると思います。",
-    choices: ["テーブル", "みつける", "間に合わせる"],
+    choices: [
+      { kanji: "テーブル", hiragana: "テーブル" },
+      { kanji: "みつける", hiragana: "みつける" },
+      { kanji: "間に合わせる", hiragana: "間に合わせる" }
+    ],
     correct: 1
   },
   {
     text: "明日は映画をみにきませんか",
-    choices: ["えいが", "がっか", "えいご"],
-    correct: 1
+    choices: [
+      { kanji: "映画", hiragana: "えいが" },
+      { kanji: "学校", hiragana: "がっか" },
+      { kanji: "英語", hiragana: "えいご" }
+    ],
+    correct: 0
   },
   {
     text: "運んで",
-    choices: ["はひふ", "よかった", "はこんで"],
+    choices: [
+      { kanji: "はひふ", hiragana: "はひふ" },
+      { kanji: "よかった", hiragana: "よかった" },
+      { kanji: "はこんで", hiragana: "はこんで" }
+    ],
     correct: 1
   }
 ],
 scri: [
   {
     text: "A: あなたのしゅみはなんですか B: ほんをよむことです A: どんな本ですか B: ______歴史の本です",
-    choices: ["とくに", "たしかに", "そのままに"],
+    choices: [
+      { kanji: "とくに", hiragana: "とくに" },
+      { kanji: "たしかに", hiragana: "たしかに" },
+      { kanji: "そのままに", hiragana: "そのままに" }
+    ],
     correct: 1
   },
   {
     text: "予定いのほかのひとが_________",
-    choices: ["おしらせるために", "おしらせ", "おしれば"],
+    choices: [
+      { kanji: "おしらせるために", hiragana: "おしらせるために" },
+      { kanji: "おしらせ", hiragana: "おしらせ" },
+      { kanji: "おしれば", hiragana: "おしれば" }
+    ],
     correct: 1
   },
   {
     text: "これはバナナの________, どうぞ。",
-    choices: ["りょうりでした", "りょうりです", "りょうります"],
+    choices: [
+      { kanji: "りょうりでした", hiragana: "りょうりでした" },
+      { kanji: "りょうりです", hiragana: "りょうりです" },
+      { kanji: "りょうります", hiragana: "りょうります" }
+    ],
     correct: 1
   },
   {
     text: "A：めりさん、いべんとのよていがかわったことをしっていますか？B：へえ、かわったんですか？ーーしりませんでした。A：じゃあ、よていのほかのひとに。。。ために。このメッセージをつたえてください。B：はい、わかりました。",
-    choices: ["おせわになる", "おしらせる", "おくる"],
+    choices: [
+      { kanji: "おせわになる", hiragana: "おせわになる" },
+      { kanji: "おしらせる", hiragana: "おしらせる" },
+      { kanji: "おくる", hiragana: "おくる" }
+    ],
     correct: 1
   },
   {
     text: "A: すみません, ここは_________ ?? B: 東京です",
-    choices: ["いつですか", "なんですか", "どこですか"],
-    correct: 1
+    choices: [
+      { kanji: "いつですか", hiragana: "いつですか" },
+      { kanji: "なんですか", hiragana: "なんですか" },
+      { kanji: "どこですか", hiragana: "どこですか" }
+    ],
+    correct: 2
   },
   {
     text: "アニさんは____________?, おめでとうございます",
-    choices: ["けっこん", "けっこんするように", "けっこんしたそうです"],
+    choices: [
+      { kanji: "けっこん", hiragana: "けっこん" },
+      { kanji: "けっこんするように", hiragana: "けっこんするように" },
+      { kanji: "けっこんしたそうです", hiragana: "けっこんしたそうです" }
+    ],
     correct: 1
   },
   {
     text: "A: おきゃくさまはどんなさいますか B: ジュース________???",
-    choices: ["してもらえませんか", "しています", "お願いします"],
+    choices: [
+      { kanji: "してもらえませんか", hiragana: "してもらえませんか" },
+      { kanji: "しています", hiragana: "しています" },
+      { kanji: "お願いします", hiragana: "お願いします" }
+    ],
     correct: 1
   },
   {
     text: "A: いついしょにサッカーをしますか B: これから________???",
-    choices: ["どうしますか", "どうしたんですか", "どうですか"],
+    choices: [
+      { kanji: "どうしますか", hiragana: "どうしますか" },
+      { kanji: "どうしたんですか", hiragana: "どうしたんですか" },
+      { kanji: "どうですか", hiragana: "どうですか" }
+    ],
     correct: 1
   },
   {
     text: "昨日のイベントはあまり。",
-    choices: ["おもしろくなかった", "おもしろいない", "おもしろい"],
-    correct: 1
+    choices: [
+      { kanji: "おもしろくなかった", hiragana: "おもしろくなかった" },
+      { kanji: "おもしろいない", hiragana: "おもしろいない" },
+      { kanji: "おもしろい", hiragana: "おもしろい" }
+    ],
+    correct: 0
   },
   {
     text: "仕事 を 。。。。",
-    choices: ["やすんでもいいですか?", "どこですか", "やすみ"],
+    choices: [
+      { kanji: "やすんでもいいですか?", hiragana: "やすんでもいいですか?" },
+      { kanji: "どこですか", hiragana: "どこですか" },
+      { kanji: "やすみ", hiragana: "やすみ" }
+    ],
     correct: 1
   }
 ],
 
   co: [
-    {
-  text: "これは だれ ですか。",
-  image: "img/boy.png",
-  audio: "audio/boy.mp3",
-  choices: ["おとこ", "おんな", "こども", "せんせい"],
-  correct: 1
+{
+  text: "忙しいので手伝えません。",
+  choices: [
+    { kanji: "いそがしい", hiragana: "いそがしい" },
+    { kanji: "たのしい", hiragana: "たのしい" },
+    { kanji: "むずかしい", hiragana: "むずかしい" }
+  ],
+  correct: 0
 },
     {
       text: "これは わたしの ______ です。",
-      choices: ["ほん", "さかな", "くるま", "みず"],
+      choices: [
+        { kanji: "ほん", hiragana: "ほん" },
+        { kanji: "さかな", hiragana: "さかな" },
+        { kanji: "くるま", hiragana: "くるま" },
+        { kanji: "みず", hiragana: "みず" }
+      ],
       correct: 1
     }
   ],
@@ -694,12 +787,22 @@ scri: [
     {
   text: "Audio を 聞いて えらんでください。",
   audio: "audio/q1.mp3",
-  choices: ["ねこ", "いぬ", "とり", "さかな"],
+  choices: [
+    { jp: "ねこ", id: "kucing" },
+    { jp: "いぬ", id: "anjing" },
+    { jp: "とり", id: "burung" },
+    { jp: "さかな", id: "ikan" }
+  ],
   correct: 1
 },
     {
       text: "これは なん ______ か。",
-      choices: ["です", "ます", "した", "ない"],
+      choices: [
+        { jp: "です", id: "adalah" },
+        { jp: "ます", id: "melakukan" },
+        { jp: "した", id: "telah dilakukan" },
+        { jp: "ない", id: "tidak" }
+      ],
       correct: 1
     }
   ],
