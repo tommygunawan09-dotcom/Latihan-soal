@@ -249,6 +249,106 @@ body {
     .step.done {
   background: #CD5C5C;   /* abu-abu = sudah dijawab */
 }
+/* =========================
+   TABLET (≤1024px)
+========================= */
+@media (max-width: 1024px) {
+
+  .sidebar {
+    width: 56px;
+  }
+
+  .side-label {
+    font-size: 10px;
+    text-align: center;
+  }
+
+  .step-column {
+    width: 64px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .main {
+    padding: 16px;
+  }
+}
+
+/* =========================
+   MOBILE (≤768px)
+========================= */
+@media (max-width: 768px) {
+
+  body {
+    flex-direction: column;
+  }
+
+  /* ===== SIDEBAR jadi horizontal ===== */
+  .sidebar {
+    flex-direction: row;
+    width: 100%;
+    height: 70px;
+    border-right: none;
+    border-bottom: 1px solid #c9c9c9;
+  }
+
+  .side-section {
+    flex: 1;
+    padding-top: 4px;
+    justify-content: center;
+  }
+
+  .side-track {
+    width: 6px;
+    margin: 4px 0;
+  }
+
+  /* ===== STEP COLUMN horizontal ===== */
+  .step-column {
+    width: 100%;
+    height: 60px;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .step {
+    width: 42px;
+    height: 36px;
+    font-size: 13px;
+  }
+
+  .step.active::after {
+    display: none; /* panah dimatikan di mobile */
+  }
+
+  /* ===== MAIN ===== */
+  .main {
+    flex: 1;
+    padding: 10px;
+    overflow: hidden;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  .question-text {
+    font-size: 16px;
+  }
+
+  .choices button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
 
   </style>
 </head>
