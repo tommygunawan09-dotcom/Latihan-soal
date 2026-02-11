@@ -553,8 +553,18 @@ function shuffleArray(array) {
 }
 
 function shuffleChoices(question) {
+
+  // 🔥 JIKA bukan kanji/hiragana, JANGAN DIAPA-APAIN
+  if (
+    !question.choices ||
+    typeof question.choices[0] === "string" ||
+    !question.choices[0][ACTIVE_SCRIPT]
+  ) {
+    return;
+  }
+
   const combined = question.choices.map((choice, index) => ({
-    text: choice[ACTIVE_SCRIPT], // 🔥 kanji / hiragana
+    text: choice[ACTIVE_SCRIPT],
     isCorrect: index === question.correct
   }));
 
@@ -646,7 +656,16 @@ const sections = {
     ],
     correct: 0
   }
-  ,{
+    ,{
+  image: "https://i.pinimg.com/736x/d6/e0/64/d6e064493ac58565eae347554de5a796.jpg",        // ⬅️ gambar
+    choices: [
+      { kanji: "頭", hiragana: "あたま" },
+      { kanji: "お腹", hiragana: "おなか" },
+      { kanji: "体 ", hiragana: "からだ" }
+    ],
+    correct: 1
+  },
+  {
     text: "________かれのさいふは歩いているときに取られたかもしれない",
     choices: [
       { kanji: "もしかしたら", hiragana: "もしかしたら" },
@@ -671,6 +690,26 @@ const sections = {
       { kanji: "映画", hiragana: "えいが" },
       { kanji: "学校", hiragana: "がっか" },
       { kanji: "英語", hiragana: "えいご" }
+    ],
+    correct: 0
+  },
+    {
+    text: "あそいだあとで, シャワーを________"  ,
+   target: { kanji: "浴びます", hiragana: "あびます" },
+  choices: [
+      { kanji: "浴びます", hiragana: "あびます" },
+      { kanji: "乗ります", hiragana: "のります" },
+      { kanji: "行きます", hiragana: "きます" }
+    ],
+    correct: 0
+  },
+      {
+    text: "今は図書館にいます"  ,
+   target: { kanji: "図書館", hiragana: "としょかん" },
+  choices: [
+      { kanji: "図書館", hiragana: "としょかん" },
+      { kanji: "学校", hiragana: "がっこう" },
+      { kanji: "家", hiragana: "いえ" }
     ],
     correct: 0
   },
