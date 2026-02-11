@@ -320,11 +320,10 @@ body {
 }
 @media (max-width: 768px) {
 
-  #resultScreen {
-    padding: 12px;
-    overflow-y: auto;
-    display: block;
-  }
+#resultScreen {
+  padding: 12px;
+  overflow-y: auto;
+}
 
   .certificate {
     width: 100%;
@@ -887,8 +886,8 @@ function showResult() {
     sectionHTML;
 
   // ===== 🔥 INI KUNCI UTAMA 🔥 =====
-  const quiz = document.getElementById("quiz");
-  const result = document.getElementById("resultScreen");
+document.getElementById("quiz").classList.remove("active");
+document.getElementById("resultScreen").classList.add("active");
 
   quiz.style.display = "none";        // ❌ soal HILANG total
   result.style.display = "block";     // ✅ hasil saja yang tampil
