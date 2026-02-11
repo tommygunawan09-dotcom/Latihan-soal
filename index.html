@@ -704,7 +704,7 @@ const sections = {
     correct: 0
   },
       {
-    text: "今は図書館にいます"  ,
+    text: "今は({target})にいます"  ,
    target: { kanji: "図書館", hiragana: "としょかん" },
   choices: [
       { kanji: "図書館", hiragana: "としょかん" },
@@ -714,9 +714,10 @@ const sections = {
     correct: 0
   },
   {
-    text: "運んで",
-    choices: [
-      { kanji: "はひふ", hiragana: "はひふ" },
+    text: "({target})",
+   target: { kanji: "運んで", hiragana: "はこんで" },
+  choices: [
+      { kanji: "運んで", hiragana: "はこんで" },
       { kanji: "よかった", hiragana: "よかった" },
       { kanji: "はこんで", hiragana: "はこんで" }
     ],
@@ -731,9 +732,9 @@ scri: [
     "A: どんな本ですか\n" +
     "B: ______ 歴史の本です",
     choices: [
-      { kanji: "とくに", hiragana: "とくに" },
-      { kanji: "たしかに", hiragana: "たしかに" },
-      { kanji: "そのままに", hiragana: "そのままに" }
+      { kanji: "特に", hiragana: "とくに" },
+      { kanji: "確かに", hiragana: "たしかに" },
+      { kanji: "其の儘に", hiragana: "そのままに" }
     ],
     correct: 1
   }
@@ -749,18 +750,18 @@ scri: [
   {
     text: "予定いのほかのひとが_________",
     choices: [
-      { kanji: "おしらせるために", hiragana: "おしらせるために" },
-      { kanji: "おしらせ", hiragana: "おしらせ" },
-      { kanji: "おしれば", hiragana: "おしれば" }
+      { kanji: "お知らせするために", hiragana: "おしらせるために" },
+      { kanji: "お知らせ", hiragana: "おしらせ" },
+      { kanji: "知れば", hiragana: "おしれば" }
     ],
     correct: 1
   },
   {
     text: "これはバナナの________, どうぞ。",
     choices: [
-      { kanji: "りょうりでした", hiragana: "りょうりでした" },
-      { kanji: "りょうりです", hiragana: "りょうりです" },
-      { kanji: "りょうります", hiragana: "りょうります" }
+      { kanji: "料理でした", hiragana: "りょうりでした" },
+      { kanji: "料理です", hiragana: "りょうりです" },
+      { kanji: "料理します", hiragana: "りょうります" }
     ],
     correct: 1
   },
@@ -771,9 +772,9 @@ scri: [
     "A: じゃあ、よていのほかのひとに。。。ために。このメッセージをつたえてください。\n" +
     "B: はい、わかりました。",
     choices: [
-      { kanji: "おせわになる", hiragana: "おせわになる" },
-      { kanji: "おしらせる", hiragana: "おしらせる" },
-      { kanji: "おくる", hiragana: "おくる" }
+      { kanji: "お世話になる", hiragana: "おせわになる" },
+      { kanji: "お知らせる", hiragana: "おしらせる" },
+      { kanji: "送る", hiragana: "おくる" }
     ],
     correct: 1
   },
@@ -782,7 +783,7 @@ scri: [
     "B: 東京です",
     choices: [
       { kanji: "いつですか", hiragana: "いつですか" },
-      { kanji: "なんですか", hiragana: "なんですか" },
+      { kanji: "何ですか", hiragana: "なんですか" },
       { kanji: "どこですか", hiragana: "どこですか" }
     ],
     correct: 2
@@ -791,9 +792,9 @@ scri: [
     text: "アニさんは____________?, \n" +
     "おめでとうございます",
     choices: [
-      { kanji: "けっこん", hiragana: "けっこん" },
-      { kanji: "けっこんするように", hiragana: "けっこんするように" },
-      { kanji: "けっこんしたそうです", hiragana: "けっこんしたそうです" }
+      { kanji: "結婚 ", hiragana: "けっこん" },
+      { kanji: "結婚するように", hiragana: "けっこんするように" },
+      { kanji: "結婚したそうです", hiragana: "けっこんしたそうです" }
     ],
     correct: 1
   },
@@ -818,20 +819,21 @@ scri: [
     correct: 1
   },
   {
-    text: "昨日のイベントはあまり。",
-    choices: [
-      { kanji: "おもしろくなかった", hiragana: "おもしろくなかった" },
-      { kanji: "おもしろいない", hiragana: "おもしろいない" },
-      { kanji: "おもしろい", hiragana: "おもしろい" }
+    text: "({target})のイベントはあまり。",
+   target: { kanji: "昨日", hiragana: "きのう" },
+  choices: [
+      { kanji: "面白くなかった", hiragana: "おもしろくなかった" },
+      { kanji: "面白くない", hiragana: "おもしろくない" },
+      { kanji: "面白い", hiragana: "おもしろい" }
     ],
     correct: 0
   },
   {
     text: "仕事 を 。。。。",
     choices: [
-      { kanji: "やすんでもいいですか?", hiragana: "やすんでもいいですか?" },
-      { kanji: "どこですか", hiragana: "どこですか" },
-      { kanji: "やすみ", hiragana: "やすみ" }
+      { kanji: "休んでもいいですか?", hiragana: "やすんでもいいですか?" },
+      { kanji: "何処", hiragana: "どこですか" },
+      { kanji: "休み", hiragana: "やすみ" }
     ],
     correct: 1
   }
