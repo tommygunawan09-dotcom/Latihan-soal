@@ -465,6 +465,23 @@ body {
   }
 
 }
+@media (max-width: 768px) {
+
+  #resultScreen {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .certificate {
+    width: 900px;          /* BIARKAN ukuran desktop */
+    transform: scale(0.42); /* ← KUNCI SOLUSI */
+    transform-origin: top center;
+  }
+
+}
 
   </style>
 </head>
