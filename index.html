@@ -436,6 +436,33 @@ body {
     font-size: 12px;
   }
 }
+@media (max-width: 768px) {
+
+  html, body {
+    height: auto;
+    overflow: auto;   /* ✅ mobile boleh scroll */
+  }
+
+  body {
+    min-height: 100dvh; /* ✅ lebih akurat dari 100vh di HP */
+  }
+
+  .main {
+    height: auto !important;
+    min-height: calc(100dvh - 130px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .screen.active {
+    align-items: stretch;
+  }
+
+  .container,
+  .certificate {
+    margin-bottom: 20px;
+  }
+}
 
   </style>
 </head>
