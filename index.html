@@ -377,6 +377,57 @@ body {
     padding: 10px;
   }
 }
+/* =========================
+   MOBILE LAYOUT FIX
+========================= */
+@media (max-width: 768px) {
+
+  body {
+    flex-direction: column;   /* ubah jadi vertikal */
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+  }
+
+  .side-section {
+    flex: 1;
+    border: none;
+  }
+
+  .step-column {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px;
+  }
+
+  .main {
+    width: 100%;
+    height: auto;
+    padding: 12px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Pastikan hanya 1 screen aktif */
+  .screen {
+    display: none;
+  }
+
+  .screen.active {
+    display: block;
+  }
+
+}
+
   </style>
 </head>
 <body>
