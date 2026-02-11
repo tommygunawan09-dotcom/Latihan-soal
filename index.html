@@ -572,6 +572,20 @@ function shuffleChoices(question) {
 <script>
 const SCRIPTS = ["kanji", "hiragana"];
 const ACTIVE_SCRIPT = SCRIPTS[Math.floor(Math.random() * SCRIPTS.length)];
+function renderQuestionText(q) {
+  if (!q.target) return q.text;
+
+  // kebalikan dari script jawaban
+  const oppositeScript =
+    ACTIVE_SCRIPT === "kanji" ? "hiragana" : "kanji";
+
+  return q.text.replace(
+    "{target}",
+    q.target[oppositeScript]
+  );
+}
+
+
 const sections = {
     gra: [
 {
@@ -585,8 +599,9 @@ const sections = {
 }
 ,
 {
-  text: "忙しいので手伝えません。",
-    choices: [
+  text: "({target})ので手伝えません。",
+  target: { kanji: "忙しい", hiragana: "いそがしい" },
+  choices: [
       { kanji: "忙しい", hiragana: "いそがしい" },
       { kanji: "楽しい", hiragana: "たのしい" },
       { kanji: "難しい", hiragana: "むずかしい" }
@@ -603,8 +618,9 @@ const sections = {
     correct: 2
   },
   {
-    text: "あまいものは 苦手  です。",
-    choices: [
+    text: "あまいものは ({target})  です。",
+  target: { kanji: "苦手", hiragana: "にがて" },
+  choices: [
       { kanji: "若手", hiragana: "じめじめ" },
       { kanji: "草苦", hiragana: "おおい" },
       { kanji: "苦手", hiragana: "にがて" }
@@ -621,13 +637,14 @@ const sections = {
     correct: 0
   },
   {
-    text: "明日はいい天気でしょう。",
-    choices: [
+    text: "明日はいい({target})でしょう。",
+   target: { kanji: "天気", hiragana: "てんき" },
+  choices: [
       { kanji: "天気", hiragana: "てんき" },
       { kanji: "天気", hiragana: "てんぎ" },
       { kanji: "電気", hiragana: "でんぎ" }
     ],
-    correct: 1
+    correct: 0
   }
   ,{
     text: "________かれのさいふは歩いているときに取られたかもしれない",
@@ -648,8 +665,9 @@ const sections = {
     correct: 1
   },
   {
-    text: "明日は映画をみにきませんか",
-    choices: [
+    text: "明日は({target})をみにきませんか",
+   target: { kanji: "映画", hiragana: "えいが" },
+  choices: [
       { kanji: "映画", hiragana: "えいが" },
       { kanji: "学校", hiragana: "がっか" },
       { kanji: "英語", hiragana: "えいご" }
@@ -877,7 +895,8 @@ function loadQuestion() {
   document.getElementById("qNumber").textContent =
     `Question ${currentQuestion + 1} / ${sections[currentSection].length}`;
 
-  document.getElementById("questionText").textContent = q.text;
+document.getElementById("questionText").textContent =
+  renderQuestionText(q);
 
   // ===== IMAGE =====
   const imageBox = document.getElementById("imageContainer");
