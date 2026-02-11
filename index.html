@@ -317,7 +317,12 @@ body {
   .main {
     flex: 1;
     padding: 10px;
-    overflow: hidden;
+
+    overflow-y: auto;   /* ✅ BOLEH SCROLL */
+    overflow-x: hidden;
+
+    height: calc(100vh - 130px);
+    /* 130px = sidebar (70) + step-column (60) */
   }
 
   .container {
