@@ -139,11 +139,12 @@ body {
 }
 
 .screen {
-  width: 100%;
   display: none;
+  width: 100%;
 }
+
 .screen.active {
-  height: 100%;
+  display: block;
 }
 .screen.active {
   display: flex;
@@ -319,7 +320,8 @@ body {
   .main {
     flex: 1;
     padding: 10px;
-
+    height: auto;       /* ❗ ini penting */
+    overflow: visible;
     overflow-y: auto;   /* ✅ BOLEH SCROLL */
     overflow-x: hidden;
 
