@@ -343,6 +343,51 @@ body {
 .choices button {
   transition: all 0.2s ease;
 }
+#resultScreen {
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.certificate {
+  width: 900px;
+  max-width: 100%;
+  background: #fff;
+  margin: auto;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.bar-container {
+  position: relative;
+  height: 16px;
+  background: linear-gradient(to right, orange, yellowgreen, green);
+  border-radius: 10px;
+}
+
+.marker {
+  position: absolute;
+  top: -6px;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border: 3px solid orange;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.percent-bar {
+  margin-top: 5px;
+  height: 14px;
+  background: #eee;
+  border-radius: 10px;
+}
+
+.percent-fill {
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(to right, orange, yellowgreen);
+}
+
   </style>
 </head>
 <body>
@@ -358,7 +403,7 @@ body {
 </div>
 
 <div class="side-section" onclick="goToSection('scri')">
-  <div class="side-label">Script and Vocabulary</div>
+  <div class="side-label">Script an...</div>
   <div class="side-track">
     <div class="side-fill" id="scriProgress"></div>
   </div>
@@ -397,6 +442,40 @@ body {
       <div class="question-box">
       </div>
     </div>
+<div id="resultScreen" class="screen">
+  <div class="certificate">
+
+    <div class="header">
+      <h1>Sertifikat rumah</h1>
+      <h2>wkwkw</h2>
+    </div>
+
+    <div class="profile-section">
+      <div class="photo">
+        <img src="your-photo.jpg" alt="Profile">
+      </div>
+      <div class="info">
+        <p><strong>Name:</strong> Asep pacul</p>
+        <p><strong>Nationality:</strong> Pochinki</p>
+      </div>
+    </div>
+
+    <div class="score-section">
+      <div class="score-title" id="totalScoreText"></div>
+      <div class="bar-container">
+        <div class="marker" id="scoreMarker"></div>
+      </div>
+      <div class="bar-labels">
+        <span>0</span>
+        <span>200 (Passing)</span>
+        <span>250</span>
+      </div>
+    </div>
+
+    <div class="section-scores" id="sectionScores"></div>
+
+  </div>
+</div>
 
     <div id="quiz" class="screen active">
       <div class="container">
@@ -424,59 +503,59 @@ const sections = {
   {
     text: "忙しいので手伝えません。",
     choices: ["いそがしい", "たのしい", "むずかしい"],
-    correct: 2
+    correct: 1
   },
   {
     text: "あまいものは 苦手  です。",
     choices: ["じめじめ", "おおい", "にがて"],
-    correct: 2
+    correct: 1
   }
   ,{
     text: "昨日は雨が降るのであまり_______",
     choices: ["おもしろくなかった", "おもしました", "おもしろい"],
-    correct: 2
+    correct: 1
   },
   {
     text: "今は図書館にいます。",
     choices: ["はくぶつかん", "ゆびんきょうく", "としょかん"],
-    correct: 2
+    correct: 1
   },
   {
     text: "あそいだあとで, シャワーを________。",
     choices: ["浴びます", "乗ります", "行きます"],
-    correct: 2
+    correct: 1
   },
   {
     text: "明日はいい天気でしょう。",
     choices: ["てんぎ", "てんき", "でんぎ"],
-    correct: 2
+    correct: 1
   }
   ,{
     text: "________かれのさいふは歩いているときに取られたかもしれない",
     choices: ["もしかしたら", "かならず", "できれば"],
-    correct: 2
+    correct: 1
   },
   {
     text: "きっと______ことができると思います。",
     choices: ["テーブル", "みつける", "間に合わせる"],
-    correct: 2
+    correct: 1
   },
   {
     text: "明日は映画をみにきませんか",
     choices: ["えいが", "がっか", "えいご"],
-    correct: 2
+    correct: 1
   },
   {
     text: "運んで",
     choices: ["はひふ", "よかった", "はこんで"],
-    correct: 2
+    correct: 1
   }
 ],
 scri: [
   {
     text: "A: あなたのしゅみはなんですか B: ほんをよむことです A: どんな本ですか B: ______歴史の本です",
     choices: ["とくに", "たしかに", "そのままに"],
-    correct: 0
+    correct: 1
   },
   {
     text: "予定いのほかのひとが_________",
@@ -486,7 +565,7 @@ scri: [
   {
     text: "これはバナナの________, どうぞ。",
     choices: ["りょうりでした", "りょうりです", "りょうります"],
-    correct: 0
+    correct: 1
   },
   {
     text: "A：めりさん、いべんとのよていがかわったことをしっていますか？B：へえ、かわったんですか？ーーしりませんでした。A：じゃあ、よていのほかのひとに。。。ために。このメッセージをつたえてください。B：はい、わかりました。",
@@ -496,12 +575,12 @@ scri: [
   {
     text: "A: すみません, ここは_________ ?? B: 東京です",
     choices: ["いつですか", "なんですか", "どこですか"],
-    correct: 0
+    correct: 1
   },
   {
     text: "アニさんは____________?, おめでとうございます",
     choices: ["けっこん", "けっこんするように", "けっこんしたそうです"],
-    correct: 0
+    correct: 1
   },
   {
     text: "A: おきゃくさまはどんなさいますか B: ジュース________???",
@@ -511,7 +590,7 @@ scri: [
   {
     text: "A: いついしょにサッカーをしますか B: これから________???",
     choices: ["どうしますか", "どうしたんですか", "どうですか"],
-    correct: 0
+    correct: 1
   },
   {
     text: "昨日のイベントはあまり。",
@@ -521,7 +600,7 @@ scri: [
   {
     text: "仕事 を 。。。。",
     choices: ["やすんでもいいですか?", "どこですか", "やすみ"],
-    correct: 0
+    correct: 1
   }
 ],
 
@@ -531,12 +610,12 @@ scri: [
   image: "img/boy.png",
   audio: "audio/boy.mp3",
   choices: ["おとこ", "おんな", "こども", "せんせい"],
-  correct: 2
+  correct: 1
 },
     {
       text: "これは わたしの ______ です。",
       choices: ["ほん", "さかな", "くるま", "みず"],
-      correct: 0
+      correct: 1
     }
   ],
 
@@ -550,7 +629,7 @@ scri: [
     {
       text: "これは なん ______ か。",
       choices: ["です", "ます", "した", "ない"],
-      correct: 0
+      correct: 1
     }
   ],
 
@@ -559,26 +638,29 @@ scri: [
   text: "これは なん ですか。",
   image: "img/apple.jpg",
   choices: ["りんご", "みかん", "ばなな", "ぶどう"],
-  correct: 0
+  correct: 1
 },
     {
       text: "こんばん ______。",
       choices: ["は", "を", "に", "で"],
-      correct: 0
+      correct: 1
     }
   ]
 };
 
-let currentSection = "scri";
+let currentSection = "gra";
 let currentQuestion = 0;
-
-const answered = {
-  scri: [],
-  co: [],
-  list: [],
-  rea: [],
-  gra: []
+// simpan jawaban user
+let answered = {
+  gra: new Array(sections.gra.length).fill(null),
+  scri: new Array(sections.scri.length).fill(null),
+  co: new Array(sections.co.length).fill(null),
+  list: new Array(sections.list.length).fill(null),
+  rea: new Array(sections.rea.length).fill(null)
 };
+
+let totalScore = 0;              // ✅ global
+const POINT_PER_QUESTION = 10;   // ✅ global
 
 function goToSection(sectionKey) {
   if (currentSection === sectionKey) return; // ⛔ stop
@@ -659,16 +741,48 @@ if (saved !== null) {
 
 function checkAnswer(choice) {
 
-  // simpan index pilihan
+  const q = sections[currentSection][currentQuestion];
+  const previous = answered[currentSection][currentQuestion];
+
+  // kurangi skor jika sebelumnya benar
+  if (previous === q.correct) {
+    totalScore -= POINT_PER_QUESTION;
+  }
+
+  // tambah skor jika sekarang benar
+  if (choice === q.correct) {
+    totalScore += POINT_PER_QUESTION;
+  }
+
   answered[currentSection][currentQuestion] = choice;
 
   const buttons = document.querySelectorAll("#choices button");
   buttons.forEach(btn => btn.classList.remove("selected"));
-
   buttons[choice].classList.add("selected");
 
   updateSideProgress();
   renderSteps();
+
+  if (checkAllFinished()) {
+    showResult();
+  }
+}
+
+function updateSideProgress() {
+
+  let answeredCount = 0;
+  let total = sections[currentSection].length;
+
+  answered[currentSection].forEach(value => {
+    if (value !== null) {
+      answeredCount++;
+    }
+  });
+
+  let percent = (answeredCount / total) * 100;
+
+  document.getElementById(currentSection + "Progress")
+    .style.height = percent + "%";
 }
 
   loadQuestion();
@@ -715,18 +829,6 @@ function goToIntro() {
     .forEach(s => s.classList.remove("active"));
 }
 
-function updateSideProgress() {
-  const total = answered[currentSection].length;
-
-  const done = answered[currentSection]
-    .filter(v => v !== null).length;
-
-  const percent = (done / total) * 100;
-
-  document.getElementById(currentSection + "Progress").style.height =
-    percent + "%";
-}
-
 function renderSteps() {
   const stepColumn = document.getElementById("stepColumn");
   stepColumn.innerHTML = "";
@@ -749,7 +851,65 @@ function renderSteps() {
     stepColumn.appendChild(step);
   });
 }
-goToSection("scri");
+goToSection("gra");
+function checkAllFinished() {
+  for (let key in sections) {
+    if (answered[key].length === 0) return false;
+    if (answered[key].includes(null)) return false;
+  }
+  return true;
+}
+
+function showResult() {
+
+  let totalCorrect = 0;
+  let totalQuestions = 0;
+
+  let sectionHTML = "";
+
+  for (let key in sections) {
+
+    let correct = 0;
+
+    sections[key].forEach((q, i) => {
+      if (answered[key][i] === q.correct) {
+        correct++;
+      }
+    });
+
+    let percent = Math.round((correct / sections[key].length) * 100);
+
+    totalCorrect += correct;
+    totalQuestions += sections[key].length;
+
+    sectionHTML += `
+      <div class="section-item">
+        <span>${key.toUpperCase()}</span>
+        <div class="percent-bar">
+          <div class="percent-fill" style="width:${percent}%"></div>
+        </div>
+        <div class="percent-text">${percent}%</div>
+      </div>
+    `;
+  }
+
+let maxScore = totalQuestions * POINT_PER_QUESTION;
+let totalPercent = Math.round((totalScore / maxScore) * 100);
+
+let score250 = Math.round((totalScore / maxScore) * 250);
+
+  document.getElementById("totalScoreText").textContent =
+    `Total Score: ${score250} points`;
+
+  document.getElementById("scoreMarker").style.left =
+    totalPercent + "%";
+
+  document.getElementById("sectionScores").innerHTML =
+    sectionHTML;
+
+  document.getElementById("quiz").classList.remove("active");
+  document.getElementById("resultScreen").classList.add("active");
+}
 
 
 </script>
