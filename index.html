@@ -183,12 +183,21 @@ body {
     .question-image,
     .audio-player { margin-bottom: 20px; text-align: center; }
 
+/* WRAPPER */
 .question-image {
+  width: 100%;
+  max-height: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 12px 0 16px;
+}
+
+/* IMG DI DALAMNYA */
+.question-image img {
   max-width: 100%;
-  max-height: 220px;      /* 🔥 kunci tinggi */
+  max-height: 220px;
   object-fit: contain;
-  display: block;
-  margin: 12px auto 16px auto;
 }
     .choices { list-style: none; padding: 0; }
     .choices li { margin-bottom: 12px; }
@@ -413,15 +422,34 @@ body {
   gap: 12px;
 }
 
-/* tombol jawaban */
+.choices.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* JLPT style */
+  gap: 12px;
+}
+
 .choices.image-grid button {
+  height: 120px;
   padding: 6px;
-  height: auto;
-  aspect-ratio: 1 / 1;   /* 🔥 KUNCI: kotak stabil */
   display: flex;
   flex-direction: column;
+  justify-content: center;
+}
+
+.choice-img-box {
+  flex: 1;
+  width: 100%;
+  background: #f3f3f3;
+  border-radius: 6px;
+  display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.choice-img-box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 /* kotak gambar */
@@ -571,10 +599,8 @@ body {
    MOBILE TOTAL RESET LAYOUT
 ========================= */
 @media (max-width: 768px) {
-
   body {
-    display: block;       /* 🔥 HENTIKAN FLEX DESKTOP */
-    height: auto;
+    flex-direction: column;
   }
   /* sidebar jadi header atas */
   .sidebar {
