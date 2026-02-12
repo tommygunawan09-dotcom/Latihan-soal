@@ -398,122 +398,60 @@ body {
   cursor: pointer;
   text-align: left;
 }
-
 /* =========================
-   IMAGE CHOICE GRID (RESPONSIVE, NO SCROLL)
+   IMAGE CHOICE GRID (FINAL)
 ========================= */
 .choices.image-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
   gap: 12px;
 }
 
-/* tombol grid */
+/* tombol jawaban */
 .choices.image-grid button {
   padding: 6px;
-  height: 130px;              /* kotak konsisten */
+  height: auto;
+  aspect-ratio: 1 / 1;   /* 🔥 KUNCI: kotak stabil */
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-/* wrapper gambar */
+/* kotak gambar */
 .choice-img-box {
   width: 100%;
-  height: 100%;
+  flex: 1;
   background: #f3f3f3;
   border-radius: 6px;
+  overflow: hidden;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;           /* 🔥 penting */
 }
 
 /* gambar */
 .choice-img-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;          /* 🔥 isi kotak */
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;   /* 🔥 gak kepotong */
 }
 
-/* label kecil */
-.choice-label {
-  font-size: 12px;
-  margin-top: 6px;
-  color: #333;
-}
-/* =========================
-   MOBILE SIDEBAR PROGRESS FIX
-========================= */
-@media (max-width: 768px) {
-
-  .sidebar {
-    position: fixed;   /* 🔥 penting */
-    top: 0;
-    left: 0;
-    right: 0;
-
-    height: 48px;
-    z-index: 1000;
-
-    flex-direction: row;
-    align-items: center;
-
-    background: #e6e6e6;
-    border-bottom: 1px solid #c9c9c9;
-  }
-}
-
-/* =========================
-   MOBILE STICKY MINI SIDEBAR
-========================= */
-@media (max-width: 768px) {
-
-  .sidebar {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-
-    height: 48px;
-    background: #e6e6e6;
-    border-bottom: 1px solid #c9c9c9;
-
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .side-section {
-    flex: 1;
-    padding: 4px 6px;
-    justify-content: center;
-  }
-
-  /* label lebih kecil */
-  .side-label {
-    font-size: 9px;
-    line-height: 1;
-    margin-bottom: 3px;
-    white-space: nowrap;
-  }
-
-  /* progress bar horizontal mini */
-  .side-track {
-    width: 100%;
-    height: 5px;
-    margin: 0;
-    border-radius: 999px;
-  }
-
-  .side-fill {
-    height: 100%;
-  }
-}
-/* label kecil */
+/* label A B C D */
 .choice-label {
   font-size: 12px;
   margin-top: 4px;
-  color: #333;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .main {
+    overflow-x: hidden;
+  }
+
+  .container {
+    overflow: hidden;
+  }
 }
 /* =========================
    GRID PILIHAN GAMBAR (FIX)
@@ -586,6 +524,7 @@ body {
   .container {
     width: 100%;
     max-width: 100%;
+    border-radius: 8px;
   }
 }
 @media (max-width: 768px) {
@@ -593,6 +532,44 @@ body {
     font-size: 14px;
     line-height: 1.4;
   }
+}
+/* =========================
+   MOBILE TOTAL RESET LAYOUT
+========================= */
+@media (max-width: 768px) {
+
+  body {
+    display: block;       /* 🔥 HENTIKAN FLEX DESKTOP */
+    height: auto;
+  }
+
+  /* step column benar-benar mati */
+  .step-column {
+    display: none !important;
+  }
+
+  /* sidebar jadi header atas */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 48px;
+    z-index: 1000;
+
+    flex-direction: row;
+    align-items: center;
+  }
+
+  /* area utama turun setelah header */
+  .main {
+    margin-top: 48px;
+    height: auto;
+    overflow: visible;
+    padding: 12px;
+  }
+
 }
 
   </style>
