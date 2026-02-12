@@ -378,56 +378,7 @@ body {
     padding-top: 12px;
   }
 }
-/* =========================
-   MOBILE LAYOUT FIX
-========================= */
-@media (max-width: 768px) {
 
-  body {
-    flex-direction: column;   /* ubah jadi vertikal */
-  }
-
-  .sidebar {
-    width: 100%;
-    height: auto;
-    flex-direction: row;
-  }
-
-  .side-section {
-    flex: 1;
-    border: none;
-  }
-
-  .step-column {
-    width: 100%;
-    height: auto;
-    flex-direction: row;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 10px;
-  }
-
-  .main {
-    width: 100%;
-    height: auto;
-    padding: 12px;
-  }
-
-  .container {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  /* Pastikan hanya 1 screen aktif */
-  .screen {
-    display: none;
-  }
-
-  .screen.active {
-    display: block;
-  }
-
-}
 /* =========================
    DEFAULT TEXT CHOICES
 ========================= */
@@ -449,42 +400,48 @@ body {
 }
 
 /* =========================
-   IMAGE CHOICE GRID (KHUSUS)
+   IMAGE CHOICE GRID (RESPONSIVE, NO SCROLL)
 ========================= */
 .choices.image-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
   gap: 12px;
 }
 
+/* tombol grid */
 .choices.image-grid button {
   padding: 6px;
-  height: auto;
-}
-
-.choices.image-grid button {
+  height: 130px;              /* kotak konsisten */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.choices.image-grid button img {
+/* wrapper gambar */
+.choice-img-box {
   width: 100%;
-  height: 120px;
-  object-fit: contain;   /* ✅ semua gambar kelihatan */
-  background: #f2f2f2;   /* biar ga kosong */
+  height: 100%;
+  background: #f3f3f3;
+  border-radius: 6px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;           /* 🔥 penting */
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-  .choices.image-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+/* gambar */
+.choice-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* 🔥 isi kotak */
+}
 
-  .choices.image-grid button img {
-    height: 90px;
-    object-fit: contain;
-  }
+/* label kecil */
+.choice-label {
+  font-size: 12px;
+  margin-top: 6px;
+  color: #333;
 }
 /* =========================
    MOBILE SIDEBAR PROGRESS FIX
@@ -550,6 +507,66 @@ body {
 
   .side-fill {
     height: 100%;
+  }
+}
+/* label kecil */
+.choice-label {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #333;
+}
+/* =========================
+   GRID PILIHAN GAMBAR (FIX)
+========================= */
+
+.choices.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+/* tombol jawaban */
+.choices.image-grid button {
+  height: 140px;                 /* tinggi kotak */
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* kotak gambar */
+.choice-img-box {
+  flex: 1;
+  width: 100%;
+  background: #f3f3f3;
+  border-radius: 6px;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* gambar */
+.choice-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;          /* 🔥 TIDAK KEPOTONG */
+}
+
+/* label A B C D */
+.choice-label {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 4px;
+}
+@media (max-width: 768px) {
+  .choices.image-grid button {
+    height: 110px;
+  }
+
+  .choices.image-grid {
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
   }
 }
 
@@ -656,15 +673,6 @@ body {
     </div>
 
   </div>
-
-<script>
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-}
-</script>
 
 <script>
 // =====================
@@ -980,6 +988,17 @@ scri: [
   correct: 0
 },
 {
+  text: "	パウロさんは、何なんじ時に起おきますか。",
+  image: "img/boy.png",        // ⬅️ gambar
+  audio: "https://www.irodori.jpf.go.jp/assets/data/starter/audio/09/X_[09-05]_kiku3.mp3",      // ⬅️ suara
+    choices: [
+      { kanji: "8時じごろ起おきます。", hiragana: "はちじごろおきます" },
+      { kanji: "2時じに起おきます", hiragana: "にじにおきます" },
+      { kanji: "8時じごろ寝ねます。", hiragana: "はちじごろねます" }
+    ],
+  correct: 0
+},
+{
   text: "	何なにを注ちゅうもん文したいですか。",
   image: "img/boy.png",        // ⬅️ gambar
   audio: "https://www.irodori.jpf.go.jp/assets/data/starter/audio/06/X_[06-02]_kiku2.mp3",      // ⬅️ suara
@@ -989,6 +1008,16 @@ scri: [
       { kanji: "ハンバーガー,てりやきバーガー,フィッシュバーガー", hiragana: "もうすこし、ゆっくりいいってください。" }
     ],
   correct: 0
+},
+{
+  text: "Gambar mana yang benar?",
+choices: [
+  { img: "Screenshot 2026-02-12 181019.png", label: "A" },
+  { img: "Screenshot 2026-02-12 181046.png", label: "B" },
+  { img: "img/c.png", label: "C" },
+  { img: "img/d.png", label: "D" }
+],
+correct: 2
 },
 {
   text: "	どんな天てんき気ですか。",
@@ -1176,23 +1205,42 @@ if (
   typeof q.choices[0] === "object" &&
   q.choices[0].img
 ) {
-  choicesEl.classList.add("image-grid");
+  choicesEl.className = "choices image-grid";
 }
 
 q.choices.forEach((choice, i) => {
   const btn = document.createElement("button");
   btn.onclick = () => checkAnswer(i);
 
-  // 🔹 JAWABAN GAMBAR
-  if (typeof choice === "object" && choice.img) {
-    const img = document.createElement("img");
-    img.src = choice.img;
-    img.style.maxWidth = "100%";
-    img.style.borderRadius = "6px";
-    btn.appendChild(img);
-  }
+  // 🔹 PILIHAN DENGAN GAMBAR
+// 🔹 JAWABAN GAMBAR
+if (typeof choice === "object" && choice.img) {
 
-  // 🔹 JAWABAN TEKS
+  // 1. bikin kotak gambar
+  const box = document.createElement("div");
+  box.className = "choice-img-box";
+
+  // 2. bikin elemen <img>
+  const img = document.createElement("img");
+  img.src = choice.img;
+  img.alt = "choice image";
+
+  // 3. masukin img ke kotak
+  box.appendChild(img);
+
+  // 4. masukin kotak ke tombol
+  btn.appendChild(box);
+
+  // 5. label (A, B, C, D)
+  if (choice.label) {
+    const label = document.createElement("div");
+    label.className = "choice-label";
+    label.textContent = choice.label;
+    btn.appendChild(label);
+  }
+}
+
+  // 🔹 PILIHAN TEKS BIASA
   else {
     btn.textContent = choice;
   }
