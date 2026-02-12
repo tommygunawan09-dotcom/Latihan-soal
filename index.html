@@ -183,12 +183,13 @@ body {
     .question-image,
     .audio-player { margin-bottom: 20px; text-align: center; }
 
-    .question-image img {
-      max-width: 100%;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-    }
-
+.question-image {
+  max-width: 100%;
+  max-height: 220px;      /* 🔥 kunci tinggi */
+  object-fit: contain;
+  display: block;
+  margin: 12px auto 16px auto;
+}
     .choices { list-style: none; padding: 0; }
     .choices li { margin-bottom: 12px; }
 
@@ -382,10 +383,15 @@ body {
 /* =========================
    DEFAULT TEXT CHOICES
 ========================= */
-.choices {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.choice {
+  padding: 14px 16px;
+  border-radius: 10px;
+  font-size: 18px;
+  line-height: 1.4;
+  min-height: 56px;
+
+  display: flex;
+  align-items: center;
 }
 
 .choices button {
