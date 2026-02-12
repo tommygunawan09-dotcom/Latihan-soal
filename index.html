@@ -569,6 +569,31 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
   }
 }
+/* =========================
+   MOBILE FIX: HIDE STEP COLUMN
+========================= */
+@media (max-width: 768px) {
+  .step-column {
+    display: none;   /* 🔥 INI KUNCI UTAMA */
+  }
+}
+@media (max-width: 768px) {
+  .main {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .choices button {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
 
   </style>
 </head>
@@ -1010,7 +1035,8 @@ scri: [
   correct: 0
 },
 {
-  text: "Gambar mana yang benar?",
+    audio: "https://www.irodori.jpf.go.jp/assets/data/starter/audio/15/X_[15-12]_kiku1.mp3",      // ⬅️ suara
+  text: "ドライヤーは、どこにありますか。",
 choices: [
   { img: "Screenshot 2026-02-12 181019.png", label: "A" },
   { img: "Screenshot 2026-02-12 181046.png", label: "B" },
