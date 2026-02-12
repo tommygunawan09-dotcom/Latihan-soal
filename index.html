@@ -860,6 +860,17 @@ body.result-mode .certificate {
   flex-direction: column;
   overflow: hidden !important;
 }
+/* =========================
+   🔒 AUDIO NO SEEK
+========================= */
+audio::-webkit-media-controls-timeline {
+  pointer-events: none;
+}
+
+audio::-webkit-media-controls-seek-back-button,
+audio::-webkit-media-controls-seek-forward-button {
+  display: none;
+}
 
   </style>
 </head>
@@ -867,7 +878,6 @@ body.result-mode .certificate {
 
   <!-- SIDEBAR -->
 <div class="sidebar">
-
 <div class="side-section" onclick="goToSection('gra')">
   <div class="side-label">Grammar</div>
   <div class="side-track">
@@ -1478,31 +1488,32 @@ if (q.audio) {
     return;
   }
 
-  const audio = document.createElement("audio");
-  audio.src = q.audio;
-  audio.controls = true;
+const audio = document.createElement("audio");
+audio.src = q.audio;
+audio.controls = true;
+audio.controlsList = "nodownload noplaybackrate"; // 🔥 penting
+audio.preload = "auto";
 
-  audio.addEventListener("ended", () => {
-    audioPlaysPerQuestion[qIndex]++;
+audio.addEventListener("ended", () => {
+  audioPlaysPerQuestion[qIndex]++;
 
-    if (audioPlaysPerQuestion[qIndex] >= MAX_AUDIO_PLAY) {
-      audio.controls = false;
-      audio.src = "";
-      audio.load();
+  if (audioPlaysPerQuestion[qIndex] >= MAX_AUDIO_PLAY) {
+    audio.pause();
+    audio.removeAttribute("controls");
+    audio.src = "";
+    audio.load();
 
-      audio.style.pointerEvents = "none";
-      audio.style.opacity = "0.4";
+    audio.style.pointerEvents = "none";
+    audio.style.opacity = "0.4";
 
-      audioBox.insertAdjacentHTML(
-        "beforeend",
-        "<div style='color:#888;font-size:12px'>Batas audio tercapai</div>"
-      );
-    }
-  });
-
+    audioBox.insertAdjacentHTML(
+      "beforeend",
+      "<div style='color:#888;font-size:12px'>Batas audio tercapai</div>"
+    );
+  }
+});
   audioBox.appendChild(audio);
 }
-
 
   // ===== CHOICES =====
 const choicesEl = document.getElementById("choices");
