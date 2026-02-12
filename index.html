@@ -1668,15 +1668,10 @@ function showResult() {
   // ===== 🔥 INI KUNCI UTAMA 🔥 =====
 document.getElementById("quiz").classList.remove("active");
 document.getElementById("resultScreen").classList.add("active");
-
-  quiz.style.display = "none";        // ❌ soal HILANG total
-  result.style.display = "block";     // ✅ hasil saja yang tampil
+document.body.classList.add("result-mode");
 }
 
-
-
 </script>
-
 
 </body>
 </html>
