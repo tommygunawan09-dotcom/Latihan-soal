@@ -635,37 +635,6 @@ body {
   }
 
 }
-
-/* =========================
-   MOBILE TOTAL RESET LAYOUT
-========================= */
-@media (max-width: 768px) {
-  body {
-    flex-direction: column;
-  }
-  /* sidebar jadi header atas */
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-
-    height: 48px;
-    z-index: 1000;
-
-    flex-direction: row;
-    align-items: center;
-  }
-
-  /* area utama turun setelah header */
-  .main {
-    margin-top: 48px;
-    height: auto;
-    overflow: visible;
-    padding: 12px;
-  }
-
-}
 /* =========================
    MOBILE STEP BAR (FINAL)
 ========================= */
@@ -709,6 +678,73 @@ body {
 @media (max-width: 768px) {
   .step-column {
     display: flex !important;   /* 🔒 hidupkan kembali */
+  }
+}
+/* =========================
+   MOBILE SIDEBAR (FINAL – SINGLE SOURCE)
+========================= */
+@media (max-width: 768px) {
+
+  body {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 56px;
+    z-index: 1200;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+
+    background: #ffffff;
+    border-bottom: 1px solid #d0d0d0;
+  }
+
+  .side-section {
+    flex: 1;
+    padding: 6px 4px;
+    background: transparent;
+    border: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .side-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .side-track {
+    width: 70%;
+    height: 4px;
+    margin-top: 4px;
+    background: #e0e0e0;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .side-fill {
+    height: 100%;
+    width: 0%;
+    background: #4f7f22;
+  }
+
+  .main {
+    margin-top: 56px;
+    padding: 12px;
   }
 }
 
