@@ -570,12 +570,6 @@ body {
     display: block;       /* 🔥 HENTIKAN FLEX DESKTOP */
     height: auto;
   }
-
-  /* step column benar-benar mati */
-  .step-column {
-    display: none !important;
-  }
-
   /* sidebar jadi header atas */
   .sidebar {
     position: fixed;
@@ -637,6 +631,11 @@ body {
 
   .step.active::after {
     display: none;     /* panah desktop dimatikan */
+  }
+}
+@media (max-width: 768px) {
+  .step-column {
+    display: flex !important;   /* 🔒 hidupkan kembali */
   }
 }
 
