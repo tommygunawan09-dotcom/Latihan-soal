@@ -508,31 +508,59 @@ body {
   }
 }
 /* =========================
-   MOBILE FIX: HIDE STEP COLUMN
+   MOBILE SIDEBAR FIX (FINAL)
 ========================= */
 @media (max-width: 768px) {
-  .step-column {
-    display: none;   /* 🔥 INI KUNCI UTAMA */
-  }
-}
-@media (max-width: 768px) {
-  .main {
-    padding-left: 12px;
-    padding-right: 12px;
+
+  /* sidebar jadi header */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 48px;
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    background: #e6e6e6;
+    border-bottom: 1px solid #c9c9c9;
   }
 
-  .container {
-    width: 100%;
-    max-width: 100%;
-    border-radius: 8px;
+  /* item sidebar */
+  .side-section {
+    flex: 0;
+    height: auto;
+    padding: 4px 6px;
+
+    border: none;
+    background: transparent;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
-}
-@media (max-width: 768px) {
-  .choices button {
-    font-size: 14px;
-    line-height: 1.4;
+
+  /* teks sidebar */
+  .side-label {
+    font-size: 10px;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
   }
+
+  /* progress bar DISEMBUNYIKAN di HP */
+  .side-track {
+    display: none;
+  }
+
 }
+
 /* =========================
    MOBILE TOTAL RESET LAYOUT
 ========================= */
