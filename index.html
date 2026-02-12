@@ -165,6 +165,32 @@ body {
       font-size: 20px;
       font-weight: bold;
     }
+    .exam-header {
+  background: linear-gradient(135deg, #1f4fa3, #163c82);
+  color: white;
+  padding: 14px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.exam-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.exam-sub {
+  font-size: 13px;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.exam-sub .dot {
+  font-size: 10px;
+  opacity: 0.6;
+}
 
     .content { padding: 24px; }
 
@@ -757,7 +783,14 @@ body {
     </div>
     <div id="quiz" class="screen active">
       <div class="container">
-        <div class="header">Latihan soal</div>
+<div class="header exam-header">
+  <div class="exam-title">Latihan Soal</div>
+  <div class="exam-sub">
+    <span id="examSection">Grammar</span>
+    <span class="dot">•</span>
+    <span id="examProgress">Question 1 / 13</span>
+  </div>
+</div>
         <div class="content">
           <div class="question-number" id="qNumber"></div>
           <div class="audio-player" id="audioContainer"></div>
@@ -1234,6 +1267,12 @@ const questionText = document.getElementById("questionText");
 
 questionText.textContent = renderQuestionText(q);
 questionText.style.whiteSpace = "pre-line"; // 🔥 INI KUNCINYA
+
+  document.getElementById("examSection").textContent =
+    currentSection.toUpperCase();
+
+  document.getElementById("examProgress").textContent =
+    `Question ${currentQuestion + 1} / ${sections[currentSection].length}`;
 
 
   // ===== IMAGE =====
