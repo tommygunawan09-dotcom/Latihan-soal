@@ -763,6 +763,9 @@ body {
     max-width: 100%;
     object-fit: contain;
   }
+.question-image {
+  min-height: 160px; /* 🔥 jaga tinggi awal */
+}
 
 }
 
@@ -850,7 +853,7 @@ body {
       <div class="question-box">
       </div>
     </div>
-    <div id="quiz" class="screen active">
+<div id="quiz" class="screen">
       <div class="container">
 <div class="header exam-header">
   <div class="exam-title">Latihan Soal</div>
@@ -922,9 +925,11 @@ const MAX_AUDIO_PLAY = 2;
 const audioPlaysPerQuestion = {}; // 🔥 kunci per soal
 let audioLocked = false;
 function renderQuestionText(q) {
+  // 🔥 kalau tidak ada text, kembalikan string kosong
+  if (!q.text) return "";
+
   if (!q.target) return q.text;
 
-  // kebalikan dari script jawaban
   const oppositeScript =
     ACTIVE_SCRIPT === "kanji" ? "hiragana" : "kanji";
 
@@ -933,8 +938,6 @@ function renderQuestionText(q) {
     q.target[oppositeScript]
   );
 }
-
-
 const sections = {
     gra: [
 {
@@ -1333,7 +1336,6 @@ function loadQuestion() {
     `Question ${currentQuestion + 1} / ${sections[currentSection].length}`;
 
 const questionText = document.getElementById("questionText");
-
 questionText.textContent = renderQuestionText(q);
 questionText.style.whiteSpace = "pre-line"; // 🔥 INI KUNCINYA
 
@@ -1564,7 +1566,25 @@ function renderSteps() {
     stepColumn.appendChild(step);
   });
 }
-goToSection("gra");
+window.addEventListener("DOMContentLoaded", () => {
+
+  // matikan semua screen
+  document.querySelectorAll(".screen").forEach(s =>
+    s.classList.remove("active")
+  );
+
+  // aktifkan quiz
+  document.getElementById("quiz").classList.add("active");
+
+  // set awal
+  currentSection = "gra";
+  currentQuestion = 0;   // 🔥 NAMA BENAR
+
+  // render awal
+  renderSteps();
+  loadQuestion();
+  updateSideProgress();
+});
 function checkAllFinished() {
   for (let key in sections) {
     if (answered[key].length === 0) return false;
