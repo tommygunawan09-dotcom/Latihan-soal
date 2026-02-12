@@ -766,6 +766,29 @@ body {
 .question-image {
   min-height: 160px; /* 🔥 jaga tinggi awal */
 }
+/* =========================
+   MOBILE FIX: TEXT ONLY QUESTION
+========================= */
+@media (max-width: 768px) {
+
+  /* jika soal TIDAK ada gambar */
+  .no-image-question .question-image {
+    min-height: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: none;
+  }
+
+  .no-image-question .audio-player:empty {
+    display: none;
+    margin: 0;
+  }
+
+  .no-image-question .question-text {
+    margin-top: 0;
+  }
+}
 
 }
 
@@ -1349,7 +1372,15 @@ questionText.style.whiteSpace = "pre-line"; // 🔥 INI KUNCINYA
   // ===== IMAGE =====
   const imageBox = document.getElementById("imageContainer");
   imageBox.innerHTML = "";
+  // ===== FIX EMPTY IMAGE SPACE (MOBILE ONLY) =====
+const container = document.querySelector(".container");
 
+// reset dulu
+container.classList.remove("no-image-question");
+
+if (!q.image) {
+  container.classList.add("no-image-question");
+}
   if (q.image) {
     const img = document.createElement("img");
     img.src = q.image;
