@@ -675,11 +675,6 @@ body {
     display: none;     /* panah desktop dimatikan */
   }
 }
-@media (max-width: 768px) {
-  .step-column {
-    display: flex !important;   /* 🔒 hidupkan kembali */
-  }
-}
 /* =========================
    MOBILE SIDEBAR (FINAL – SINGLE SOURCE)
 ========================= */
@@ -789,7 +784,48 @@ body {
     margin-top: 0;
   }
 }
+}
+/* =========================
+   🔥 RESULT MODE – FINAL OVERRIDE
+========================= */
 
+/* SEMBUNYIKAN TOTAL */
+body.result-mode .sidebar,
+body.result-mode .step-column {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* BODY & MAIN FULLSCREEN */
+body.result-mode {
+  display: block !important;
+}
+
+body.result-mode .main {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 100vh !important;
+  width: 100vw !important;
+  overflow: auto !important;
+}
+
+/* RESULT SCREEN FULL CENTER */
+body.result-mode #resultScreen {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 100vh !important;
+  width: 100vw !important;
+  padding: 12px !important;
+  background: #f4f4f4;
+}
+
+/* SERTIFIKAT */
+body.result-mode .certificate {
+  margin: 0 auto !important;
+  max-width: 900px;
 }
 
   </style>
