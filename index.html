@@ -374,6 +374,7 @@ body {
   }
 
   .main {
+    padding-top: 8px;
     padding: 10px;
   }
 }
@@ -516,6 +517,51 @@ body {
     transition: width 0.3s ease;
   }
 }
+/* =========================
+   MOBILE STICKY MINI SIDEBAR
+========================= */
+@media (max-width: 768px) {
+
+  .sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    height: 48px;
+    background: #e6e6e6;
+    border-bottom: 1px solid #c9c9c9;
+
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .side-section {
+    flex: 1;
+    padding: 4px 6px;
+    justify-content: center;
+  }
+
+  /* label lebih kecil */
+  .side-label {
+    font-size: 9px;
+    line-height: 1;
+    margin-bottom: 3px;
+    white-space: nowrap;
+  }
+
+  /* progress bar horizontal mini */
+  .side-track {
+    width: 100%;
+    height: 5px;
+    margin: 0;
+    border-radius: 999px;
+  }
+
+  .side-fill {
+    height: 100%;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -1213,11 +1259,9 @@ function updateSideProgress() {
   const fill = document.getElementById(currentSection + "Progress");
 
   if (window.innerWidth <= 768) {
-    // 📱 MOBILE → horizontal
     fill.style.width = percent + "%";
     fill.style.height = "100%";
   } else {
-    // 💻 DESKTOP → vertical (ASLI)
     fill.style.height = percent + "%";
     fill.style.width = "100%";
   }
