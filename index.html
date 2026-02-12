@@ -485,7 +485,37 @@ body {
     object-fit: contain;
   }
 }
+/* =========================
+   MOBILE SIDEBAR PROGRESS FIX
+========================= */
+@media (max-width: 768px) {
 
+  .sidebar {
+    flex-direction: row;
+    flex-shrink: 0;
+    width: 100%;
+    height: auto;
+  }
+
+  .side-section {
+    padding: 6px 4px;
+  }
+
+  /* track jadi horizontal */
+  .side-track {
+    width: 100%;
+    height: 6px;
+    margin: 4px 0 0;
+    border-radius: 999px;
+  }
+
+  /* fill pakai WIDTH, bukan height */
+  .side-fill {
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+}
   </style>
 </head>
 <body>
@@ -1175,36 +1205,24 @@ function updateSideProgress() {
   let answeredCount = 0;
   let total = sections[currentSection].length;
 
-  answered[currentSection].forEach(value => {
-    if (value !== null) {
-      answeredCount++;
-    }
+  answered[currentSection].forEach(v => {
+    if (v !== null) answeredCount++;
   });
 
   let percent = (answeredCount / total) * 100;
+  const fill = document.getElementById(currentSection + "Progress");
 
-  document.getElementById(currentSection + "Progress")
-    .style.height = percent + "%";
-}
-
-  loadQuestion();
-
-function updateActiveStep() {
-  const stepColumn = document.getElementById("stepColumn");
-  const steps = stepColumn.querySelectorAll(".step");
-
-  steps.forEach(step => step.classList.remove("active"));
-
-  if (steps[currentQuestion]) {
-    steps[currentQuestion].classList.add("active");
-
-    // scroll HANYA di stepColumn
-    stepColumn.scrollTop =
-      steps[currentQuestion].offsetTop -
-      stepColumn.clientHeight / 2 +
-      steps[currentQuestion].clientHeight / 2;
+  if (window.innerWidth <= 768) {
+    // 📱 MOBILE → horizontal
+    fill.style.width = percent + "%";
+    fill.style.height = "100%";
+  } else {
+    // 💻 DESKTOP → vertical (ASLI)
+    fill.style.height = percent + "%";
+    fill.style.width = "100%";
   }
 }
+
 
 function nextQuestion() {
   if (currentQuestion < sections[currentSection].length - 1) {
