@@ -747,6 +747,24 @@ body {
     padding: 12px;
   }
 }
+/* =========================
+   FIX GAMBAR SOAL DI MOBILE
+========================= */
+@media (max-width: 768px) {
+
+  .question-image {
+    max-height: 160px;      /* ⬅️ kunci utama */
+    margin: 8px 0 12px;
+  }
+
+  .question-image img {
+    max-height: 160px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+}
 
   </style>
 </head>
