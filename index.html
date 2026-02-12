@@ -374,8 +374,8 @@ body {
   }
 
   .main {
-    padding-top: 8px;
-    padding: 10px;
+    margin-top: 48px;   /* sama dengan tinggi sidebar */
+    padding-top: 12px;
   }
 }
 /* =========================
@@ -492,31 +492,22 @@ body {
 @media (max-width: 768px) {
 
   .sidebar {
+    position: fixed;   /* 🔥 penting */
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 48px;
+    z-index: 1000;
+
     flex-direction: row;
-    flex-shrink: 0;
-    width: 100%;
-    height: auto;
-  }
+    align-items: center;
 
-  .side-section {
-    padding: 6px 4px;
-  }
-
-  /* track jadi horizontal */
-  .side-track {
-    width: 100%;
-    height: 6px;
-    margin: 4px 0 0;
-    border-radius: 999px;
-  }
-
-  /* fill pakai WIDTH, bukan height */
-  .side-fill {
-    height: 100%;
-    width: 0%;
-    transition: width 0.3s ease;
+    background: #e6e6e6;
+    border-bottom: 1px solid #c9c9c9;
   }
 }
+
 /* =========================
    MOBILE STICKY MINI SIDEBAR
 ========================= */
@@ -620,11 +611,11 @@ body {
 
     <div class="profile-section">
       <div class="photo">
-        <img src="your-photo.jpg" alt="Profile">
+        <img src="https://i.pinimg.com/736x/cb/9d/59/cb9d591f82200dabe76083716913c221.jpg" alt="Profile">
       </div>
       <div class="info">
         <p><strong>Name:</strong> Asep pacul</p>
-        <p><strong>Nationality:</strong> Pochinki</p>
+        <p><strong>Negara:</strong> Wakanda</p>
       </div>
     </div>
     <div class="score-section">
@@ -634,7 +625,7 @@ body {
       </div>
       <div class="bar-labels">
         <span>0</span>
-        <span>200 (Passing)</span>
+        <span>200 (Minimal bos)</span>
         <span>250</span>
       </div>
     </div>
