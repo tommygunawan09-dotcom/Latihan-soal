@@ -599,6 +599,46 @@ body {
   }
 
 }
+/* =========================
+   MOBILE STEP BAR (FINAL)
+========================= */
+@media (max-width: 768px) {
+
+  .step-column {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    height: 56px;
+    width: 100%;
+
+    flex-direction: row;
+    align-items: center;
+
+    padding: 6px 8px;
+    gap: 8px;
+
+    background: #f0f0f0;
+    border-top: 1px solid #ccc;
+
+    overflow-x: auto;   /* 🔥 geser samping */
+    overflow-y: hidden;
+
+    z-index: 1000;
+  }
+
+  .step {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+    flex-shrink: 0;     /* 🔥 wajib */
+  }
+
+  .step.active::after {
+    display: none;     /* panah desktop dimatikan */
+  }
+}
 
   </style>
 </head>
