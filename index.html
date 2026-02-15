@@ -227,12 +227,7 @@ body {
 }
     .choices { list-style: none; padding: 0; }
     .choices li { margin-bottom: 12px; }
-
-    .choices button.selected {
-      background: #dbeafe;
-      border-color: #1f4fa3;
-    }
-
+    
     .choices button:hover {
       background: #e3f2fd;
       border-color: #1f4fa3;
@@ -428,17 +423,6 @@ body {
   cursor: pointer;
   text-align: left;
 }
-/* =========================
-   IMAGE CHOICE GRID (FINAL)
-========================= */
-
-.choices.image-grid button {
-  height: 120px;
-  padding: 6px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 
 /* =========================
    GRID PILIHAN GAMBAR (FIX)
@@ -485,15 +469,11 @@ body {
   margin-top: 4px;
 }
 @media (max-width: 768px) {
+
   .choices.image-grid button {
     height: 110px;
   }
-/* =========================
-   MOBILE FIX: TEXT ONLY QUESTION
-========================= */
-@media (max-width: 768px) {
 
-  /* jika soal TIDAK ada gambar */
   .no-image-question .question-image {
     min-height: 0 !important;
     height: 0 !important;
@@ -510,8 +490,9 @@ body {
   .no-image-question .question-text {
     margin-top: 0;
   }
+
 }
-}
+
 /* =========================
    🔥 RESULT MODE – FINAL OVERRIDE
 ========================= */
