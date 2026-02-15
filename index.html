@@ -7,7 +7,7 @@
   <style>
 html, body {
   margin: 0;
-  height: 100vh; /* ganti dari 100dvh */
+  min-height: 100vh;
   overflow-x: hidden; /* jangan hidden semua */
 }
 
@@ -24,7 +24,7 @@ body {
 
   display: flex;
   flex-direction: column;
-  height: 100vh;          /* 🔥 penuh layar */
+  min-height: 100vh;
 }
 .side-section:hover {
   background: #e0e0e0;
@@ -1703,48 +1703,42 @@ const TIMER_RUNNING_KEY = "cbt_timer_running";
 
 const EXAM_DURATION = 30 * 60; // 30 menit
 
-let remainingTime = EXAM_DURATION;
 let timerInterval = null;
+let endTime = null;
 
-const timerEl = document.getElementById("timer");
+function startTimer(durationInMinutes) {
 
-// format 00:00
-function formatTime(sec) {
-  const m = Math.floor(sec / 60).toString().padStart(2, "0");
-  const s = (sec % 60).toString().padStart(2, "0");
-  return `${m}:${s}`;
+  const savedEnd = localStorage.getItem("cbt_end_time");
+
+  if (savedEnd) {
+    endTime = parseInt(savedEnd);
+  } else {
+    endTime = Date.now() + durationInMinutes * 60 * 1000;
+    localStorage.setItem("cbt_end_time", endTime);
+  }
+
+  runTimer();
 }
 
-// load dari localStorage
-function loadTimer() {
-  const saved = localStorage.getItem(TIMER_KEY);
-  if (saved !== null) remainingTime = parseInt(saved);
-}
-
-// simpan ke localStorage
-function saveTimer() {
-  localStorage.setItem(TIMER_KEY, remainingTime);
-}
-
-// start timer
-function startTimer() {
-
-  if (timerInterval) return;
+function runTimer() {
 
   timerInterval = setInterval(() => {
 
-    if (remainingTime <= 0) {
+    const now = Date.now();
+    const remaining = Math.max(0, Math.floor((endTime - now) / 1000));
+
+    const m = Math.floor(remaining / 60);
+    const s = remaining % 60;
+
+    document.getElementById("timer").textContent =
+      `${m}:${s.toString().padStart(2, "0")}`;
+
+    if (remaining <= 0) {
       clearInterval(timerInterval);
-      timerEl.textContent = "00:00";
-      finishExam();
-      return;
+      localStorage.removeItem("cbt_end_time");
+      alert("Waktu habis");
+      showResult();
     }
-
-    remainingTime--;
-    timerEl.textContent = formatTime(remainingTime);
-    saveTimer();
-
-    updateTimerColor();
 
   }, 1000);
 }
