@@ -1862,35 +1862,29 @@ document.addEventListener("play", function (e) {
 
   const audio = e.target;
 
-  if (audio.dataset.iosLock) return;
-  audio.dataset.iosLock = "true";
+  if (audio.dataset.locked) return;
+  audio.dataset.locked = "true";
 
   let lastTime = 0;
-  let locked = false;
+  let block = false;
 
-  // update waktu normal
   audio.addEventListener("timeupdate", () => {
-    if (!locked) lastTime = audio.currentTime;
+    if (!block) lastTime = audio.currentTime;
   });
 
-  // DETEKSI SEMUA PERUBAHAN POSISI (TERMASUK DRAG iOS)
   setInterval(() => {
-
     if (!audio.paused) {
-
       if (Math.abs(audio.currentTime - lastTime) > 0.3) {
-        locked = true;
+        block = true;
         audio.currentTime = lastTime;
-
-        setTimeout(() => locked = false, 50);
+        setTimeout(() => block = false, 50);
       }
-
     }
-
   }, 200);
 
 }, true);
 </script>
+
 
 
 </body>
