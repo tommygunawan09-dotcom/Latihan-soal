@@ -1854,7 +1854,33 @@ document.getElementById("quiz").classList.remove("active");
 document.getElementById("resultScreen").classList.add("active");
 document.body.classList.add("result-mode");
 }
+</script>
+<script>
+document.addEventListener("timeupdate", function(e) {
 
+  if (e.target.tagName !== "AUDIO") return;
+
+  const audio = e.target;
+
+  if (!audio.dataset.lockSeek) {
+
+    audio.dataset.lockSeek = "true";
+
+    let lastTime = 0;
+
+    audio.addEventListener("seeking", function () {
+      if (audio.currentTime > lastTime + 0.01) {
+        audio.currentTime = lastTime;
+      }
+    });
+
+    audio.addEventListener("timeupdate", function () {
+      lastTime = audio.currentTime;
+    });
+
+  }
+
+}, true);
 </script>
 
 </body>
