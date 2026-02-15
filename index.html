@@ -6,9 +6,8 @@
   <title>JFT Combined Demo</title>
   <style>
 html, body {
-  margin: 0;
-  height: 100vh; /* ganti dari 100dvh */
-  overflow-x: hidden; /* jangan hidden semua */
+  height: 100%;
+  min-height: 100dvh;
 }
 
 body {
@@ -24,7 +23,7 @@ body {
 
   display: flex;
   flex-direction: column;
-  height: 100vh;          /* 🔥 penuh layar */
+min-height: 100dvh;
 }
 .side-section:hover {
   background: #e0e0e0;
@@ -83,7 +82,7 @@ body {
 
   padding: 15px 0;
   gap: 12px;
-  height: 100vh;
+min-height: 100dvh;
   overflow-y: auto;
 }
 
@@ -129,7 +128,7 @@ body {
   padding: 30px;
   overflow-y: auto;
   display: block;
-  height: 100vh;
+min-height: 100dvh;
 }
 
 .screen {
@@ -1694,59 +1693,28 @@ document.getElementById("resultScreen").classList.add("active");
 document.body.classList.add("result-mode");
 }
 
-// ============================
-// ⏱️ CBT TIMER SYSTEM
-// ============================
+// ================= TIMER REAL TIME =================
+let duration = 30 * 60; // 30 menit dalam detik
+let endTime = Date.now() + duration * 1000;
+let timerInterval;
 
-const TIMER_KEY = "cbt_timer_remaining";
-const TIMER_RUNNING_KEY = "cbt_timer_running";
-
-const EXAM_DURATION = 30 * 60; // 30 menit
-
-let remainingTime = EXAM_DURATION;
-let timerInterval = null;
-
-const timerEl = document.getElementById("timer");
-
-// format 00:00
-function formatTime(sec) {
-  const m = Math.floor(sec / 60).toString().padStart(2, "0");
-  const s = (sec % 60).toString().padStart(2, "0");
-  return `${m}:${s}`;
-}
-
-// load dari localStorage
-function loadTimer() {
-  const saved = localStorage.getItem(TIMER_KEY);
-  if (saved !== null) remainingTime = parseInt(saved);
-}
-
-// simpan ke localStorage
-function saveTimer() {
-  localStorage.setItem(TIMER_KEY, remainingTime);
-}
-
-// start timer
 function startTimer() {
+  timerInterval = setInterval(updateTimer, 1000);
+}
 
-  if (timerInterval) return;
+function updateTimer() {
+  const now = Date.now();
+  const remaining = Math.max(0, Math.floor((endTime - now) / 1000));
 
-  timerInterval = setInterval(() => {
+  const minutes = String(Math.floor(remaining / 60)).padStart(2, "0");
+  const seconds = String(remaining % 60).padStart(2, "0");
 
-    if (remainingTime <= 0) {
-      clearInterval(timerInterval);
-      timerEl.textContent = "00:00";
-      finishExam();
-      return;
-    }
+  document.getElementById("timer").textContent = `${minutes}:${seconds}`;
 
-    remainingTime--;
-    timerEl.textContent = formatTime(remainingTime);
-    saveTimer();
-
-    updateTimerColor();
-
-  }, 1000);
+  if (remaining <= 0) {
+    clearInterval(timerInterval);
+    finishExam(); // fungsi selesai ujian kamu
+  }
 }
 
 // pause timer
