@@ -1595,8 +1595,26 @@ if (q.audio) {
 const audio = document.createElement("audio");
 audio.src = q.audio;
 audio.controls = true;
-audio.controlsList = "nodownload noplaybackrate"; // 🔥 penting
 audio.preload = "auto";
+audio.controlsList = "nodownload noplaybackrate";
+audio.disableRemotePlayback = true;
+audio.addEventListener("timeupdate", () => {
+  if (audioLocked) {
+    audio.currentTime = 0;
+  }
+});
+audio.addEventListener("play", () => {
+
+  if (!audioPlaysPerQuestion[currentQuestion]) {
+    audioPlaysPerQuestion[currentQuestion] = 0;
+  }
+
+  audioPlaysPerQuestion[currentQuestion]++;
+
+  if (audioPlaysPerQuestion[currentQuestion] >= MAX_AUDIO_PLAY) {
+    audioLocked = true;
+  }
+});
 
 audio.addEventListener("ended", () => {
   audioPlaysPerQuestion[qIndex]++;
