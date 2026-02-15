@@ -6,8 +6,9 @@
   <title>JFT Combined Demo</title>
   <style>
 html, body {
-  height: 100%;
-  min-height: 100dvh;
+  margin: 0;
+  height: 100vh; /* ganti dari 100dvh */
+  overflow-x: hidden; /* jangan hidden semua */
 }
 
 body {
@@ -23,7 +24,7 @@ body {
 
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100vh;          /* 🔥 penuh layar */
 }
 .side-section:hover {
   background: #e0e0e0;
@@ -128,7 +129,7 @@ body {
   padding: 30px;
   overflow-y: auto;
   display: block;
-  min-height: 100dvh;
+  height: 100vh;
 }
 
 .screen {
@@ -1344,7 +1345,6 @@ function goToSection(sectionKey) {
   document.getElementById("intro").classList.remove("active");
   document.getElementById("quiz").classList.add("active");
 
-  startTimer();
   loadQuestion();
   renderSteps();
   updateSideProgress();
@@ -1694,18 +1694,12 @@ document.getElementById("resultScreen").classList.add("active");
 document.body.classList.add("result-mode");
 }
 
-// =============================
-// ⏱ TIMER ANTI FREEZE MOBILE
-// =============================
-let duration = 30 * 60; // 30 menit
-let endTime = 0;
-let timerInterval = null;
+// ================= TIMER REAL TIME =================
+let duration = 30 * 60; // 30 menit dalam detik
+let endTime = Date.now() + duration * 1000;
+let timerInterval;
 
 function startTimer() {
-  endTime = Date.now() + duration * 1000;
-
-  updateTimer(); // render pertama langsung
-
   timerInterval = setInterval(updateTimer, 1000);
 }
 
@@ -1720,14 +1714,9 @@ function updateTimer() {
 
   if (remaining <= 0) {
     clearInterval(timerInterval);
-    finishExam();
+    finishExam(); // fungsi selesai ujian kamu
   }
 }
-
-// sync saat balik ke tab (WAJIB untuk iOS)
-document.addEventListener("visibilitychange", () => {
-  if (!document.hidden) updateTimer();
-});
 
 // pause timer
 function pauseTimer() {
