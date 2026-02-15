@@ -520,115 +520,7 @@ body {
   }
 }
 /* =========================
-   MOBILE SIDEBAR (PRO LEVEL)
-========================= */
-@media (max-width: 768px) {
-
-  /* sidebar jadi top bar */
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-
-    height: 56px;
-    z-index: 1200;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: stretch;
-
-    background: #ffffff;
-    border-bottom: 1px solid #d0d0d0;
-  }
-
-  /* tiap section */
-  .side-section {
-    flex: 1;
-    padding: 6px 4px;
-
-    border: none;
-    background: transparent;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    position: relative;
-  }
-
-  /* label */
-  .side-label {
-    font-size: 10px;
-    font-weight: 600;
-    color: #333;
-    line-height: 1.1;
-    white-space: nowrap;
-  }
-
-  /* progress bar kecil */
-  .side-track {
-    width: 70%;
-    height: 4px;
-    margin-top: 4px;
-
-    background: #e0e0e0;
-    border-radius: 999px;
-    overflow: hidden;
-  }
-
-  .side-fill {
-    height: 100%;
-    width: 0%;
-    background: #4f7f22;
-    transition: width 0.3s ease;
-  }
-
-}
-/* =========================
-   MOBILE STEP BAR (FINAL)
-========================= */
-@media (max-width: 768px) {
-
-  .step-column {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    height: 56px;
-    width: 100%;
-
-    flex-direction: row;
-    align-items: center;
-
-    padding: 6px 8px;
-    gap: 8px;
-
-    background: #f0f0f0;
-    border-top: 1px solid #ccc;
-
-    overflow-x: auto;   /* 🔥 geser samping */
-    overflow-y: hidden;
-
-    z-index: 1000;
-  }
-
-  .step {
-    width: 40px;
-    height: 40px;
-    font-size: 14px;
-    flex-shrink: 0;     /* 🔥 wajib */
-  }
-
-  .step.active::after {
-    display: none;     /* panah desktop dimatikan */
-  }
-}
-/* =========================
-   MOBILE SIDEBAR (FINAL – SINGLE SOURCE)
+   MOBILE LAYOUT (SIDEBAR + STEP BAR)
 ========================= */
 @media (max-width: 768px) {
 
@@ -636,9 +528,15 @@ body {
     flex-direction: column;
   }
 
+  /* ===== SIDEBAR → TOP BAR ===== */
   .sidebar {
-    width: 100vw;        /* 🔥 KUNCI UTAMA */
-    max-width: 100vw;   /* 🔒 safety */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    width: 100vw;
+    max-width: 100vw;
     margin: 0;
     padding: 0;
 
@@ -664,6 +562,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    position: relative; /* dari PRO LEVEL → aman dipertahankan */
   }
 
   .side-label {
@@ -687,13 +587,52 @@ body {
     height: 100%;
     width: 0%;
     background: #4f7f22;
+    transition: width 0.3s ease; /* dari PRO LEVEL → tidak konflik */
   }
 
   .main {
     margin-top: 56px;
     padding: 12px;
   }
+
+  /* ===== STEP BAR → BOTTOM ===== */
+  .step-column {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    height: 56px;
+    width: 100%;
+
+    flex-direction: row;
+    align-items: center;
+
+    padding: 6px 8px;
+    gap: 8px;
+
+    background: #f0f0f0;
+    border-top: 1px solid #ccc;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    z-index: 1000;
+  }
+
+  .step {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .step.active::after {
+    display: none;
+  }
+
 }
+
 /* =========================
    FIX GAMBAR SOAL DI MOBILE
 ========================= */
