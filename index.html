@@ -5,10 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JFT Combined Demo</title>
   <style>
+/* =========================
+   BASE
+========================= */
 html, body {
   margin: 0;
-  height: 100vh; /* ganti dari 100dvh */
-  overflow-x: hidden; /* jangan hidden semua */
+  height: 100vh;
+  overflow-x: hidden;
 }
 
 body {
@@ -16,51 +19,41 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background: #f4f4f4;
 }
-    /* ===== LEFT SIDEBAR ===== */
+
+/* =========================
+   SIDEBAR DESKTOP
+========================= */
 .sidebar {
   width: 70px;
   background: #e6e6e6;
   border-right: 1px solid #c9c9c9;
-
   display: flex;
   flex-direction: column;
-  height: 100vh;          /* 🔥 penuh layar */
+  height: 100vh;
 }
-.side-section:hover {
-  background: #e0e0e0;
-}
+
 .side-section {
   width: 100%;
-  flex: 1;                       /* 🔥 bagi tinggi rata */
+  flex: 1;
   background: #efefef;
-
   border-top: 1px solid #d0d0d0;
   border-bottom: 1px solid #d0d0d0;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-
   padding-top: 6px;
   font-size: 12px;
   color: #444;
   cursor: pointer;
 }
 
-    .side-section.intro {
-      height: 200px;
-      background: #f5f5f5;
-    }
+.side-section:hover { background: #e0e0e0; }
 
-    .side-label {
-      font-size: 12px;
-      margin-bottom: 4px;
-    }
+.side-label { font-size: 12px; margin-bottom: 4px; }
 
 .side-track {
   width: 10px;
-  flex: 1;                 /* 🔥 isi sisa tinggi */
+  flex: 1;
   background: #dcdfe3;
   border-radius: 999px;
   position: relative;
@@ -72,13 +65,15 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
+  height: 0%;
   background: #6b9f34;
   border-radius: 999px;
-  height: 0%;                /* ⬅️ penting */
   transition: height 0.3s ease;
 }
 
-/* ===== STEP COLUMN (FIXED SPACING) ===== */
+/* =========================
+   STEP COLUMN DESKTOP
+========================= */
 .step-column {
   width: 80px;
   background: #f0f0f0;
@@ -86,63 +81,55 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   padding: 15px 0;
   gap: 12px;
   height: 100vh;
   overflow-y: auto;
 }
 
-/* default = belum dijawab */
 .step {
   width: 52px;
   height: 40px;
-  background: #d0d0d0;  /* abu default */
-  color: white;
+  background: #d0d0d0;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 15px;
   border-radius: 6px;
   cursor: pointer;
   flex-shrink: 0;
 }
 
-/* sudah dijawab */
-.step.answered {
-  background: #6aa037; /* hijau */
-}
+.step.answered { background: #6aa037; }
+.step.done { background: #CD5C5C; }
 
-/* soal aktif */
 .step.active {
   position: relative;
-  background: #4f7f22; /* hijau tua */
+  background: #4f7f22;
 }
-    .step.active::after {
-      content: "";
-      position: absolute;
-      right: -12px;
-      top: 0;
-      border-top: 15px solid transparent;
-      border-bottom: 15px solid transparent;
-      border-left: 12px solid #4f7f22;
-    }
 
-    /* ===== MAIN AREA ===== */
+.step.active::after {
+  content: "";
+  position: absolute;
+  right: -12px;
+  top: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 12px solid #4f7f22;
+}
+
+/* =========================
+   MAIN LAYOUT
+========================= */
 .main {
   flex: 1;
   padding: 30px;
   overflow-y: auto;
-  display: block;
   height: 100vh;
 }
 
-.screen {
-  display: none;
-  width: 100%;
-}
-
+.screen { display: none; width: 100%; }
 .screen.active {
   display: flex;
   justify-content: center;
@@ -152,64 +139,53 @@ body {
 .container {
   width: 900px;
   max-width: 900px;
-  background: #ffffff;
+  background: #fff;
   border-radius: 10px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.1);
   overflow: hidden;
-  height: auto;
-}
-    .header {
-      background: #1f4fa3;
-      color: white;
-      padding: 16px 24px;
-      font-size: 20px;
-      font-weight: bold;
-    }
-    .exam-header {
-  background: linear-gradient(135deg, #1f4fa3, #163c82);
-  color: white;
-  padding: 14px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
 }
 
-.exam-title {
-  font-size: 18px;
+/* =========================
+   HEADER
+========================= */
+.header {
+  background: #1f4fa3;
+  color: #fff;
+  padding: 16px 24px;
+  font-size: 20px;
   font-weight: bold;
 }
+
+.exam-header {
+  background: linear-gradient(135deg, #1f4fa3, #163c82);
+  padding: 14px 20px;
+}
+
+.exam-title { font-size: 18px; font-weight: bold; }
 
 .exam-sub {
   font-size: 13px;
   opacity: 0.9;
   display: flex;
-  align-items: center;
   gap: 6px;
+  align-items: center;
 }
 
-.exam-sub .dot {
-  font-size: 10px;
-  opacity: 0.6;
+.exam-sub .dot { font-size: 10px; opacity: 0.6; }
+
+/* =========================
+   QUESTION AREA
+========================= */
+.content { padding: 24px; }
+
+.question-number { font-size: 14px; color: #555; margin-bottom: 10px; }
+
+.question-text {
+  font-size: 18px;
+  margin-bottom: 20px;
+  line-height: 1.6;
 }
 
-    .content { padding: 24px; }
-
-    .question-number {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 10px;
-    }
-
-    .question-text {
-      font-size: 18px;
-      margin-bottom: 20px;
-      line-height: 1.6;
-    }
-
-    .question-image,
-    .audio-player { margin-bottom: 20px; text-align: center; }
-
-/* WRAPPER */
 .question-image {
   width: 100%;
   max-height: 220px;
@@ -219,215 +195,16 @@ body {
   margin: 12px 0 16px;
 }
 
-/* IMG DI DALAMNYA */
 .question-image img {
   max-width: 100%;
   max-height: 220px;
   object-fit: contain;
 }
-    .choices { list-style: none; padding: 0; }
-    .choices li { margin-bottom: 12px; }
-
-    .choices button {
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      border-radius: 6px;
-      border: 1px solid #cfd8dc;
-      background: #f9fbfd;
-      cursor: pointer;
-      text-align: left;
-    }
-
-    .choices button.selected {
-      background: #dbeafe;
-      border-color: #1f4fa3;
-    }
-
-    .choices button:hover {
-      background: #e3f2fd;
-      border-color: #1f4fa3;
-    }
-
-    .result { margin-top: 15px; font-weight: bold; }
-    .correct { color: #2e7d32; }
-    .wrong { color: #c62828; }
-
-    .navigation {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 25px;
-    }
-
-    .nav-btn {
-      padding: 10px 18px;
-      font-size: 14px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      background: #1f4fa3;
-      color: white;
-    }
-    .step.done {
-  background: #CD5C5C;   /* abu-abu = sudah dijawab */
-}
-/* =========================
-   TABLET (≤1024px)
-========================= */
-@media (max-width: 1024px) {
-
-  .sidebar {
-    width: 56px;
-  }
-
-  .side-label {
-    font-size: 10px;
-    text-align: center;
-  }
-
-  .step-column {
-    width: 64px;
-  }
-
-  .container {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .main {
-    padding: 16px;
-  }
-}
 
 /* =========================
-   MOBILE (≤768px)
+   CHOICES TEXT
 ========================= */
-.choices button.selected {
-  background: #6aa037;
-  color: white;
-  border-color: #4f7f22;
-}
-.choices button {
-  transition: all 0.2s ease;
-}
-#resultScreen {
-  padding: 30px;
-  overflow-y: auto;
-}
-
-.certificate {
-  width: 900px;
-  max-width: 100%;
-  background: #fff;
-  margin: auto;
-  padding: 30px;
-  border-radius: 10px;
-}
-
-.bar-container {
-  position: relative;
-  height: 16px;
-  background: linear-gradient(to right, orange, yellowgreen, green);
-  border-radius: 10px;
-}
-
-.marker {
-  position: absolute;
-  top: -6px;
-  width: 16px;
-  height: 16px;
-  background: white;
-  border: 3px solid orange;
-  border-radius: 50%;
-  transform: translateX(-50%);
-}
-
-.percent-bar {
-  margin-top: 5px;
-  height: 14px;
-  background: #eee;
-  border-radius: 10px;
-}
-
-.percent-fill {
-  height: 100%;
-  border-radius: 10px;
-  background: linear-gradient(to right, orange, yellowgreen);
-}
-@media (max-width: 768px) {
-
-#resultScreen {
-  padding: 12px;
-  overflow-y: auto;
-}
-
-  .certificate {
-    width: 100%;
-    max-width: 100%;
-    padding: 16px;
-    border-radius: 8px;
-  }
-
-  .header h1 {
-    font-size: 18px;
-  }
-
-  .header h2 {
-    font-size: 14px;
-  }
-
-.profile-section {
-  display: flex;
-  gap: 20px;
-  margin: 20px 0;
-  align-items: center;
-}
-
-.profile-section img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-}
-
-  .bar-labels {
-    font-size: 12px;
-  }
-}
-  .screen.active {
-    align-items: stretch;
-  }
-
-  .container,
-  .certificate {
-    margin-bottom: 20px;
-  }
-@media (max-width: 768px) {
-
-  .container,
-  .certificate {
-    width: 100%;
-    max-width: 900px;
-  }
-
-  .main {
-    margin-top: 48px;   /* sama dengan tinggi sidebar */
-    padding-top: 12px;
-  }
-}
-
-/* =========================
-   DEFAULT TEXT CHOICES
-========================= */
-.choice {
-  padding: 14px 16px;
-  border-radius: 10px;
-  font-size: 18px;
-  line-height: 1.4;
-  min-height: 56px;
-
-  display: flex;
-  align-items: center;
-}
+.choices { list-style: none; padding: 0; }
 
 .choices button {
   width: 100%;
@@ -438,369 +215,86 @@ body {
   background: #f9fbfd;
   cursor: pointer;
   text-align: left;
+  transition: all 0.2s ease;
 }
+
+.choices button:hover {
+  background: #e3f2fd;
+  border-color: #1f4fa3;
+}
+
+.choices button.selected {
+  background: #dbeafe;
+  border-color: #1f4fa3;
+}
+
 /* =========================
-   IMAGE CHOICE GRID (FINAL)
+   IMAGE GRID CHOICES
 ========================= */
-.choices.image-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-  gap: 12px;
-}
-
-.choices.image-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* JLPT style */
-  gap: 12px;
-}
-
-.choices.image-grid button {
-  height: 120px;
-  padding: 6px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.choice-img-box {
-  flex: 1;
-  width: 100%;
-  background: #f3f3f3;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.choice-img-box img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-/* kotak gambar */
-.choice-img-box {
-  width: 100%;
-  flex: 1;
-  background: #f3f3f3;
-  border-radius: 6px;
-  overflow: hidden;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* gambar */
-.choice-img-box img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;   /* 🔥 gak kepotong */
-}
-
-/* label A B C D */
-.choice-label {
-  font-size: 12px;
-  margin-top: 4px;
-  text-align: center;
-}
-@media (max-width: 768px) {
-  .main {
-    margin-top: 56px;   /* sama dengan tinggi sidebar */
-    padding-top: 12px;
-  }
-  .container {
-    overflow: hidden;
-  }
-}
-/* =========================
-   GRID PILIHAN GAMBAR (FIX)
-========================= */
-
 .choices.image-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 12px;
 }
 
-/* tombol jawaban */
 .choices.image-grid button {
-  height: 140px;                 /* tinggi kotak */
+  height: 140px;
   padding: 6px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
-/* kotak gambar */
 .choice-img-box {
   flex: 1;
-  width: 100%;
   background: #f3f3f3;
   border-radius: 6px;
-  overflow: hidden;
-
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
-/* gambar */
 .choice-img-box img {
   width: 100%;
   height: 100%;
-  object-fit: contain;          /* 🔥 TIDAK KEPOTONG */
+  object-fit: contain;
 }
 
-/* label A B C D */
 .choice-label {
   font-size: 12px;
   text-align: center;
   margin-top: 4px;
 }
-@media (max-width: 768px) {
-  .choices.image-grid button {
-    height: 110px;
-  }
 
-  .choices.image-grid {
-    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-  }
-}
 /* =========================
-   MOBILE SIDEBAR (PRO LEVEL)
+   NAVIGATION
 ========================= */
-@media (max-width: 768px) {
-
-  /* sidebar jadi top bar */
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-
-    height: 56px;
-    z-index: 1200;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: stretch;
-
-    background: #ffffff;
-    border-bottom: 1px solid #d0d0d0;
-  }
-
-  /* tiap section */
-  .side-section {
-    flex: 1;
-    padding: 6px 4px;
-
-    border: none;
-    background: transparent;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    position: relative;
-  }
-
-  /* label */
-  .side-label {
-    font-size: 10px;
-    font-weight: 600;
-    color: #333;
-    line-height: 1.1;
-    white-space: nowrap;
-  }
-
-  /* progress bar kecil */
-  .side-track {
-    width: 70%;
-    height: 4px;
-    margin-top: 4px;
-
-    background: #e0e0e0;
-    border-radius: 999px;
-    overflow: hidden;
-  }
-
-  .side-fill {
-    height: 100%;
-    width: 0%;
-    background: #4f7f22;
-    transition: width 0.3s ease;
-  }
-
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
 }
+
+.nav-btn {
+  padding: 10px 18px;
+  border-radius: 6px;
+  border: none;
+  background: #1f4fa3;
+  color: #fff;
+  cursor: pointer;
+}
+
 /* =========================
-   MOBILE STEP BAR (FINAL)
+   RESULT MODE
 ========================= */
-@media (max-width: 768px) {
-
-  .step-column {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    height: 56px;
-    width: 100%;
-
-    flex-direction: row;
-    align-items: center;
-
-    padding: 6px 8px;
-    gap: 8px;
-
-    background: #f0f0f0;
-    border-top: 1px solid #ccc;
-
-    overflow-x: auto;   /* 🔥 geser samping */
-    overflow-y: hidden;
-
-    z-index: 1000;
-  }
-
-  .step {
-    width: 40px;
-    height: 40px;
-    font-size: 14px;
-    flex-shrink: 0;     /* 🔥 wajib */
-  }
-
-  .step.active::after {
-    display: none;     /* panah desktop dimatikan */
-  }
-}
-/* =========================
-   MOBILE SIDEBAR (FINAL – SINGLE SOURCE)
-========================= */
-@media (max-width: 768px) {
-
-  body {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100vw;        /* 🔥 KUNCI UTAMA */
-    max-width: 100vw;   /* 🔒 safety */
-    margin: 0;
-    padding: 0;
-
-    height: 56px;
-    z-index: 1200;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: stretch;
-
-    background: #ffffff;
-    border-bottom: 1px solid #d0d0d0;
-  }
-
-  .side-section {
-    flex: 1;
-    padding: 6px 4px;
-    background: transparent;
-    border: none;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .side-label {
-    font-size: 10px;
-    font-weight: 600;
-    color: #333;
-    line-height: 1.1;
-    white-space: nowrap;
-  }
-
-  .side-track {
-    width: 70%;
-    height: 4px;
-    margin-top: 4px;
-    background: #e0e0e0;
-    border-radius: 999px;
-    overflow: hidden;
-  }
-
-  .side-fill {
-    height: 100%;
-    width: 0%;
-    background: #4f7f22;
-  }
-
-  .main {
-    margin-top: 56px;
-    padding: 12px;
-  }
-}
-/* =========================
-   FIX GAMBAR SOAL DI MOBILE
-========================= */
-@media (max-width: 768px) {
-
-  .question-image {
-    max-height: 160px;      /* ⬅️ kunci utama */
-    margin: 8px 0 12px;
-  }
-
-  .question-image img {
-    max-height: 160px;
-    width: auto;
-    max-width: 100%;
-    object-fit: contain;
-  }
-.question-image {
-  min-height: 160px; /* 🔥 jaga tinggi awal */
-}
-/* =========================
-   MOBILE FIX: TEXT ONLY QUESTION
-========================= */
-@media (max-width: 768px) {
-
-  /* jika soal TIDAK ada gambar */
-  .no-image-question .question-image {
-    min-height: 0 !important;
-    height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    display: none;
-  }
-
-  .no-image-question .audio-player:empty {
-    display: none;
-    margin: 0;
-  }
-
-  .no-image-question .question-text {
-    margin-top: 0;
-  }
-}
-}
-/* =========================
-   🔥 RESULT MODE – FINAL OVERRIDE
-========================= */
-
-/* SEMBUNYIKAN TOTAL */
 body.result-mode .sidebar,
 body.result-mode .step-column {
   display: none !important;
-  visibility: hidden !important;
-  height: 0 !important;
-  overflow: hidden !important;
 }
 
-/* BODY & MAIN FULLSCREEN */
 body.result-mode {
   display: block !important;
+  overflow: hidden !important;
 }
 
 body.result-mode .main {
@@ -808,69 +302,109 @@ body.result-mode .main {
   padding: 0 !important;
   height: 100vh !important;
   width: 100vw !important;
-  overflow: auto !important;
 }
 
-/* RESULT SCREEN FULL CENTER */
 body.result-mode #resultScreen {
   display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  min-height: 100vh !important;
-  width: 100vw !important;
-  padding: 12px !important;
-  background: #f4f4f4;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
-/* SERTIFIKAT */
 body.result-mode .certificate {
-  margin: 0 auto !important;
   max-width: 900px;
-}
-/* =========================
-   🔒 RESULT MODE – NO SCROLL (FINAL)
-========================= */
-
-/* MATIKAN SCROLL GLOBAL */
-body.result-mode,
-body.result-mode html {
-  overflow: hidden !important;
-  height: 100vh !important;
-}
-
-/* RESULT SCREEN FULL LAYAR */
-body.result-mode #resultScreen {
-  height: 100vh !important;
-  max-height: 100vh !important;
-  overflow: hidden !important;
-
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-/* SERTIFIKAT DIPAKSA PAS LAYAR */
-body.result-mode .certificate {
-  height: 100%;
-  max-height: 100vh;
   width: 100%;
-  max-width: 900px;
+  margin: 0 auto;
+
+  /* biarkan tinggi natural supaya bar terlihat */
+  height: auto;
+  max-height: 100vh;
 
   display: flex;
   flex-direction: column;
-  overflow: hidden !important;
+
+  overflow-y: auto;   /* ⬅️ penting */
 }
-/* =========================
-   🔒 AUDIO NO SEEK
-========================= */
-audio::-webkit-media-controls-timeline {
-  pointer-events: none;
+.percent-bar {
+  margin-top: 5px;
+  height: 14px;
+  background: #eee;
+  border-radius: 10px;
+  overflow: hidden;   /* ⬅️ kunci */
 }
 
-audio::-webkit-media-controls-seek-back-button,
-audio::-webkit-media-controls-seek-forward-button {
-  display: none;
+.percent-fill {
+  height: 100%;
+  min-width: 2px;     /* ⬅️ supaya tidak collapse ke 0 */
+  border-radius: 10px;
+  background: linear-gradient(to right, orange, yellowgreen);
 }
+
+
+/* =========================
+   AUDIO LOCK SEEK
+========================= */
+audio::-webkit-media-controls-timeline { pointer-events: none; }
+audio::-webkit-media-controls-seek-back-button,
+audio::-webkit-media-controls-seek-forward-button { display: none; }
+
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 1024px) {
+  .sidebar { width: 56px; }
+  .step-column { width: 64px; }
+  .main { padding: 16px; }
+  .container { max-width: 100%; }
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+
+  body { flex-direction: column; }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    height: 56px;
+    width: 100vw;
+    flex-direction: row;
+    border-bottom: 1px solid #d0d0d0;
+    background: #fff;
+    z-index: 1200;
+  }
+
+  .main {
+    margin-top: 56px;
+    padding: 12px;
+  }
+
+  .step-column {
+    position: fixed;
+    bottom: 0;
+    height: 56px;
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+    border-top: 1px solid #ccc;
+  }
+
+  .step {
+    width: 40px;
+    height: 40px;
+  }
+
+  .step.active::after { display: none; }
+
+  .question-image { max-height: 160px; }
+  .question-image img { max-height: 160px; }
+
+  .choices.image-grid button { height: 110px; }
+
+}
+
 
   </style>
 </head>
@@ -1308,9 +842,9 @@ scri: [
   text: "	何なにを注ちゅうもん文したいですか。",
   audio: "https://www.irodori.jpf.go.jp/assets/data/starter/audio/06/X_[06-02]_kiku2.mp3",      // ⬅️ suara
     choices: [
-      { kanji: "チーズバーガー,てりやきバーガー,フィッシュバーガー", hiragana: "ちーず" },
-      { kanji: "チーズバーガー,てりやきバーガー,フライドポテトバーガー", hiragana: "もういちど、おねがいします" },
-      { kanji: "ハンバーガー,てりやきバーガー,フィッシュバーガー", hiragana: "もうすこし、ゆっくりいいってください。" }
+      { kanji: "チーズバーガー,てりやきバーガー,フィッシュバーガー", hiragana: "チーズバーガー,てりやきバーガー,フィッシュバーガー" },
+      { kanji: "チーズバーガー,てりやきバーガー,フライドポテトバーガー", hiragana: "チーズバーガー,てりやきバーガー,フライドポテトバーガー" },
+      { kanji: "ハンバーガー,てりやきバーガー,フィッシュバーガー", hiragana: "ハンバーガー,てりやきバーガー,フィッシュバーガー" }
     ],
   correct: 0
 },
@@ -1318,7 +852,7 @@ scri: [
   text: "Dengarkan baik-baik.",
   audio: "speechma-nanami-7-2026-02-13t08-51-56-744z_y9CQUMRS.mp3",
   choices: [
-    { img: "https://i.pinimg.com/736x/f8/2b/95/f82b9571350bbf74ad38f8816186c7df.jpg", hiragana: "さっかーを する" },
+    { img: "https://i.pinimg.com/736x/f8/2b/95/f82b9571350bbf74ad38f8816186c7df.jpg", hiragana: "サッカーを する" },
     { img: "https://i.pinimg.com/1200x/2c/45/bd/2c45bdac6ce0841e6290276e2efd7da5.jpg", hiragana: "にっきを かく" },
     { img: "https://i.pinimg.com/736x/b5/f2/f3/b5f2f35b207b78ee6ba34a9aef63b3e3.jpg", hiragana: "すいえいを する" },
   ],
@@ -1402,7 +936,7 @@ correct: 2
   audio: "speechma-emma-japanese-6-2026-02-13t14-40-12-606z_Cl77TMYT.mp3",
   choices: [
     { img: "https://i.pinimg.com/736x/ef/21/38/ef2138e1b56c57697986f8859f4075e6.jpg", hiragana: "りんご" },
-    { img: "https://i.pinimg.com/1200x/24/0c/80/240c8038f9749f24da78544ecbcaa825.jpg", hiragana: "ばなな" },
+    { img: "https://i.pinimg.com/1200x/24/0c/80/240c8038f9749f24da78544ecbcaa825.jpg", hiragana: "バナナ" },
     { img: "https://i.pinimg.com/736x/95/9c/3e/959c3e1df5d02a5064e77580ba90734a.jpg", hiragana: "いちご" },
   ],
   correct: 0
@@ -1411,9 +945,9 @@ correct: 2
   text: "Dengarkan baik-baik.",
   audio: "speechma-andrew-japanese-5-2026-02-13t15-03-02-237z_AO4WJ6Uq.mp3",
     choices: [
-      { kanji: "１白い、１赤い", hiragana: "いちしろい、いちあかい" },
-      { kanji: "2白い、1赤い", hiragana: "にしろい、いちあかい" },
-      { kanji: "１白い、2赤い", hiragana: "いちしろい、にあかい" }
+      { kanji: "一白い、一赤い", hiragana: "いちしろい、いちあかい" },
+      { kanji: "二白い、一赤い", hiragana: "にしろい、いちあかい" },
+      { kanji: "一白い、二赤い", hiragana: "いちしろい、にあかい" }
     ],
   correct: 0
 },
