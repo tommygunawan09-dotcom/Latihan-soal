@@ -1598,42 +1598,44 @@ audio.controls = true;
 audio.preload = "auto";
 audio.controlsList = "nodownload noplaybackrate";
 audio.disableRemotePlayback = true;
-audio.addEventListener("timeupdate", () => {
+
+let lastTime = 0;
+
+// 🚫 cegah seek manual (iOS & Android)
+audio.addEventListener("seeking", () => {
   if (audioLocked) {
-    audio.currentTime = 0;
+    audio.currentTime = lastTime;
   }
 });
+
+// simpan waktu normal
+audio.addEventListener("timeupdate", () => {
+  lastTime = audio.currentTime;
+});
+
+// ✅ HITUNG PLAY
 audio.addEventListener("play", () => {
 
   if (!audioPlaysPerQuestion[currentQuestion]) {
     audioPlaysPerQuestion[currentQuestion] = 0;
   }
 
+  // kalau sudah lock → stop
+  if (audioLocked) {
+    audio.pause();
+    audio.currentTime = 0;
+    return;
+  }
+
   audioPlaysPerQuestion[currentQuestion]++;
 
+  // 🔥 LOCK SETELAH 2x
   if (audioPlaysPerQuestion[currentQuestion] >= MAX_AUDIO_PLAY) {
     audioLocked = true;
   }
+
 });
 
-audio.addEventListener("ended", () => {
-  audioPlaysPerQuestion[qIndex]++;
-
-  if (audioPlaysPerQuestion[qIndex] >= MAX_AUDIO_PLAY) {
-    audio.pause();
-    audio.removeAttribute("controls");
-    audio.src = "";
-    audio.load();
-
-    audio.style.pointerEvents = "none";
-    audio.style.opacity = "0.4";
-
-    audioBox.insertAdjacentHTML(
-      "beforeend",
-      "<div style='color:#888;font-size:12px'>Batas audio tercapai</div>"
-    );
-  }
-});
   audioBox.appendChild(audio);
 }
 
