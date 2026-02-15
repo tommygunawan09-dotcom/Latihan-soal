@@ -1854,38 +1854,8 @@ document.getElementById("quiz").classList.remove("active");
 document.getElementById("resultScreen").classList.add("active");
 document.body.classList.add("result-mode");
 }
+
 </script>
-<script>
-document.addEventListener("play", function (e) {
-
-  if (e.target.tagName !== "AUDIO") return;
-
-  const audio = e.target;
-
-  if (audio.dataset.locked) return;
-  audio.dataset.locked = "true";
-
-  let lastTime = 0;
-  let block = false;
-
-  audio.addEventListener("timeupdate", () => {
-    if (!block) lastTime = audio.currentTime;
-  });
-
-  setInterval(() => {
-    if (!audio.paused) {
-      if (Math.abs(audio.currentTime - lastTime) > 0.3) {
-        block = true;
-        audio.currentTime = lastTime;
-        setTimeout(() => block = false, 50);
-      }
-    }
-  }, 200);
-
-}, true);
-</script>
-
-
 
 </body>
 </html>
