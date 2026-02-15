@@ -1344,6 +1344,7 @@ function goToSection(sectionKey) {
   document.getElementById("intro").classList.remove("active");
   document.getElementById("quiz").classList.add("active");
 
+  startTimer();
   loadQuestion();
   renderSteps();
   updateSideProgress();
@@ -1693,12 +1694,18 @@ document.getElementById("resultScreen").classList.add("active");
 document.body.classList.add("result-mode");
 }
 
-// ================= TIMER REAL TIME =================
-let duration = 30 * 60; // 30 menit dalam detik
-let endTime = Date.now() + duration * 1000;
-let timerInterval;
+// =============================
+// ⏱ TIMER ANTI FREEZE MOBILE
+// =============================
+let duration = 30 * 60; // 30 menit
+let endTime = 0;
+let timerInterval = null;
 
 function startTimer() {
+  endTime = Date.now() + duration * 1000;
+
+  updateTimer(); // render pertama langsung
+
   timerInterval = setInterval(updateTimer, 1000);
 }
 
@@ -1713,9 +1720,14 @@ function updateTimer() {
 
   if (remaining <= 0) {
     clearInterval(timerInterval);
-    finishExam(); // fungsi selesai ujian kamu
+    finishExam();
   }
 }
+
+// sync saat balik ke tab (WAJIB untuk iOS)
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) updateTimer();
+});
 
 // pause timer
 function pauseTimer() {
