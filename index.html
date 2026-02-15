@@ -47,12 +47,6 @@ body {
   color: #444;
   cursor: pointer;
 }
-
-    .side-section.intro {
-      height: 200px;
-      background: #f5f5f5;
-    }
-
     .side-label {
       font-size: 12px;
       margin-bottom: 4px;
@@ -165,13 +159,28 @@ body {
       font-size: 20px;
       font-weight: bold;
     }
-    .exam-header {
+.exam-header {
   background: linear-gradient(135deg, #1f4fa3, #163c82);
   color: white;
   padding: 14px 20px;
   display: flex;
   flex-direction: column;
   gap: 4px;
+
+  position: relative; /* ⬅️ tambahan */
+}
+.exam-timer {
+  position: absolute;
+  top: 14px;
+  right: 20px;
+
+  background: rgba(255,255,255,0.15);
+  padding: 6px 12px;
+  border-radius: 8px;
+
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 1px;
 }
 
 .exam-title {
@@ -774,7 +783,7 @@ audio::-webkit-media-controls-seek-forward-button {
     </div>
 <div id="quiz" class="screen">
       <div class="container">
-<div class="header exam-header">
+<div class="header exam-header"><div class="exam-timer" id="timer">30:00</div>
   <div class="exam-title">Latihan Soal</div>
   <div class="exam-sub">
     <span id="examSection">Grammar</span>
@@ -1685,7 +1694,107 @@ document.getElementById("resultScreen").classList.add("active");
 document.body.classList.add("result-mode");
 }
 
+// ============================
+// ⏱️ CBT TIMER SYSTEM
+// ============================
+
+const TIMER_KEY = "cbt_timer_remaining";
+const TIMER_RUNNING_KEY = "cbt_timer_running";
+
+const EXAM_DURATION = 30 * 60; // 30 menit
+
+let remainingTime = EXAM_DURATION;
+let timerInterval = null;
+
+const timerEl = document.getElementById("timer");
+
+// format 00:00
+function formatTime(sec) {
+  const m = Math.floor(sec / 60).toString().padStart(2, "0");
+  const s = (sec % 60).toString().padStart(2, "0");
+  return `${m}:${s}`;
+}
+
+// load dari localStorage
+function loadTimer() {
+  const saved = localStorage.getItem(TIMER_KEY);
+  if (saved !== null) remainingTime = parseInt(saved);
+}
+
+// simpan ke localStorage
+function saveTimer() {
+  localStorage.setItem(TIMER_KEY, remainingTime);
+}
+
+// start timer
+function startTimer() {
+
+  if (timerInterval) return;
+
+  timerInterval = setInterval(() => {
+
+    if (remainingTime <= 0) {
+      clearInterval(timerInterval);
+      timerEl.textContent = "00:00";
+      finishExam();
+      return;
+    }
+
+    remainingTime--;
+    timerEl.textContent = formatTime(remainingTime);
+    saveTimer();
+
+    updateTimerColor();
+
+  }, 1000);
+}
+
+// pause timer
+function pauseTimer() {
+  clearInterval(timerInterval);
+  timerInterval = null;
+}
+
+// warna saat mepet
+function updateTimerColor() {
+
+  if (remainingTime <= 60) {
+    timerEl.style.background = "#e53935";
+  }
+  else if (remainingTime <= 300) {
+    timerEl.style.background = "#ff9800";
+  }
+}
+
+// pindah tab → pause
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    pauseTimer();
+  } else {
+    startTimer();
+  }
+});
+
+// auto submit
+function finishExam() {
+
+  localStorage.removeItem(TIMER_KEY);
+
+  alert("Waktu habis!");
+  showResultScreen(); // 🔥 pakai function kamu yang sudah ada
+}
+
+// init
+function initTimer() {
+
+  loadTimer();
+  timerEl.textContent = formatTime(remainingTime);
+  startTimer();
+}
+
+
 </script>
+
 
 </body>
 </html>
