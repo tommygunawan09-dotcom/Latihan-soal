@@ -1817,12 +1817,13 @@ function initTimer() {
 }
 let selectedPackage = "";
 
-function selectPackage(pkg) {
+function selectPackage(sectionKey) {
 
-  selectedPackage = pkg;
-
-  currentSection = pkg;     // 🔥 set section sesuai paket
+  currentSection = sectionKey;
   currentQuestion = 0;
+
+  // 🔥 INI WAJIB
+  document.body.classList.remove("pre-start");
 
   document.getElementById("menu").classList.remove("active");
   document.getElementById("quiz").classList.add("active");
@@ -1830,10 +1831,7 @@ function selectPackage(pkg) {
   renderSteps();
   loadQuestion();
   updateSideProgress();
-  startTimer();
 }
-
-
 </script>
 
 
