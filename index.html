@@ -837,26 +837,90 @@ body.pre-start .container {
   background: #163c82;
 }
 .leaderboard {
-  margin-top: 20px;
-  text-align: left;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 24px;
 }
 
+.leaderboard h2 {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: #1f4fa3;
+}
+
+/* list container */
 .leaderboard ul {
   list-style: none;
   padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
+/* item */
 .leaderboard li {
-  background: #f5f5f5;
-  padding: 8px;
-  margin-bottom: 6px;
-  border-radius: 6px;
-
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 14px 18px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: 0.2s;
 }
-.leaderboard {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto 20px;
+
+.leaderboard li:hover {
+  transform: scale(1.02);
+}
+
+/* kiri */
+.lb-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ranking number */
+.lb-rank {
+  font-size: 20px;
+  font-weight: bold;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e3f2fd;
+  color: #1f4fa3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* nama */
+.lb-name {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* score */
+.lb-score {
+  font-size: 16px;
+  font-weight: bold;
+  color: #4f7f22;
+}
+
+/* 🥇🥈🥉 TOP 3 STYLE */
+.leaderboard li:nth-child(1) .lb-rank {
+  background: gold;
+  color: #000;
+}
+.leaderboard li:nth-child(2) .lb-rank {
+  background: silver;
+  color: #000;
+}
+.leaderboard li:nth-child(3) .lb-rank {
+  background: #cd7f32;
+  color: #fff;
 }
 #resultScreen {
   flex-direction: column;
@@ -915,7 +979,6 @@ body.pre-start .container {
   <ul id="leaderboardList"></ul>
 </div>
   <div class="certificate">
-
     <div class="header">
       <h1>Sertifikat rumah</h1>
       <h2>wkwkw</h2>
@@ -2038,6 +2101,24 @@ function displayLeaderboard() {
       - ${player.score} pts 
       <small>(${player.date})</small>
     `;
+    list.appendChild(li);
+  });
+}
+function renderLeaderboard(data) {
+  const list = document.getElementById("leaderboardList");
+  list.innerHTML = "";
+
+  data.forEach((player, index) => {
+    const li = document.createElement("li");
+
+    li.innerHTML = `
+      <div class="lb-left">
+        <div class="lb-rank">${index + 1}</div>
+        <div class="lb-name">${player.name}</div>
+      </div>
+      <div class="lb-score">${player.score}</div>
+    `;
+
     list.appendChild(li);
   });
 }
