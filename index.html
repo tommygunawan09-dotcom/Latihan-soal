@@ -831,6 +831,22 @@ body.pre-start .container {
 .start-btn:hover {
   background: #163c82;
 }
+.leaderboard {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.leaderboard ul {
+  list-style: none;
+  padding: 0;
+}
+
+.leaderboard li {
+  background: #f5f5f5;
+  padding: 8px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+}
 
   </style>
 </head>
@@ -880,6 +896,10 @@ body.pre-start .container {
 
   <!-- MAIN -->
    <div id="resultScreen" class="screen">
+    <div class="leaderboard">
+  <h2>🏆 Leaderboard</h2>
+  <ul id="leaderboardList"></ul>
+</div>
   <div class="certificate">
 
     <div class="header">
@@ -1026,7 +1046,6 @@ function shuffleChoices(question) {
   question.choices = combined.map(item => item.text);
   question.correct = combined.findIndex(item => item.isCorrect);
 }
-
 </script>
 
 <script>
@@ -1826,7 +1845,6 @@ function checkAllFinished() {
 }
 
 function showResult() {
-
   // ===== HITUNG SKOR (TETAP) =====
   let totalCorrect = 0;
   let totalQuestions = 0;
@@ -1841,7 +1859,6 @@ function showResult() {
     let percent = Math.round((correct / sections[key].length) * 100);
     totalCorrect += correct;
     totalQuestions += sections[key].length;
-
     sectionHTML += `
       <div class="section-item">
         <span>${key.toUpperCase()}</span>
@@ -1871,6 +1888,14 @@ document.body.classList.add("pre-start");
 document.getElementById("quiz").classList.remove("active");
 document.getElementById("resultScreen").classList.add("active");
 document.body.classList.add("result-mode");
+const playerName = prompt("Masukkan Nama Anda:");
+
+if (playerName) {
+  saveScore(playerName, totalScore);
+}
+
+displayLeaderboard();
+
 }
 
 // =============================
@@ -1936,7 +1961,6 @@ document.addEventListener("visibilitychange", () => {
 
 // auto submit
 function finishExam() {
-
   localStorage.removeItem(TIMER_KEY);
 
   alert("Waktu habis!");
@@ -1967,6 +1991,43 @@ function selectPackage(sectionKey) {
   loadQuestion();
   updateSideProgress();
 }
+function saveScore(name, score) {
+
+  let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+
+  leaderboard.push({
+    name: name,
+    score: score,
+    date: new Date().toLocaleDateString()
+  });
+
+  // urutkan dari skor tertinggi
+  leaderboard.sort((a, b) => b.score - a.score);
+
+  // ambil 10 terbaik saja
+  leaderboard = leaderboard.slice(0, 10);
+
+  localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+}
+
+function displayLeaderboard() {
+
+  const leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+  const list = document.getElementById("leaderboardList");
+
+  list.innerHTML = "";
+
+  leaderboard.forEach((player, index) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <strong>${index + 1}. ${player.name}</strong> 
+      - ${player.score} pts 
+      <small>(${player.date})</small>
+    `;
+    list.appendChild(li);
+  });
+}
+
 </script>
 
 
