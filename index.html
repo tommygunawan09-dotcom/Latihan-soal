@@ -713,14 +713,33 @@ body.certificate-mode {
   .choices.image-grid button {
     height: 110px;
   }
+/* ===============================
+   PRE-START MODE (HIDE QUIZ UI)
+================================= */
+
+body.pre-start .sidebar,
+body.pre-start .step-column {
+  display: none !important;
+}
+
+/* 🔥 HILANGKAN SPACE KIRI */
+body.pre-start .main {
+  margin-left: 0 !important;
+  width: 100% !important;
+}
+
+/* kalau .container pakai flex */
+body.pre-start .container {
+  display: block !important;
+}
 
 }
   </style>
 </head>
-<body>
+<body class="pre-start">
 
   <!-- SIDEBAR -->
-<div class="sidebar">
+<div class="sidebar" id="sidebar">
 <div class="side-section" onclick="goToSection('gra')">
   <div class="side-label">Grammar</div>
   <div class="side-track">
@@ -794,6 +813,19 @@ body.certificate-mode {
   </div>
 </div>
   <div class="main">
+    <div id="menu" class="screen active">
+  <div class="menu-container">
+    <h2>PILIH PAKET LATIHAN SOAL</h2>
+    <h1>JFT Basic</h1>
+
+    <div class="paket-grid">
+      <button onclick="selectPackage('gra')">📁 PAKET TOIRE</button>
+      <button onclick="selectPackage('basu')">📁 PAKET BASU</button>
+      <button onclick="selectPackage('rea')">📁 PAKET KUROI</button>
+      <!-- Tambah sesuai kebutuhan -->
+    </div>
+  </div>
+</div>
     <div id="intro" class="screen">
       <div class="question-box">
       </div>
@@ -1360,10 +1392,12 @@ function goToSection(sectionKey) {
   }
 
   document.getElementById("intro").classList.remove("active");
+  document.body.classList.remove("pre-start");
   document.getElementById("quiz").classList.add("active");
 
-  loadQuestion();
+  startTimer();
   renderSteps();
+  loadQuestion();
   updateSideProgress();
 }
 
@@ -1644,18 +1678,9 @@ window.addEventListener("DOMContentLoaded", () => {
     s.classList.remove("active")
   );
 
-  // aktifkan quiz
-  document.getElementById("quiz").classList.add("active");
+  // tampilkan menu dulu
+  document.getElementById("menu").classList.add("active");
 
-  // set awal
-  currentSection = "gra";
-  currentQuestion = 0;   // 🔥 NAMA BENAR
-
-  // render awal
-  startTimer();
-  renderSteps();
-  loadQuestion();
-  updateSideProgress();
 });
 function checkAllFinished() {
   for (let key in sections) {
@@ -1787,6 +1812,23 @@ function initTimer() {
 
   loadTimer();
   timerEl.textContent = formatTime(remainingTime);
+  startTimer();
+}
+let selectedPackage = "";
+
+function selectPackage(pkg) {
+
+  selectedPackage = pkg;
+
+  currentSection = pkg;     // 🔥 set section sesuai paket
+  currentQuestion = 0;
+
+  document.getElementById("menu").classList.remove("active");
+  document.getElementById("quiz").classList.add("active");
+
+  renderSteps();
+  loadQuestion();
+  updateSideProgress();
   startTimer();
 }
 
