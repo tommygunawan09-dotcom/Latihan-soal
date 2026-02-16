@@ -927,6 +927,80 @@ body.pre-start .container {
   flex-direction: column;
   align-items: center;
 }
+/* =================================================
+📱 RESULT MODE — MOBILE PERFECT FIT
+================================================= */
+@media (max-width: 768px) {
+
+  /* 🔒 BODY TIDAK BOLEH SCROLL */
+  body.result-mode {
+    height: 100dvh !important;
+    overflow: hidden !important;
+  }
+
+  body.result-mode .main {
+    height: 100dvh !important;
+    overflow: hidden !important;
+    padding: 12px !important;
+  }
+
+  /* RESULT SCREEN FULL LAYAR */
+  body.result-mode #resultScreen {
+    height: 100% !important;
+    min-height: 100% !important;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 14px;
+    overflow: hidden !important;
+  }
+
+  /* =========================
+     🎓 CERTIFICATE FIT 1 LAYAR
+  ========================= */
+  body.result-mode .certificate {
+    flex: 1;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    padding: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* =========================
+     🏆 LEADERBOARD MOBILE
+  ========================= */
+  .leaderboard {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .leaderboard h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  /* LIST YANG SCROLL — BUKAN BODY */
+  .leaderboard ul {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 6px;
+  }
+
+  /* TINGGI ITEM KONSISTEN → TOP 3 SELALU KELIHATAN */
+  .leaderboard li {
+    min-height: 64px;
+  }
+
+}
   </style>
 </head>
 <body class="pre-start">
