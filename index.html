@@ -466,19 +466,16 @@ body.result-mode .certificate {
 /* MATIKAN SCROLL GLOBAL */
 body.result-mode,
 body.result-mode html {
-  overflow: hidden !important;
-  height: 100vh !important;
+  overflow-y: auto !important;
+  height: auto !important;
 }
 
 /* RESULT SCREEN FULL LAYAR */
 body.result-mode #resultScreen {
-  height: 100vh !important;
-  max-height: 100vh !important;
-  overflow: hidden !important;
-
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  min-height: 100vh !important;
+  height: auto !important;
+  overflow: visible !important;
+  padding: 20px 12px !important;
 }
 
 /* SERTIFIKAT DIPAKSA PAS LAYAR */
@@ -713,6 +710,14 @@ body.certificate-mode {
   .choices.image-grid button {
     height: 110px;
   }
+    .leaderboard h2 {
+    text-align: center;
+    font-size: 20px;
+  }
+
+  .leaderboard li {
+    font-size: 14px;
+  }
 }
 /* ===============================
    PRE-START MODE (HIDE QUIZ UI)
@@ -846,8 +851,17 @@ body.pre-start .container {
   padding: 8px;
   margin-bottom: 6px;
   border-radius: 6px;
-}
 
+}
+.leaderboard {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 20px;
+}
+#resultScreen {
+  flex-direction: column;
+  align-items: center;
+}
   </style>
 </head>
 <body class="pre-start">
