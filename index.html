@@ -718,6 +718,51 @@ body.certificate-mode {
   .leaderboard li {
     font-size: 14px;
   }
+#resultScreen {
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+  .result-container {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+.certificate {
+  height: 100%;
+  max-height: 100%;
+  transform: scale(0.82);
+  transform-origin: top center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+  .section-scores {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .leaderboard {
+    max-height: 160px;
+    overflow-y: auto;
+  }
+  .profile-section img {
+  width: 90px;
+  height: 90px;
+}
+.header h1 { font-size: 16px; }
+.header h2 { font-size: 12px; }
+
+.score-title {
+  font-size: 14px;
+}
 }
 /* ===============================
    PRE-START MODE (HIDE QUIZ UI)
@@ -851,6 +896,8 @@ body.pre-start .container {
 
 /* list container */
 .leaderboard ul {
+  max-height: 210px;
+  overflow-y: auto;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -973,7 +1020,7 @@ body.pre-start .container {
 <div class="step-column" id="stepColumn"></div>
 
   <!-- MAIN -->
-   <div id="resultScreen" class="screen">
+<div id="resultScreen" class="screen result-container">
     <div class="leaderboard">
   <h2>🏆 Leaderboard</h2>
   <ul id="leaderboardList"></ul>
