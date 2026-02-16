@@ -1057,10 +1057,6 @@ body.pre-start .container {
     </div>
   </div>
 </div>
-    <div id="intro" class="screen">
-      <div class="question-box">
-      </div>
-    </div>
 <div id="quiz" class="screen">
       <div class="container">
 <div class="header exam-header"><div class="exam-timer" id="timer">30:00</div>
@@ -1621,12 +1617,10 @@ function goToSection(sectionKey) {
       new Array(sections[sectionKey].length).fill(null);
   }
 
-  document.getElementById("intro").classList.remove("active");
-document.body.classList.remove("pre-start");
-document.body.classList.add("quiz-mode");
+  document.body.classList.remove("pre-start");
+  document.body.classList.add("quiz-mode");
   document.getElementById("quiz").classList.add("active");
-
-  startTimer();
+  
   renderSteps();
   loadQuestion();
   updateSideProgress();
@@ -1636,7 +1630,6 @@ document.body.classList.add("quiz-mode");
 function goToQuestion(index) {
   currentQuestion = index;
 
-  document.getElementById("intro").classList.remove("active");
   document.getElementById("quiz").classList.add("active");
 
   loadQuestion();
@@ -1872,7 +1865,6 @@ function prevQuestion() {
 }
 
 function goToIntro() {
-  document.getElementById("intro").classList.add("active");
   document.getElementById("quiz").classList.remove("active");
 
   // matikan highlight step
@@ -1983,12 +1975,15 @@ let endTime = 0;
 let timerInterval = null;
 
 function startTimer() {
+
+  if (timerInterval !== null) return; // 🔥 PENGAMAN UTAMA
+
   endTime = Date.now() + duration * 1000;
 
-  updateTimer(); // render pertama langsung
-
+  updateTimer();
   timerInterval = setInterval(updateTimer, 1000);
 }
+
 
 function updateTimer() {
   const now = Date.now();
@@ -2055,6 +2050,8 @@ let selectedPackage = "";
 
 function selectPackage(sectionKey) {
 
+  clearInterval(timerInterval);
+timerInterval = null;
   currentSection = sectionKey;
   currentQuestion = 0;
 
@@ -2067,6 +2064,7 @@ function selectPackage(sectionKey) {
   renderSteps();
   loadQuestion();
   updateSideProgress();
+  startTimer();
 }
 function saveScore(name, score) {
 
