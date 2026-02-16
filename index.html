@@ -713,6 +713,7 @@ body.certificate-mode {
   .choices.image-grid button {
     height: 110px;
   }
+}
 /* ===============================
    PRE-START MODE (HIDE QUIZ UI)
 ================================= */
@@ -732,7 +733,9 @@ body.pre-start .main {
 body.pre-start .container {
   display: block !important;
 }
-
+body.quiz-mode .sidebar,
+body.quiz-mode .step-column {
+  display: none !important;
 }
   </style>
 </head>
@@ -1392,7 +1395,8 @@ function goToSection(sectionKey) {
   }
 
   document.getElementById("intro").classList.remove("active");
-  document.body.classList.remove("pre-start");
+document.body.classList.remove("pre-start");
+document.body.classList.add("quiz-mode");
   document.getElementById("quiz").classList.add("active");
 
   startTimer();
