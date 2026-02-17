@@ -755,6 +755,25 @@ body.certificate-mode {
 .lb-score {
   font-size: 14px;
 }
+.leaderboard ul {
+  max-height: 260px;   /* tinggi untuk ±3 item */
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.leaderboard {
+  position: relative;
+}
+
+.leaderboard::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: linear-gradient(to bottom, transparent, #f4f4f4);
+  pointer-events: none;
+}
 }
 /* ===============================
    PRE-START MODE (HIDE QUIZ UI)
