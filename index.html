@@ -918,6 +918,33 @@ body.pre-start .container {
     overflow-y: auto;
     padding-bottom: 8px;
   }
+  /* ===== TOP 3 (FIXED) ===== */
+.leaderboard-top {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ===== SCROLL AREA (RANK 4+) ===== */
+.leaderboard-scroll {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  max-height: 45vh;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.leaderboard-scroll {
+  max-height: 50vh;
+  padding-bottom: 12px;
+}
 
   .leaderboard li {
     padding: 12px 14px;
@@ -1021,9 +1048,16 @@ body.pre-start .container {
 
   <!-- MAIN -->
    <div id="resultScreen" class="screen">
-    <div class="leaderboard">
-  <h2>🏆 Leaderboard</h2>
-  <ul id="leaderboardList"></ul>
+<div class="leaderboard">
+  <h2>Leaderboard</h2>
+
+  <ul class="leaderboard-top">
+    <!-- ranking 1–3 -->
+  </ul>
+
+  <ul class="leaderboard-scroll">
+    <!-- ranking 4–10 -->
+  </ul>
 </div>
   <div class="certificate">
     <div class="header">
@@ -1959,14 +1993,6 @@ function prevQuestion() {
   }
 }
 
-function goToIntro() {
-  document.getElementById("quiz").classList.remove("active");
-
-  // matikan highlight step
-  document.querySelectorAll(".step")
-    .forEach(s => s.classList.remove("active"));
-}
-
 function renderSteps() {
   const stepColumn = document.getElementById("stepColumn");
   stepColumn.innerHTML = "";
@@ -2095,26 +2121,10 @@ function updateTimer() {
   }
 }
 
-// sync saat balik ke tab (WAJIB untuk iOS)
-document.addEventListener("visibilitychange", () => {
-  if (!document.hidden) updateTimer();
-});
-
 // pause timer
 function pauseTimer() {
   clearInterval(timerInterval);
   timerInterval = null;
-}
-
-// warna saat mepet
-function updateTimerColor() {
-
-  if (remainingTime <= 60) {
-    timerEl.style.background = "#e53935";
-  }
-  else if (remainingTime <= 300) {
-    timerEl.style.background = "#ff9800";
-  }
 }
 
 // pindah tab → pause
@@ -2122,26 +2132,17 @@ document.addEventListener("visibilitychange", () => {
   if (document.hidden) {
     pauseTimer();
   } else {
+    updateTimer();
     startTimer();
   }
 });
 
 // auto submit
 function finishExam() {
-  localStorage.removeItem(TIMER_KEY);
 
   alert("Waktu habis!");
-  showResultScreen(); // 🔥 pakai function kamu yang sudah ada
+  showResult(); // 🔥 pakai function kamu yang sudah ada
 }
-
-// init
-function initTimer() {
-
-  loadTimer();
-  timerEl.textContent = formatTime(remainingTime);
-  startTimer();
-}
-let selectedPackage = "";
 
 function selectPackage(sectionKey) {
 
@@ -2194,24 +2195,6 @@ function displayLeaderboard() {
       - ${player.score} pts 
       <small>(${player.date})</small>
     `;
-    list.appendChild(li);
-  });
-}
-function renderLeaderboard(data) {
-  const list = document.getElementById("leaderboardList");
-  list.innerHTML = "";
-
-  data.forEach((player, index) => {
-    const li = document.createElement("li");
-
-    li.innerHTML = `
-      <div class="lb-left">
-        <div class="lb-rank">${index + 1}</div>
-        <div class="lb-name">${player.name}</div>
-      </div>
-      <div class="lb-score">${player.score}</div>
-    `;
-
     list.appendChild(li);
   });
 }
