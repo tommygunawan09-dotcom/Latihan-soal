@@ -512,7 +512,6 @@ body.certificate-mode {
   align-items: center;
 }
 .certificate {
-  transform: scale(0.95);
   transform-origin: center;
   width: 900px;
   max-width: 100%;
@@ -674,19 +673,6 @@ body.certificate-mode {
   .choices.image-grid button {
     height: 110px;
   }
-    .leaderboard h2 {
-    text-align: center;
-    font-size: 20px;
-  }
-
-  .leaderboard li {
-    font-size: 14px;
-  }
-  .leaderboard {
-  width: 100%;
-  padding: 0 4px;
-}
-
 .leaderboard li {
   padding: 12px;
   border-radius: 10px;
@@ -933,6 +919,85 @@ body.pre-start .container {
   align-items: center;
   padding: 16px 12px 80px;
 }
+/* =================================================
+   📱 MOBILE – LEADERBOARD POLISH (SAFE OVERRIDE)
+================================================= */
+@media (max-width: 768px) {
+
+  .leaderboard {
+    width: 100%;
+    margin: 0 auto 20px;
+    padding: 0 8px;
+  }
+
+  .leaderboard h2 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    text-align: center;
+    letter-spacing: 0.5px;
+  }
+
+  .leaderboard ul {
+    gap: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-bottom: 8px;
+  }
+
+  .leaderboard li {
+    padding: 12px 14px;
+    border-radius: 14px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+  }
+
+  .lb-left {
+    gap: 10px;
+  }
+
+  .lb-rank {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .lb-name,
+  .lb-score {
+    font-size: 14px;
+  }
+
+  .leaderboard li:active {
+    transform: scale(0.98);
+  }
+}
+
+/* =================================================
+   📱 MOBILE – CERTIFICATE PROFESSIONAL VIEW
+================================================= */
+@media (max-width: 768px) {
+
+  body.certificate-mode {
+    background: #f4f4f4;
+  }
+
+  #certificate {
+    background: #f4f4f4;
+  }
+
+  .certificate-content {
+    padding: 12px;
+  }
+
+  .certificate {
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+    padding: 20px 16px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    overflow-y: auto;
+  }
+}
+
   </style>
 </head>
 <body class="pre-start">
