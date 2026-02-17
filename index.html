@@ -914,7 +914,7 @@ body.pre-start .container {
 
   .leaderboard ul {
     gap: 10px;
-    max-height: 60vh;
+    max-height: 240px;
     overflow-y: auto;
     padding-bottom: 8px;
   }
@@ -994,7 +994,25 @@ body.pre-start .container {
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
   }
 }
+/* =====================================
+   🏆 LEADERBOARD: SHOW TOP 3 + SCROLL REST
+===================================== */
 
+.leaderboard ul {
+  max-height: 240px; /* tinggi kira-kira 3 item */
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+/* biar scroll lebih smooth */
+.leaderboard ul::-webkit-scrollbar {
+  width: 6px;
+}
+
+.leaderboard ul::-webkit-scrollbar-thumb {
+  background: #cfd8dc;
+  border-radius: 10px;
+}
   </style>
 </head>
 <body class="pre-start">
@@ -2116,11 +2134,6 @@ function updateTimer() {
     finishExam();
   }
 }
-
-// sync saat balik ke tab (WAJIB untuk iOS)
-document.addEventListener("visibilitychange", () => {
-  if (!document.hidden) updateTimer();
-});
 
 // pause timer
 function pauseTimer() {
