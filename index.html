@@ -945,32 +945,54 @@ body.pre-start .container {
   }
 }
 
-/* =================================================
-   📱 MOBILE – CERTIFICATE PROFESSIONAL VIEW
-================================================= */
+/* ================================
+   📱 MOBILE – TRUE FULLSCREEN CERTIFICATE
+================================ */
 @media (max-width: 768px) {
 
   body.certificate-mode {
-    background: #f4f4f4;
+    overflow: hidden !important;
+    height: 100dvh;
+  }
+
+  body.certificate-mode .sidebar,
+  body.certificate-mode .step-column,
+  body.certificate-mode .main {
+    display: none !important;
   }
 
   #certificate {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
     background: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    overflow: hidden;
+    z-index: 9999;
   }
 
   .certificate-content {
-    padding: 12px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-.certificate {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  padding: 20px 16px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-  overflow-y: auto;
-}
+  .certificate {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    padding: 20px 16px;
+    border-radius: 14px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  }
 }
 
   </style>
