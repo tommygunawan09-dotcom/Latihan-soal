@@ -1734,7 +1734,7 @@ audioBox.innerHTML = "";
 
 if (q.audio) {
 
-  const qIndex = currentQuestion;
+const qIndex = currentSection + "_" + currentQuestion;
 
   if (audioPlaysPerQuestion[qIndex] === undefined) {
     audioPlaysPerQuestion[qIndex] = 0;
