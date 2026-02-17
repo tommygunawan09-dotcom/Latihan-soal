@@ -1757,14 +1757,25 @@ if (q.audio) {
   audio.disableRemotePlayback = true;
 
   let counted = false;
-  let lastTime = 0;
+let lastTime = 0;
 
-  // 🚫 anti seek
-  audio.addEventListener("seeking", () => {
-    if (audioLocked[qIndex]) {
-      audio.currentTime = lastTime;
-    }
-  });
+// simpan waktu normal
+audio.addEventListener("timeupdate", () => {
+  if (!audio.seeking) {
+    lastTime = audio.currentTime;
+  }
+});
+
+// paksa balik kalau user geser
+audio.addEventListener("seeking", () => {
+
+  const diff = audio.currentTime - lastTime;
+
+  // kalau loncat → berarti user drag
+  if (Math.abs(diff) > 0.01) {
+    audio.currentTime = lastTime;
+  }
+});
 
   audio.addEventListener("timeupdate", () => {
     lastTime = audio.currentTime;
