@@ -236,11 +236,6 @@ body {
     .choices { list-style: none; padding: 0; }
     .choices li { margin-bottom: 12px; }
 
-    .choices button:hover {
-      background: #e3f2fd;
-      border-color: #1f4fa3;
-    }
-
     .result { margin-top: 15px; font-weight: bold; }
     .correct { color: #2e7d32; }
     .wrong { color: #c62828; }
@@ -261,7 +256,7 @@ body {
       color: white;
     }
     .step.done {
-  background: #CD5C5C;   /* abu-abu = sudah dijawab */
+  background: #CD5C5C;   /* = sudah dijawab */
 }
 /* =========================
    TABLET (≤1024px)
@@ -292,15 +287,29 @@ body {
 }
 
 /* =========================
-   MOBILE (≤768px)
+   CHOICE BUTTON – GLOBAL
 ========================= */
+.choices button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #cfd8dc;
+  background: #f9fbfd;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.choices button:hover {
+  background: #e3f2fd;
+  border-color: #1f4fa3;
+}
+
 .choices button.selected {
   background: #6aa037;
   color: white;
   border-color: #4f7f22;
-}
-.choices button {
-  transition: all 0.2s ease;
 }
 #resultScreen {
   padding: 30px;
@@ -361,17 +370,6 @@ body {
   align-items: center;
 }
 
-.choices button {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 6px;
-  border: 1px solid #cfd8dc;
-  background: #f9fbfd;
-  cursor: pointer;
-  text-align: left;
-}
-
 /* =========================
    GRID PILIHAN GAMBAR (FIX)
 ========================= */
@@ -421,74 +419,32 @@ body {
    🔥 RESULT MODE – FINAL OVERRIDE
 ========================= */
 
-/* SEMBUNYIKAN TOTAL */
+body.result-mode {
+  display: block;
+  overflow-y: auto;
+}
+
 body.result-mode .sidebar,
 body.result-mode .step-column {
   display: none !important;
-  visibility: hidden !important;
-  height: 0 !important;
-  overflow: hidden !important;
-}
-
-/* BODY & MAIN FULLSCREEN */
-body.result-mode {
-  display: block !important;
 }
 
 body.result-mode .main {
-  margin: 0 !important;
-  padding: 0 !important;
-  height: 100vh !important;
-  width: 100vw !important;
-  overflow: auto !important;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  min-height: 100vh;
 }
 
-/* RESULT SCREEN FULL CENTER */
 body.result-mode #resultScreen {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  min-height: 100vh !important;
-  width: 100vw !important;
-  padding: 12px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 12px;
   background: #f4f4f4;
 }
 
-/* SERTIFIKAT */
-body.result-mode .certificate {
-  margin: 0 auto !important;
-  max-width: 900px;
-}
-/* =========================
-   🔒 RESULT MODE – NO SCROLL (FINAL)
-========================= */
-
-/* MATIKAN SCROLL GLOBAL */
-body.result-mode,
-body.result-mode html {
-  overflow-y: auto !important;
-  height: auto !important;
-}
-
-/* RESULT SCREEN FULL LAYAR */
-body.result-mode #resultScreen {
-  min-height: 100vh !important;
-  height: auto !important;
-  overflow: visible !important;
-  padding: 20px 12px !important;
-}
-
-/* SERTIFIKAT DIPAKSA PAS LAYAR */
-body.result-mode .certificate {
-  height: 100%;
-  max-height: 100vh;
-  width: 100%;
-  max-width: 900px;
-
-  display: flex;
-  flex-direction: column;
-  overflow: hidden !important;
-}
 /* =========================
    🔒 AUDIO NO SEEK
 ========================= */
@@ -545,12 +501,6 @@ body.certificate-mode {
 /* aktif */
 #certificate.active {
   display: flex;
-}
-.certificate {
-  width: 100%;
-  height: auto;
-  padding: 16px;
-  border-radius: 0;
 }
 
 /* isi certificate */
