@@ -1183,7 +1183,7 @@ const SCRIPTS = ["kanji", "hiragana"];
 const ACTIVE_SCRIPT = SCRIPTS[Math.floor(Math.random() * SCRIPTS.length)];
 const MAX_AUDIO_PLAY = 2;
 const audioPlaysPerQuestion = {}; // 🔥 kunci per soal
-let audioLocked = false;
+const audioLocked = {};
 function renderQuestionText(q) {
   // 🔥 kalau tidak ada text, kembalikan string kosong
   if (!q.text) return "";
@@ -1733,14 +1733,13 @@ const audioBox = document.getElementById("audioContainer");
 audioBox.innerHTML = "";
 
 if (q.audio) {
-  const qIndex = currentQuestion;
 
-  // init kalau belum ada
+  const qIndex = currentSection + "_" + currentQuestion;
+
   if (audioPlaysPerQuestion[qIndex] === undefined) {
     audioPlaysPerQuestion[qIndex] = 0;
   }
 
-  // 🔒 kalau soal ini sudah habis jatahnya
   if (audioPlaysPerQuestion[qIndex] >= MAX_AUDIO_PLAY) {
     audioBox.innerHTML = `
       <div style="color:#888;font-size:12px;opacity:.6">
@@ -1750,42 +1749,54 @@ if (q.audio) {
     return;
   }
 
-const audio = document.createElement("audio");
-audio.src = q.audio;
-audio.controls = true;
-audio.preload = "auto";
-audio.controlsList = "nodownload noplaybackrate";
-audio.disableRemotePlayback = true;
+  const audio = document.createElement("audio");
+  audio.src = q.audio;
+  audio.controls = true;
+  audio.preload = "auto";
+  audio.controlsList = "nodownload noplaybackrate";
+  audio.disableRemotePlayback = true;
 
-let lastTime = 0;
+  let counted = false;
+  let lastTime = 0;
 
-// 🚫 cegah seek manual (iOS & Android)
-audio.addEventListener("seeking", () => {
-  if (audioLocked) {
-    audio.currentTime = lastTime;
-  }
-});
+  // 🚫 anti seek
+  audio.addEventListener("seeking", () => {
+    if (audioLocked[qIndex]) {
+      audio.currentTime = lastTime;
+    }
+  });
 
-// simpan waktu normal
-audio.addEventListener("timeupdate", () => {
-  lastTime = audio.currentTime;
-});
+  audio.addEventListener("timeupdate", () => {
+    lastTime = audio.currentTime;
+  });
 
-// ✅ HITUNG PLAY
 audio.addEventListener("play", () => {
 
-  if (!audioPlaysPerQuestion[currentQuestion]) {
-    audioPlaysPerQuestion[currentQuestion] = 0;
+  // kalau sudah habis → langsung stop
+  if (audioPlaysPerQuestion[qIndex] >= MAX_AUDIO_PLAY) {
+    audio.pause();
+    audio.currentTime = 0;
+    return;
   }
 
-  audioPlaysPerQuestion[currentQuestion]++;
+  // kalau ini play baru (bukan resume pause)
+  if (!counted) {
 
-  // 🔥 LOCK SETELAH 2x
-  if (audioPlaysPerQuestion[currentQuestion] >= MAX_AUDIO_PLAY) {
-    audioLocked = true;
+    audioPlaysPerQuestion[qIndex]++;
+    counted = true;
+
+    // kalau sudah mencapai 2x → lock setelah selesai
+    if (audioPlaysPerQuestion[qIndex] >= MAX_AUDIO_PLAY) {
+      audioLocked[qIndex] = true;
+
+      audio.onended = () => loadQuestion();
+    }
   }
-
 });
+
+  audio.addEventListener("ended", () => {
+    counted = false;
+  });
 
   audioBox.appendChild(audio);
 }
