@@ -512,13 +512,11 @@ body.certificate-mode {
   align-items: center;
 }
 .certificate {
-  transform-origin: center;
   width: 900px;
   max-width: 100%;
   height: auto;
   max-height: 100%;
   padding: 16px;
-  overflow: hidden;
 }
 
   /* ===== HEADER TEXT ===== */
@@ -673,11 +671,6 @@ body.certificate-mode {
   .choices.image-grid button {
     height: 110px;
   }
-.leaderboard ul {
-  max-height: 260px;   /* tinggi untuk ±3 item */
-  overflow-y: auto;
-  padding-right: 4px;
-}
 .leaderboard {
   position: relative;
 }
@@ -970,12 +963,13 @@ body.pre-start .container {
   }
 
 .certificate {
-  width: 900px;
+  width: 100%;
   max-width: 100%;
   height: auto;
-  max-height: 100%;
-  padding: 16px;
-  overflow: hidden;
+  padding: 20px 16px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  overflow-y: auto;
 }
 }
 
