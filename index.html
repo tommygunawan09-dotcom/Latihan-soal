@@ -8,6 +8,7 @@
 html, body {
   height: 100%;
   min-height: 100dvh;
+  overflow-x: hidden;
 }
 
 body {
@@ -23,7 +24,7 @@ body {
 
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100dvh;
 }
 .side-section:hover {
   background: #e0e0e0;
@@ -126,7 +127,7 @@ body {
 .main {
   flex: 1;
   padding: 30px;
-  overflow-y: auto;
+  overflow-y: hidden;
   display: block;
   min-height: 100dvh;
 }
@@ -438,9 +439,9 @@ body.result-mode {
 body.result-mode .main {
   margin: 0 !important;
   padding: 0 !important;
-  height: 100vh !important;
+  min-height: 100dvh !important;
   width: 100vw !important;
-  overflow: auto !important;
+  overflow: hidden !important;
 }
 
 /* RESULT SCREEN FULL CENTER */
@@ -464,10 +465,8 @@ body.result-mode .certificate {
 ========================= */
 
 /* MATIKAN SCROLL GLOBAL */
-body.result-mode,
-body.result-mode html {
-  overflow-y: auto !important;
-  height: auto !important;
+body.result-mode {
+  overflow: hidden !important;
 }
 
 /* RESULT SCREEN FULL LAYAR */
@@ -507,6 +506,7 @@ audio::-webkit-media-controls-seek-forward-button {
 
   body {
     flex-direction: column;
+    min-height: 100dvh;
   }
 
   /* ===== MAIN ===== */
