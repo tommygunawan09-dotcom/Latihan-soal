@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soal irodori</title>
+  <title>JFT Combined Demo</title>
   <style>
 html, body {
   height: 100%;
@@ -310,6 +310,10 @@ body {
   background: #6aa037;
   color: white;
   border-color: #4f7f22;
+}
+#resultScreen {
+  padding: 30px;
+  overflow-y: auto;
 }
 
 .certificate {
@@ -667,6 +671,9 @@ body.certificate-mode {
   .choices.image-grid button {
     height: 110px;
   }
+.leaderboard {
+  position: relative;
+}
 
 .leaderboard::after {
   content: "";
@@ -797,7 +804,6 @@ body.pre-start .container {
   background: #163c82;
 }
 .leaderboard {
-  position: relative;
   width: 100%;
   max-width: 900px;
   margin: 0 auto 24px;
@@ -871,15 +877,22 @@ body.pre-start .container {
 }
 
 /* 🥇🥈🥉 TOP 3 STYLE */
-.leaderboard-top li:nth-child(1) .lb-rank { background: gold; }
-.leaderboard-top li:nth-child(2) .lb-rank { background: silver; }
-.leaderboard-top li:nth-child(3) .lb-rank { background: #cd7f32; color: #fff; }
+.leaderboard li:nth-child(1) .lb-rank {
+  background: gold;
+  color: #000;
+}
+.leaderboard li:nth-child(2) .lb-rank {
+  background: silver;
+  color: #000;
+}
+.leaderboard li:nth-child(3) .lb-rank {
+  background: #cd7f32;
+  color: #fff;
+}
 #resultScreen {
-  display: flex;
   flex-direction: column;
   align-items: center;
   padding: 16px 12px 80px;
-  overflow-y: auto;
 }
 /* =================================================
    📱 MOBILE – LEADERBOARD POLISH (SAFE OVERRIDE)
@@ -901,31 +914,10 @@ body.pre-start .container {
 
   .leaderboard ul {
     gap: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
     padding-bottom: 8px;
   }
-  /* ===== TOP 3 (FIXED) ===== */
-.leaderboard-top {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-/* ===== SCROLL AREA (RANK 4+) ===== */
-.leaderboard-scroll {
-  list-style: none;
-  padding: 0 0 12px;
-  margin: 0;
-
-  max-height: 50vh;
-  overflow-y: auto;
-
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
 
   .leaderboard li {
     padding: 12px 14px;
@@ -1029,16 +1021,9 @@ body.pre-start .container {
 
   <!-- MAIN -->
    <div id="resultScreen" class="screen">
-<div class="leaderboard">
-  <h2>Leaderboard</h2>
-
-  <ul class="leaderboard-top">
-    <!-- ranking 1–3 -->
-  </ul>
-
-  <ul class="leaderboard-scroll">
-    <!-- ranking 4–10 -->
-  </ul>
+    <div class="leaderboard">
+  <h2>🏆 Leaderboard</h2>
+  <ul id="leaderboardList"></ul>
 </div>
   <div class="certificate">
     <div class="header">
@@ -1974,6 +1959,14 @@ function prevQuestion() {
   }
 }
 
+function goToIntro() {
+  document.getElementById("quiz").classList.remove("active");
+
+  // matikan highlight step
+  document.querySelectorAll(".step")
+    .forEach(s => s.classList.remove("active"));
+}
+
 function renderSteps() {
   const stepColumn = document.getElementById("stepColumn");
   stepColumn.innerHTML = "";
@@ -2102,10 +2095,26 @@ function updateTimer() {
   }
 }
 
+// sync saat balik ke tab (WAJIB untuk iOS)
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) updateTimer();
+});
+
 // pause timer
 function pauseTimer() {
   clearInterval(timerInterval);
   timerInterval = null;
+}
+
+// warna saat mepet
+function updateTimerColor() {
+
+  if (remainingTime <= 60) {
+    timerEl.style.background = "#e53935";
+  }
+  else if (remainingTime <= 300) {
+    timerEl.style.background = "#ff9800";
+  }
 }
 
 // pindah tab → pause
@@ -2113,17 +2122,26 @@ document.addEventListener("visibilitychange", () => {
   if (document.hidden) {
     pauseTimer();
   } else {
-    updateTimer();
     startTimer();
   }
 });
 
 // auto submit
 function finishExam() {
+  localStorage.removeItem(TIMER_KEY);
 
   alert("Waktu habis!");
-  showResult(); // 🔥 pakai function kamu yang sudah ada
+  showResultScreen(); // 🔥 pakai function kamu yang sudah ada
 }
+
+// init
+function initTimer() {
+
+  loadTimer();
+  timerEl.textContent = formatTime(remainingTime);
+  startTimer();
+}
+let selectedPackage = "";
 
 function selectPackage(sectionKey) {
 
@@ -2176,6 +2194,24 @@ function displayLeaderboard() {
       - ${player.score} pts 
       <small>(${player.date})</small>
     `;
+    list.appendChild(li);
+  });
+}
+function renderLeaderboard(data) {
+  const list = document.getElementById("leaderboardList");
+  list.innerHTML = "";
+
+  data.forEach((player, index) => {
+    const li = document.createElement("li");
+
+    li.innerHTML = `
+      <div class="lb-left">
+        <div class="lb-rank">${index + 1}</div>
+        <div class="lb-name">${player.name}</div>
+      </div>
+      <div class="lb-score">${player.score}</div>
+    `;
+
     list.appendChild(li);
   });
 }
