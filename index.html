@@ -311,10 +311,6 @@ body {
   color: white;
   border-color: #4f7f22;
 }
-#resultScreen {
-  padding: 30px;
-  overflow-y: auto;
-}
 
 .certificate {
   width: 900px;
@@ -669,12 +665,6 @@ audio::-webkit-media-controls-seek-forward-button {
   .choices.image-grid button {
     height: 110px;
   }
-body.result-mode .certificate-card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100dvh;
-}
 
   body.result-mode .certificate .profile-section {
     margin: 12px 0;
@@ -729,6 +719,32 @@ body.result-mode .certificate-card {
     opacity: 1;
     pointer-events: auto;
   }
+  /* ===== FIX RESULT MOBILE CENTER ===== */
+
+body.result-mode #resultScreen {
+  position: fixed;
+  inset: 0;
+  padding: 20px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+}
+
+body.result-mode .result-wrapper {
+  min-height: auto;
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body.result-mode .certificate-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 28px 20px;
+}
 }
 /* ===============================
    PRE-START MODE (HIDE QUIZ UI)
@@ -850,62 +866,8 @@ body.pre-start .container {
 #resultScreen {
   flex-direction: column;
   align-items: center;
-  padding: 16px 12px 80px;
-}
-/* ===============================
-   CERTIFICATE HOVER LEADERBOARD
-================================= */
-
-.certificate-card {
-  position: relative;
-  width: 900px;
-  max-width: 100%;
-  margin: auto;
-}
-
-.leaderboard-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(255,255,255,0.97);
-  backdrop-filter: blur(6px);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  border-radius: 10px;
-}
-
-.certificate-card:hover .leaderboard-overlay {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.leaderboard-overlay h2 {
-  margin-bottom: 16px;
-  color: #1f4fa3;
-}
-
-.leaderboard-overlay ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 80%;
-  max-height: 260px;
+  padding: 30px;
   overflow-y: auto;
-}
-
-.leaderboard-overlay li {
-  background: #f4f4f4;
-  margin-bottom: 8px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
 }
 /* ================= RESULT STYLE ================= */
 
@@ -913,7 +875,7 @@ body.pre-start .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 100dvh;
   background: linear-gradient(135deg, #f4f6f9, #e9eef5);
 }
 
@@ -1186,7 +1148,6 @@ body.pre-start .container {
   </div>
 
 </div>
-
 
 <script>
 // =====================
