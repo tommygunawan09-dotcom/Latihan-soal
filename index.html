@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JFT Combined Demo</title>
+  <title>Test soal</title>
   <style>
 html, body {
   height: 100%;
@@ -416,33 +416,46 @@ body {
 }
 
 /* =========================
-   🔥 RESULT MODE – FINAL OVERRIDE
+   🔥 RESULT MODE Di komputer
 ========================= */
 
 body.result-mode {
   display: block;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
+/* sembunyikan UI ujian */
 body.result-mode .sidebar,
 body.result-mode .step-column {
-  display: none !important;
+  display: none;
 }
 
 body.result-mode .main {
-  margin: 0;
   padding: 0;
-  width: 100vw;
-  min-height: 100vh;
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
 body.result-mode #resultScreen {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  padding: 12px;
+
+  height: 100vh;
+  overflow: hidden;
+  padding: 24px;
   background: #f4f4f4;
+}
+.photo img {
+  width: 100%;
+  max-width: 220px;
+  max-height: 30vh;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }
 
 /* =========================
@@ -477,26 +490,6 @@ audio::-webkit-media-controls-seek-forward-button {
     max-width: 900px;
     overflow: hidden;
   }
-
-/* LOCK BODY SAAT CERTIFICATE MUNCUL */
-body.certificate-mode {
-  overflow: hidden;
-  height: 100dvh;
-}
-
-/* CONTAINER CERTIFICATE */
-#certificate {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100dvh;
-  background: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  padding: 0;
-}
 
 /* aktif */
 #certificate.active {
@@ -944,56 +937,6 @@ body.pre-start .container {
     transform: scale(0.98);
   }
 }
-
-/* ================================
-   📱 MOBILE – TRUE FULLSCREEN CERTIFICATE
-================================ */
-@media (max-width: 768px) {
-
-  body.certificate-mode {
-    overflow: hidden !important;
-    height: 100dvh;
-  }
-
-  body.certificate-mode .sidebar,
-  body.certificate-mode .step-column,
-  body.certificate-mode .main {
-    display: none !important;
-  }
-
-  #certificate {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100dvh;
-    background: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 12px;
-    overflow: hidden;
-    z-index: 9999;
-  }
-
-  .certificate-content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .certificate {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    max-height: 100%;
-    padding: 20px 16px;
-    border-radius: 14px;
-    background: white;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-  }
-}
 /* =====================================
    🏆 LEADERBOARD: SHOW TOP 3 + SCROLL REST
 ===================================== */
@@ -1238,113 +1181,7 @@ const sections = {
     { kanji: "自動販売機", hiragana: "じどうはんばいき" }
   ],
   correct: 1
-}
-,
-{
-  text: "({target})ので手伝えません。",
-  target: { kanji: "忙しい", hiragana: "いそがしい" },
-  choices: [
-      { kanji: "忙しい", hiragana: "いそがしい" },
-      { kanji: "楽しい", hiragana: "たのしい" },
-      { kanji: "難しい", hiragana: "むずかしい" }
-    ],
-  correct: 0
-}
-  ,{
-  image: "https://i.pinimg.com/1200x/ba/41/8f/ba418ff564e83b0260d9c61112839731.jpg",        // ⬅️ gambar
-    choices: [
-      { kanji: "乗せる", hiragana: "のせる" },
-      { kanji: "付ける", hiragana: "つける" },
-      { kanji: "掛ける ", hiragana: "かける" }
-    ],
-    correct: 1
-  },
-  {
-    text: "あまいものは ({target})  です。",
-  target: { kanji: "苦手", hiragana: "にがて" },
-  choices: [
-      { kanji: "若手", hiragana: "じめじめ" },
-      { kanji: "草苦", hiragana: "おおい" },
-      { kanji: "苦手", hiragana: "にがて" }
-    ],
-    correct: 2
-  },
-  {
-    text: "昨日は雨が降るのであまり________",
-    choices: [
-      { kanji: "面白くなかった", hiragana: "おもしろくなかった" },
-      { kanji: "面白くなかったです", hiragana: "おもしろくなかったです" },
-      { kanji: "面白い ", hiragana: "おもしろい" }
-    ],
-    correct: 1
-  },
-  {
-    text: "明日はいい({target})でしょう。",
-   target: { kanji: "天気", hiragana: "てんき" },
-  choices: [
-      { kanji: "天気", hiragana: "てんき" },
-      { kanji: "気天", hiragana: "てんぎ" },
-      { kanji: "電気", hiragana: "でんぎ" }
-    ],
-    correct: 0
-  }
-    ,{
-  image: "https://i.pinimg.com/736x/d6/e0/64/d6e064493ac58565eae347554de5a796.jpg",        // ⬅️ gambar
-    choices: [
-      { kanji: "頭", hiragana: "あたま" },
-      { kanji: "お腹", hiragana: "おなか" },
-      { kanji: "体 ", hiragana: "からだ" }
-    ],
-    correct: 1
-  },
-  {
-    text: "________かれのさいふは歩いているときに取られたかもしれない",
-    choices: [
-      { kanji: "もしかしたら", hiragana: "もしかしたら" },
-      { kanji: "かならず", hiragana: "かならず" },
-      { kanji: "できれば", hiragana: "できれば" }
-    ],
-    correct: 0
-  },
-  {
-    text: "きっと______ことができると思います。",
-    choices: [
-      { kanji: "テーブル", hiragana: "テーブル" },
-      { kanji: "みつける", hiragana: "みつける" },
-      { kanji: "間に合わせる", hiragana: "間に合わせる" }
-    ],
-    correct: 1
-  },
-  {
-    text: "明日は({target})をみにきませんか",
-   target: { kanji: "映画", hiragana: "えいが" },
-  choices: [
-      { kanji: "映画", hiragana: "えいが" },
-      { kanji: "画映", hiragana: "がっか" },
-      { kanji: "英語", hiragana: "えいご" }
-    ],
-    correct: 0
-  },
-    {
-    text: "あそいだあとで, シャワーを________"  ,
-   target: { kanji: "浴びます", hiragana: "あびます" },
-  choices: [
-      { kanji: "浴びます", hiragana: "あびます" },
-      { kanji: "乗ります", hiragana: "のります" },
-      { kanji: "行きます", hiragana: "きます" }
-    ],
-    correct: 0
-  },
-      {
-    text: "今は({target})にいます"  ,
-   target: { kanji: "図書館", hiragana: "としょかん" },
-  choices: [
-      { kanji: "図書館", hiragana: "としょかん" },
-      { kanji: "学校", hiragana: "がっこう" },
-      { kanji: "家", hiragana: "いえ" }
-    ],
-    correct: 0
-  },
+},
   {
     text: "({target})",
    target: { kanji: "運んで", hiragana: "はこんで" },
@@ -1367,96 +1204,6 @@ scri: [
       { kanji: "特に", hiragana: "とくに" },
       { kanji: "確かに", hiragana: "たしかに" },
       { kanji: "其の儘に", hiragana: "そのままに" }
-    ],
-    correct: 0
-  }
-      ,{
-  image: "https://i.pinimg.com/1200x/51/dc/b3/51dcb364663c61ad4866315ad36820b4.jpg",        // ⬅️ gambar
-    choices: [
-      { kanji: "多いすぎ", hiragana: "おおいすぎ" },
-      { kanji: "多おいすぎ", hiragana: "おおすぎ" },
-      { kanji: "多すぎ", hiragana: "おすぎ" }
-    ],
-    correct: 1
-  },
-  {
-    text: "予定いのほかのひとが_________",
-    choices: [
-      { kanji: "お知らせするために", hiragana: "おしらせるために" },
-      { kanji: "お知らせ", hiragana: "おしらせ" },
-      { kanji: "知れば", hiragana: "おしれば" }
-    ],
-    correct: 0
-  },
-  {
-    text: "これはバナナの________, どうぞ。",
-    choices: [
-      { kanji: "料理でした", hiragana: "りょうりでした" },
-      { kanji: "料理です", hiragana: "りょうりです" },
-      { kanji: "料理します", hiragana: "りょうります" }
-    ],
-    correct: 2
-  },
-  {
-    text:
-    "A: めりさん、いべんとのよていがかわったことをしっていますか？\n" +
-    "B: へえ、かわったんですか？ーーしりませんでした。\n" +
-    "A: じゃあ、よていのほかのひとに。。。ために。このメッセージをつたえてください。\n" +
-    "B: はい、わかりました。",
-    choices: [
-      { kanji: "お世話になる", hiragana: "おせわになる" },
-      { kanji: "お知らせる", hiragana: "おしらせる" },
-      { kanji: "送る", hiragana: "おくる" }
-    ],
-    correct: 1
-  },
-  {
-    text: "A: すみません, ここは_________ ?? \n" +
-    "B: 東京です",
-    choices: [
-      { kanji: "いつですか", hiragana: "いつですか" },
-      { kanji: "何ですか", hiragana: "なんですか" },
-      { kanji: "どこですか", hiragana: "どこですか" }
-    ],
-    correct: 2
-  },
-  {
-    text: "アニさんは____________?, \n" +
-    "おめでとうございます",
-    choices: [
-      { kanji: "結婚 ", hiragana: "けっこん" },
-      { kanji: "結婚するように", hiragana: "けっこんするように" },
-      { kanji: "結婚したそうです", hiragana: "けっこんしたそうです" }
-    ],
-    correct: 2
-  },
-  {
-    text: "A: おきゃくさまはどんなさいますか \n" +
-    "B: ジュース________???",
-    choices: [
-      { kanji: "してもらえませんか", hiragana: "してもらえませんか" },
-      { kanji: "しています", hiragana: "しています" },
-      { kanji: "お願いします", hiragana: "お願いします" }
-    ],
-    correct: 2
-  },
-  {
-    text: "A: いついしょにサッカーをしますか \n" +
-    "B: これから________???",
-    choices: [
-      { kanji: "どうしますか", hiragana: "どうしますか" },
-      { kanji: "どうしたんですか", hiragana: "どうしたんですか" },
-      { kanji: "どうですか", hiragana: "どうですか" }
-    ],
-    correct: 1
-  },
-  {
-    text: "({target})のイベントはあまり。",
-   target: { kanji: "昨日", hiragana: "きのう" },
-  choices: [
-      { kanji: "面白くなかった", hiragana: "おもしろくなかった" },
-      { kanji: "面白くない", hiragana: "おもしろくない" },
-      { kanji: "面白い", hiragana: "おもしろい" }
     ],
     correct: 0
   },
@@ -1542,106 +1289,6 @@ correct: 2
     { img: "https://i.pinimg.com/736x/f8/2b/95/f82b9571350bbf74ad38f8816186c7df.jpg", hiragana: "さっかーを する" },
     { img: "https://i.pinimg.com/1200x/2c/45/bd/2c45bdac6ce0841e6290276e2efd7da5.jpg", hiragana: "にっきを かく" },
     { img: "https://i.pinimg.com/736x/b5/f2/f3/b5f2f35b207b78ee6ba34a9aef63b3e3.jpg", hiragana: "すいえいを する" },
-  ],
-  correct: 0
-},
-    {
-  text: "Dengarkan baik-baik.",
-  audio: "speechma-hyunsu-japanese-7-2026-02-13t10-06-08-375z_LDYmd6Z3.mp3",
-    choices: [
-      { kanji: "あきら-さん", hiragana: "あきら-さん" },
-      { kanji: "みか-さん", hiragana: "みか-さん" },
-      { kanji: "たろう-さん", hiragana: "たろう-さん" }
-    ],
-  correct: 1
-},
-    {
-  text: "Dengarkan baik-baik.",
-  audio: "speechma-keita-2-2026-02-13t15-11-15-117z_x8kPtM2q.mp3",
-    choices: [
-      { kanji: "会議室", hiragana: "かいぎしつ" },
-      { kanji: "ロビー", hiragana: "ロビー" },
-      { kanji: "受付", hiragana: "うけつけ" }
-    ],
-  correct: 0
-},
-    {
-  text: "Dengarkan baik-baik.",
-  audio: "speechma-nanami-6-2026-02-13t15-23-15-953z_DSbjAjUC.mp3",
-  choices: [
-    { img: "https://i.pinimg.com/736x/ee/93/54/ee9354e3cc1f86b258ea55d4b5bd0059.jpg", hiragana: "かいしゃ" },
-    { img: "https://i.pinimg.com/736x/d3/20/df/d320dfb312273ea98f608771e224b132.jpg", hiragana: "カフェ" },
-    { img: "https://i.pinimg.com/736x/82/b7/a6/82b7a67994bc19b0c742eb50270382eb.jpg", hiragana: "レストラン" },
-  ],
-  correct: 0
-},
-    {
-  text: "Dengarkan baik-baik.",
-  audio: "speechma-emma-japanese-5-2026-02-13t13-37-10-158z_Y0pfXwbu.mp3",
-    choices: [
-      { kanji: "250円", hiragana: "にひゃくごじゅうえん" },
-      { kanji: "500円", hiragana: "ごひゃくえん" },
-      { kanji: "100円", hiragana: "ひゃくえん" }
-    ],
-  correct: 0
-},
-    {
-  text: "Dengarkan baik-baik.",
-  audio: "speechma-emma-japanese-6-2026-02-13t14-40-12-606z_Cl77TMYT.mp3",
-  choices: [
-    { img: "https://i.pinimg.com/736x/ef/21/38/ef2138e1b56c57697986f8859f4075e6.jpg", hiragana: "りんご" },
-    { img: "https://i.pinimg.com/1200x/24/0c/80/240c8038f9749f24da78544ecbcaa825.jpg", hiragana: "バナナ" },
-    { img: "https://i.pinimg.com/736x/95/9c/3e/959c3e1df5d02a5064e77580ba90734a.jpg", hiragana: "いちご" },
-  ],
-  correct: 0
-},
-    {
-  text: "Dengarkan baik-baik.",
-  audio: "speechma-andrew-japanese-5-2026-02-13t15-03-02-237z_AO4WJ6Uq.mp3",
-    choices: [
-      { kanji: "一白い、一赤い", hiragana: "いちしろい、いちあかい" },
-      { kanji: "二白い、一赤い", hiragana: "にしろい、いちあかい" },
-      { kanji: "一白い、二赤い", hiragana: "いちしろい、にあかい" }
-    ],
-  correct: 0
-},
-    {
-  text: "Dengarkan baik-baik.",
-  audio: "speechma-keita-6-2026-02-13t14-25-59-971z_7KQgFgBM.mp3",
-  choices: [
-    { img: "https://i.pinimg.com/736x/38/81/59/388159d66fefcd2b3e346f812a9b5bd3.jpg", hiragana: "くだものをだします" },
-    { img: "https://i.pinimg.com/736x/5f/3a/1f/5f3a1f91ee2b21fe35a40b8be3c1360c.jpg", hiragana: "でんげんをきる " },
-    { img: "https://i.pinimg.com/1200x/59/80/24/598024829b7840375336b24610ac367d.jpg", hiragana: "くだものを すてます" },
-  ],
-  correct: 0
-},
-    {
-  text: "Dengarkan baik-baik.",
-  audio: "speechma-hyunsu-japanese-6-2026-02-13t10-36-33-199z_5HR7lT9i.mp3",
-  choices: [
-    { img: "https://i.pinimg.com/736x/0d/cc/59/0dcc5941801725922375789ef321aabe.jpg", hiragana: "さっかーを する" },
-    { img: "https://i.pinimg.com/1200x/a7/ce/18/a7ce1842a967cefc6702cfdfe47b8fe7.jpg", hiragana: "にっきを かく" },
-    { img: "https://i.pinimg.com/1200x/4b/ec/1c/4bec1cdebb991b41398d7ed0e7553a97.jpg", hiragana: "すいえいを する" },
-  ],
-  correct: 0
-},
-    {
-  text: "Dengarkan baik-baik.",
-  audio: "speechma-brian-japanese-6-2026-02-13t13-58-32-102z_RGEWIwXu.mp3",
-    choices: [
-      { kanji: "水曜日", hiragana: "すいようび" },
-      { kanji: "土曜日", hiragana: "どようび" },
-      { kanji: "木曜日", hiragana: "もくようび" }
-    ],
-  correct: 1
-},
-    {
-  text: "Dengarkan baik-baik.",
-  audio: "speechma-keita-6-2026-02-13t12-36-51-996z_fpG1tVQg.mp3",
-  choices: [
-    { img: "https://i.pinimg.com/736x/e5/e2/d0/e5e2d0af5780cc0e9fad0af4ddb6c2d6.jpg", hiragana: "あめでも ずっと だいびんぐを しました。" },
-    { img: "https://i.pinimg.com/736x/8a/22/e4/8a22e48cbba5b05e8cd6935e8d149184.jpg", hiragana: "だいびんぐを してから、ふねに のりました。" },
-    { img: "https://i.pinimg.com/736x/37/6a/69/376a69dfd1ac45c27a16b4f944c48881.jpg", hiragana: "だいびんぐは しないで、ずっと かいものを しました。" },
   ],
   correct: 0
 },
@@ -1786,8 +1433,6 @@ const qIndex = currentSection + "_" + currentQuestion;
   audio.controlsList = "nodownload noplaybackrate";
   audio.disableRemotePlayback = true;
 
-  let counted = false;
-
   // ===============================
   // ✅ ANTI SEEK (iOS & lainnya)
   // ===============================
@@ -1821,38 +1466,17 @@ const qIndex = currentSection + "_" + currentQuestion;
     audio.playbackRate = 1;
   });
 
-  // ===============================
-  // ✅ HITUNG JUMLAH PLAY
-  // ===============================
-  audio.addEventListener("play", () => {
+audio.addEventListener("ended", () => {
 
-    // kalau jatah habis → stop paksa
-    if (audioPlaysPerQuestion[qIndex] >= MAX_AUDIO_PLAY) {
-      audio.pause();
-      audio.currentTime = 0;
-      return;
-    }
+  audioPlaysPerQuestion[qIndex]++;
 
-    // hitung hanya saat play baru
-    if (!counted) {
-
-      audioPlaysPerQuestion[qIndex]++;
-      counted = true;
-
-      if (audioPlaysPerQuestion[qIndex] >= MAX_AUDIO_PLAY) {
-
-        audioLocked[qIndex] = true;
-
-        audio.onended = () => {
-          loadQuestion();
-        };
-      }
-    }
-  });
-
-  audio.addEventListener("ended", () => {
-    counted = false;
-  });
+  if (audioPlaysPerQuestion[qIndex] >= MAX_AUDIO_PLAY) {
+    audioLocked[qIndex] = true;
+    loadQuestion(); // refresh UI → audio hilang
+  } else {
+    loadQuestion(); // update info sisa play
+  }
+});
 
   // ===============================
   // ℹ️ INFO SISA PLAY
