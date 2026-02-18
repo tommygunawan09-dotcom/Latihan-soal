@@ -669,28 +669,12 @@ audio::-webkit-media-controls-seek-forward-button {
   .choices.image-grid button {
     height: 110px;
   }
-.leaderboard {
-  position: relative;
+body.result-mode .certificate-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
 }
-
-.leaderboard::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 30px;
-  background: linear-gradient(to bottom, transparent, #f4f4f4);
-  pointer-events: none;
-}
-  body.result-mode .certificate {
-    max-height: 100dvh;
-    overflow: hidden;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
 
   body.result-mode .certificate .profile-section {
     margin: 12px 0;
@@ -817,307 +801,164 @@ body.pre-start .container {
 .start-btn:hover {
   background: #163c82;
 }
-.leaderboard {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto 24px;
-}
-
-.leaderboard h2 {
-  text-align: center;
-  font-size: 26px;
-  margin-bottom: 20px;
-  color: #1f4fa3;
-}
-
-/* list container */
-.leaderboard ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-/* item */
-.leaderboard li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: white;
-  padding: 14px 18px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transition: 0.2s;
-}
-
-.leaderboard li:hover {
-  transform: scale(1.02);
-}
-
-/* kiri */
-.lb-left {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-/* ranking number */
-.lb-rank {
-  font-size: 20px;
-  font-weight: bold;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: #e3f2fd;
-  color: #1f4fa3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* nama */
-.lb-name {
-  font-size: 16px;
-  font-weight: 600;
-}
-
-/* score */
-.lb-score {
-  font-size: 16px;
-  font-weight: bold;
-  color: #4f7f22;
-}
-
-/* 🥇🥈🥉 TOP 3 STYLE */
-.leaderboard li:nth-child(1) .lb-rank {
-  background: gold;
-  color: #000;
-}
-.leaderboard li:nth-child(2) .lb-rank {
-  background: silver;
-  color: #000;
-}
-.leaderboard li:nth-child(3) .lb-rank {
-  background: #cd7f32;
-  color: #fff;
-}
 #resultScreen {
   flex-direction: column;
   align-items: center;
   padding: 16px 12px 80px;
 }
-/* =================================================
-   📱 MOBILE – LEADERBOARD POLISH (SAFE OVERRIDE)
-================================================= */
-@media (max-width: 768px) {
+/* ===============================
+   CERTIFICATE HOVER LEADERBOARD
+================================= */
 
-  .leaderboard {
-    width: 100%;
-    margin: 0 auto 20px;
-    padding: 0 8px;
-  }
-
-  .leaderboard h2 {
-    font-size: 18px;
-    margin-bottom: 12px;
-    text-align: center;
-    letter-spacing: 0.5px;
-  }
-
-  .leaderboard ul {
-    gap: 10px;
-    max-height: 240px;
-    overflow-y: auto;
-    padding-bottom: 8px;
-  }
-
-  .leaderboard li {
-    padding: 12px 14px;
-    border-radius: 14px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.06);
-  }
-
-  .lb-left {
-    gap: 10px;
-  }
-
-  .lb-rank {
-    width: 32px;
-    height: 32px;
-    font-size: 14px;
-  }
-
-  .lb-name,
-  .lb-score {
-    font-size: 14px;
-  }
-
-  .leaderboard li:active {
-    transform: scale(0.98);
-  }
-}
-/* =====================================
-   🏆 LEADERBOARD: SHOW TOP 3 + SCROLL REST
-===================================== */
-
-.leaderboard ul {
-  max-height: 240px; /* tinggi kira-kira 3 item */
-  overflow-y: auto;
-  padding-right: 6px;
+.certificate-card {
+  position: relative;
+  width: 900px;
+  max-width: 100%;
+  margin: auto;
 }
 
-/* biar scroll lebih smooth */
-.leaderboard ul::-webkit-scrollbar {
-  width: 6px;
-}
+.leaderboard-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(6px);
 
-.leaderboard ul::-webkit-scrollbar-thumb {
-  background: #cfd8dc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
   border-radius: 10px;
 }
+
+.certificate-card:hover .leaderboard-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.leaderboard-overlay h2 {
+  margin-bottom: 16px;
+  color: #1f4fa3;
+}
+
+.leaderboard-overlay ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 80%;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.leaderboard-overlay li {
+  background: #f4f4f4;
+  margin-bottom: 8px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
   </style>
 </head>
 <body class="pre-start">
-
-  <!-- SIDEBAR -->
-<div class="sidebar" id="sidebar">
-<div class="side-section" onclick="goToSection('gra')">
-  <div class="side-label">Grammar</div>
-  <div class="side-track">
-    <div class="side-fill" id="graProgress"></div>
-  </div>
-</div>
-
-<div class="side-section" onclick="goToSection('scri')">
-  <div class="side-label">Script an...</div>
-  <div class="side-track">
-    <div class="side-fill" id="scriProgress"></div>
-  </div>
-</div>
-
-<div class="side-section" onclick="goToSection('co')">
-  <div class="side-label">Conversation</div>
-  <div class="side-track">
-    <div class="side-fill" id="coProgress"></div>
-  </div>
-</div>
-
-<div class="side-section" onclick="goToSection('list')">
-  <div class="side-label">Listening</div>
-  <div class="side-track">
-    <div class="side-fill" id="listProgress"></div>
-  </div>
-</div>
-
-<div class="side-section" onclick="goToSection('rea')">
-  <div class="side-label">Reading</div>
-  <div class="side-track">
-    <div class="side-fill" id="reaProgress"></div>
-  </div>
-</div>
-
-</div>
-
-  <!-- STEP COLUMN -->
-<div class="step-column" id="stepColumn"></div>
-
-  <!-- MAIN -->
-   <div id="resultScreen" class="screen">
-    <div class="leaderboard">
-  <h2>🏆 Leaderboard</h2>
-  <ul id="leaderboardList"></ul>
-</div>
-  <div class="certificate">
-    <div class="header">
-      <h1>Sertifikat rumah</h1>
-      <h2>wkwkw</h2>
-    </div>
-
-    <div class="profile-section">
-      <div class="photo">
-        <img src="https://i.pinimg.com/736x/cb/9d/59/cb9d591f82200dabe76083716913c221.jpg" alt="Profile">
-      </div>
-      <div class="info">
-        <p><strong>Name:</strong> Asep pacul</p>
-        <p><strong>Negara:</strong> Wakanda</p>
+  <!-- ================= SIDEBAR ================= -->
+  <div class="sidebar" id="sidebar">
+    <div class="side-section" onclick="goToSection('gra')">
+      <div class="side-label">Grammar</div>
+      <div class="side-track">
+        <div class="side-fill" id="graProgress"></div>
       </div>
     </div>
-    <div class="score-section">
-      <div class="score-title" id="totalScoreText"></div>
-      <div class="bar-container">
-        <div class="marker" id="scoreMarker"></div>
-      </div>
-      <div class="bar-labels">
-        <span>0</span>
-        <span>200 (Minimal bos)</span>
-        <span>250</span>
+    <div class="side-section" onclick="goToSection('scri')">
+      <div class="side-label">Script an...</div>
+      <div class="side-track">
+        <div class="side-fill" id="scriProgress"></div>
       </div>
     </div>
-    <div class="section-scores" id="sectionScores"></div>
+    <div class="side-section" onclick="goToSection('co')">
+      <div class="side-label">Conversation</div>
+      <div class="side-track">
+        <div class="side-fill" id="coProgress"></div>
+      </div>
+    </div>
+    <div class="side-section" onclick="goToSection('list')">
+      <div class="side-label">Listening</div>
+      <div class="side-track">
+        <div class="side-fill" id="listProgress"></div>
+      </div>
+    </div>
+    <div class="side-section" onclick="goToSection('rea')">
+      <div class="side-label">Reading</div>
+      <div class="side-track">
+        <div class="side-fill" id="reaProgress"></div>
+      </div>
+    </div>
   </div>
-</div>
+  <!-- ================= STEP COLUMN ================= -->
+  <div class="step-column" id="stepColumn"></div>
+  <!-- ================= MAIN APP ================= -->
   <div class="main">
-<div id="menu" class="screen active">
-  <div class="menu-container">
-    <h2>Uji coba</h2>
-    <h1>Simulasi ulangan</h1>
-
-    <div class="paket-grid">
-
-      <div class="paket-card" onclick="selectPackage('gra')">
-        <div class="paket-icon">📘</div>
-        <div class="paket-title">Paket Toire</div>
-        <div class="paket-desc">
-          Grammar & basic structure training
+    <!-- ================= MENU SCREEN ================= -->
+    <div id="menu" class="screen active">
+      <div class="menu-container">
+        <h2>Uji coba</h2>
+        <h1>Simulasi ulangan</h1>
+        <div class="paket-grid">
+          <div class="paket-card" onclick="selectPackage('gra')">
+            <div class="paket-icon">📘</div>
+            <div class="paket-title">Paket Toire</div>
+            <div class="paket-desc">
+              Grammar & basic structure training
+            </div>
+            <div class="paket-info">
+              <span>⏱ 30 Menit</span>
+              <span>📝 13 Soal</span>
+            </div>
+            <button class="start-btn">Mulai Ujian</button>
+          </div>
+          <div class="paket-card" onclick="selectPackage('scri')">
+            <div class="paket-icon">🗣</div>
+            <div class="paket-title">Paket Basu</div>
+            <div class="paket-desc">
+              Script conversation practice
+            </div>
+            <div class="paket-info">
+              <span>⏱ 30 Menit</span>
+              <span>📝 11 Soal</span>
+            </div>
+            <button class="start-btn">Mulai Ujian</button>
+          </div>
+          <div class="paket-card" onclick="selectPackage('rea')">
+            <div class="paket-icon">📖</div>
+            <div class="paket-title">Paket Kuroi</div>
+            <div class="paket-desc">
+              Reading comprehension practice
+            </div>
+            <div class="paket-info">
+              <span>⏱ 30 Menit</span>
+              <span>📝 2 Soal</span>
+            </div>
+            <button class="start-btn">Mulai Ujian</button>
+          </div>
         </div>
-        <div class="paket-info">
-          <span>⏱ 30 Menit</span>
-          <span>📝 13 Soal</span>
-        </div>
-        <button class="start-btn">Mulai Ujian</button>
       </div>
-
-      <div class="paket-card" onclick="selectPackage('scri')">
-        <div class="paket-icon">🗣</div>
-        <div class="paket-title">Paket Basu</div>
-        <div class="paket-desc">
-          Script conversation practice
-        </div>
-        <div class="paket-info">
-          <span>⏱ 30 Menit</span>
-          <span>📝 11 Soal</span>
-        </div>
-        <button class="start-btn">Mulai Ujian</button>
-      </div>
-
-      <div class="paket-card" onclick="selectPackage('rea')">
-        <div class="paket-icon">📖</div>
-        <div class="paket-title">Paket Kuroi</div>
-        <div class="paket-desc">
-          Reading comprehension practice
-        </div>
-        <div class="paket-info">
-          <span>⏱ 30 Menit</span>
-          <span>📝 2 Soal</span>
-        </div>
-        <button class="start-btn">Mulai Ujian</button>
-      </div>
-
     </div>
-  </div>
-</div>
-<div id="quiz" class="screen">
+    <!-- ================= QUIZ SCREEN ================= -->
+    <div id="quiz" class="screen">
       <div class="container">
-<div class="header exam-header"><div class="exam-timer" id="timer">30:00</div>
-  <div class="exam-title">Latihan Soal</div>
-  <div class="exam-sub">
-    <span id="examSection">Grammar</span>
-    <span class="dot">•</span>
-    <span id="examProgress">Question 1 / 13</span>
-  </div>
-</div>
+        <div class="header exam-header">
+          <div class="exam-timer" id="timer">30:00</div>
+          <div class="exam-title">Latihan Soal</div>
+          <div class="exam-sub">
+            <span id="examSection">Grammar</span>
+            <span class="dot">•</span>
+            <span id="examProgress">Question 1 / 13</span>
+          </div>
+        </div>
         <div class="content">
           <div class="question-number" id="qNumber"></div>
           <div class="audio-player" id="audioContainer"></div>
@@ -1132,8 +973,55 @@ body.pre-start .container {
         </div>
       </div>
     </div>
+    <!-- ================= RESULT SCREEN ================= -->
+    <div id="resultScreen" class="screen">
+<!-- ================= RESULT SCREEN ================= -->
+<div id="resultScreen" class="screen">
+
+  <div class="certificate-card">
+
+    <!-- ===== CERTIFICATE ===== -->
+    <div class="certificate">
+      <div class="header">
+        <h1>Sertifikat rumah</h1>
+        <h2>wkwkw</h2>
+      </div>
+
+      <div class="profile-section">
+        <div class="photo">
+          <img src="https://i.pinimg.com/736x/cb/9d/59/cb9d591f82200dabe76083716913c221.jpg" alt="Profile">
+        </div>
+        <div class="info">
+          <p><strong>Name:</strong> Asep pacul</p>
+          <p><strong>Negara:</strong> Wakanda</p>
+        </div>
+      </div>
+
+      <div class="score-section">
+        <div class="score-title" id="totalScoreText"></div>
+        <div class="bar-container">
+          <div class="marker" id="scoreMarker"></div>
+        </div>
+        <div class="bar-labels">
+          <span>0</span>
+          <span>200 (Minimal bos)</span>
+          <span>250</span>
+        </div>
+      </div>
+
+      <div class="section-scores" id="sectionScores"></div>
+    </div>
+
+    <!-- ===== LEADERBOARD OVERLAY ===== -->
+    <div class="leaderboard-overlay">
+      <h2>🏆 Leaderboard</h2>
+      <ul id="leaderboardList"></ul>
+    </div>
 
   </div>
+
+</div>
+
 
 <script>
 // =====================
