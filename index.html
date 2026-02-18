@@ -710,6 +710,9 @@ audio::-webkit-media-controls-seek-forward-button {
   .leaderboard-overlay {
     padding: 25px 20px;
     transform: translateY(10px);
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
   }
 
   .leaderboard-overlay li {
@@ -961,14 +964,18 @@ body.pre-start .container {
   flex-direction: column;
 }
 .leaderboard-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: transparent;
+  position: sticky;
+  top: 0;
+  margin-left: auto;
+  display: block;
+  background: white;
   border: none;
-  font-size: 20px;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 6px 10px;
+  border-radius: 8px;
   cursor: pointer;
-  color: #444;
+  z-index: 10;
 }
 
 .certificate-card:hover .leaderboard-overlay {
