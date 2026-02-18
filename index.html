@@ -677,18 +677,6 @@ audio::-webkit-media-controls-seek-forward-button {
     align-items: flex-start;
   }
 
-.certificate-card {
-  position: relative;
-  width: 100%;
-  max-width: 700px;      /* desktop tetap besar */
-  margin: 0 auto;        /* center horizontal */
-  background: white;
-  border-radius: 20px;
-  padding: 14px 16px;    /* kurangi padding horizontal */
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-  overflow: hidden;
-}
-
   .cert-title {
     font-size: 20px;
   }
@@ -887,6 +875,18 @@ body.pre-start .container {
   align-items: center;
   min-height: 100dvh;
   background: linear-gradient(135deg, #f4f6f9, #e9eef5);
+}
+
+/* Certificate Card */
+.certificate-card {
+  position: relative;
+  width: 700px;
+  background: black;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: 0.4s ease;
 }
 
 /* Elegant Hover Lift */
