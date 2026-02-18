@@ -1058,9 +1058,9 @@ body.pre-start .container {
         <h2>Uji coba</h2>
         <h1>Simulasi ulangan</h1>
         <div class="paket-grid">
-          <div class="paket-card" onclick="selectPackage('gra')">
+          <div class="paket-card" onclick="selectPackage('JITENSHA')">
             <div class="paket-icon">📘</div>
-            <div class="paket-title">Paket Toire</div>
+            <div class="paket-title">Paket JITENSHA </div>
             <div class="paket-desc">
               Grammar & basic structure training
             </div>
@@ -1070,7 +1070,7 @@ body.pre-start .container {
             </div>
             <button class="start-btn">Mulai Ujian</button>
           </div>
-          <div class="paket-card" onclick="selectPackage('scri')">
+          <div class="paket-card" onclick="selectPackage('paket2')">
             <div class="paket-icon">🗣</div>
             <div class="paket-title">Paket Basu</div>
             <div class="paket-desc">
@@ -1231,9 +1231,10 @@ function renderQuestionText(q) {
     q.target[oppositeScript]
   );
 }
-const sections = {
+const packages  = {
+  JITENSHA: {
     gra: [
-{
+  {
   image: "https://i.pinimg.com/736x/36/59/f5/3659f5fba5f3b9dae5b9f49ecdc30cbb.jpg",        // ⬅️ gambar
   choices: [
     { kanji: "運転車", hiragana: "うんてんしゃ" },
@@ -1241,7 +1242,7 @@ const sections = {
     { kanji: "自動販売機", hiragana: "じどうはんばいき" }
   ],
   correct: 1
-},
+  },
   {
     text: "({target})",
    target: { kanji: "運んで", hiragana: "はこんで" },
@@ -1251,9 +1252,117 @@ const sections = {
       { kanji: "はこんで", hiragana: "はこんで" }
     ],
     correct: 1
+  },
+  {
+    text: "({target})で手伝えません。",
+   target: { kanji: "忙しい", hiragana: "いそがしい" },
+  choices: [
+      { kanji: "忙しい", hiragana: "いそがしい" },
+      { kanji: "楽しい", hiragana: "たのしい" },
+      { kanji: "難しい", hiragana: "むずかしい" }
+    ],
+    correct: 1
+  },
+  {
+  image: "https://i.pinimg.com/736x/3a/f4/eb/3af4ebe7c1549e2a7913e9eb95320ccf.jpg",
+  choices: [
+      { kanji: "乗せる", hiragana: "のせる" },
+      { kanji: "付ける", hiragana: "つける" },
+      { kanji: "かける", hiragana: "かける" }
+    ],
+    correct: 1
+  },
+    {
+    text: "昨日は雨が降るのであまり________",
+   target: { kanji: "運んで", hiragana: "はこんで" },
+  choices: [
+      { kanji: "面白い", hiragana: "おもしろい" },
+      { kanji: "面白くなかった", hiragana: "おもしろくなかった" },
+      { kanji: "おもしました", hiragana: "おもしました" }
+    ],
+    correct: 1
+  },
+  {
+    text: "あそいだあとで, シャワーを________  ",
+   target: { kanji: "忙しい", hiragana: "いそがしい" },
+  choices: [
+      { kanji: "行きます", hiragana: "いきます" },
+      { kanji: "乗ります", hiragana: "のります" },
+      { kanji: "浴びます", hiragana: "あびます" }
+    ],
+    correct: 2
+  },
+  {
+    text: "今は ({target}) にいます。",
+   target: { kanji: "図書館", hiragana: "としょかん" },
+  choices: [
+      { kanji: "博物館", hiragana: "はくぶつかん" },
+      { kanji: "郵便局", hiragana: "ゆうびんきょく" },
+      { kanji: "図書館", hiragana: "としょかん" }
+    ],
+    correct: 2
+  },
+  {
+    text: "明日はいい ({target}) でしょう。",
+   target: { kanji: "天気", hiragana: "てんき" },
+  choices: [
+      { kanji: "天気", hiragana: "てんき" },
+      { kanji: "電気", hiragana: "でんき" },
+      { kanji: "転議", hiragana: "てんぎ" }
+    ],
+    correct: 2
+  },
+      {
+    text: "________かれのさいふは歩いているときに取られたかもしれない",
+   target: { kanji: "運んで", hiragana: "はこんで" },
+  choices: [
+      { kanji: "若しかしたら", hiragana: "もしかしたら" },
+      { kanji: "必ず", hiragana: "かならず" },
+      { kanji: "出来れば", hiragana: "できれば" }
+    ],
+    correct: 1
+  },
+  {
+    text: "きっと______ことができると思います",
+   target: { kanji: "忙しい", hiragana: "いそがしい" },
+  choices: [
+      { kanji: "テーブル ", hiragana: "テーブル" },
+      { kanji: "みつける", hiragana: "みつける" },
+      { kanji: "間に合わせる", hiragana: "まにあわせる" }
+    ],
+    correct: 2
+  },
+  {
+  image: "https://i.pinimg.com/1200x/4d/3b/3c/4d3b3c3e7ea6e77f215b19ddf1685f4b.jpg",
+  choices: [
+      { kanji: "頭", hiragana: "あたま" },
+      { kanji: "お腹", hiragana: "おなか" },
+      { kanji: "体", hiragana: "からだ" }
+    ],
+    correct: 1
+  },
+  {
+    text: "明日は ({target}) をみにきませんか",
+   target: { kanji: "映画", hiragana: "えいが" },
+  choices: [
+      { kanji: "映画", hiragana: "えいが" },
+      { kanji: "学科", hiragana: "がっか" },
+      { kanji: "英語", hiragana: "えいご" }
+    ],
+    correct: 0
+  },
+  {
+    text: "あまいものは ({target}) です。",
+   target: { kanji: "苦手", hiragana: "にがて" },
+  choices: [
+      { kanji: "じめじめ", hiragana: "じめじめ" },
+      { kanji: "多い", hiragana: "おおい" },
+      { kanji: "苦手", hiragana: "にがて" }
+    ],
+    correct: 2
   }
-],
-scri: [
+  ],
+  scri: [
   {
     text:
     "A: あなたのしゅみはなんですか\n" +
@@ -1267,6 +1376,95 @@ scri: [
     ],
     correct: 0
   },
+    {
+  image: "https://i.pinimg.com/736x/78/89/53/7889534c2d27e04be0b1884aa7b331b4.jpg",
+  choices: [
+      { kanji: "多すぎ", hiragana: "おおすぎ" },
+      { kanji: "おおいすぎ", hiragana: "おおいすぎ" },
+      { kanji: "おすぎ", hiragana: "おすぎ" }
+    ],
+    correct: 1
+  },
+  {
+    text: "予定いのほかのひとが_________",
+  choices: [
+      { kanji: "お知らせ", hiragana: "おしらせ" },
+      { kanji: "お知らせするために", hiragana: "おしらせするために" },
+      { kanji: "知れば", hiragana: "おしれば" }
+    ],
+    correct: 0
+  },
+        {
+    text: "これはバナナの________, どうぞ",
+  choices: [
+      { kanji: "料理です", hiragana: "りょうりです" },
+      { kanji: "料理でした", hiragana: "りょうりでした" },
+      { kanji: "料理します", hiragana: "りょうりします" }
+    ],
+    correct: 1
+  },
+  {
+    text:
+    "A: めりさん、いべんとのよていがかわったことをしっていますか？\n" +
+    "B: へえ、かわったんですか？ーーしりませんでした。\n" +
+    "A: じゃあ、よていのほかのひとに。。。ために。このメッセージをつたえてください。\n" +
+    "B: はい、わかりました。",
+    choices: [
+      { kanji: "お世話になる", hiragana: "おせわになる" },
+      { kanji: "お知らせる", hiragana: "おしらせる" },
+      { kanji: "送る", hiragana: "おくる" }
+    ],
+    correct: 1
+  },
+  {
+    text: "A: すみません, ここは_________ ?? \n" +
+    "B: 東京です",
+    choices: [
+      { kanji: "いつですか", hiragana: "いつですか" },
+      { kanji: "何ですか", hiragana: "なんですか" },
+      { kanji: "どこですか", hiragana: "どこですか" }
+    ],
+    correct: 2
+  },
+  {
+    text: "アニさんは____________?, \n" +
+    "おめでとうございます",
+    choices: [
+      { kanji: "結婚 ", hiragana: "けっこん" },
+      { kanji: "結婚するように", hiragana: "けっこんするように" },
+      { kanji: "結婚したそうです", hiragana: "けっこんしたそうです" }
+    ],
+    correct: 2
+  },
+  {
+    text: "A: おきゃくさまはどんなさいますか \n" +
+    "B: ジュース________???",
+    choices: [
+      { kanji: "してもらえませんか", hiragana: "してもらえませんか" },
+      { kanji: "しています", hiragana: "しています" },
+      { kanji: "お願いします", hiragana: "お願いします" }
+    ],
+    correct: 2
+  },
+  {
+    text: "A: いついしょにサッカーをしますか \n" +
+    "B: これから________???",
+    choices: [
+      { kanji: "どうしますか", hiragana: "どうしますか" },
+      { kanji: "どうしたんですか", hiragana: "どうしたんですか" },
+      { kanji: "どうですか", hiragana: "どうですか" }
+    ],
+    correct: 1
+  },
+  {
+    text: "昨日のイベントはあまり。",
+  choices: [
+      { kanji: "面白くなかった", hiragana: "おもしろくなかった" },
+      { kanji: "面白くない", hiragana: "おもしろくない" },
+      { kanji: "面白い", hiragana: "おもしろい" }
+    ],
+    correct: 0
+  },
   {
     text: "仕事 を 。。。。",
     choices: [
@@ -1276,10 +1474,10 @@ scri: [
     ],
     correct: 2
   }
-],
+  ],
 
   co: [
-{
+  {
   text: "日にほんご 本語がわからないとき、どう言いいましたか。",
   audio: "https://www.irodori.jpf.go.jp/assets/data/starter/audio/02/X_[02-01]_kiku1.mp3",      // ⬅️ suara
     choices: [
@@ -1288,48 +1486,8 @@ scri: [
       { kanji: "ざいりゅうカード", hiragana: "ザイリュウ カード" }
     ],
   correct: 0
-},
-{
-  text: "	パウロさんは、何なんじ時に起おきますか。",
-  audio: "https://www.irodori.jpf.go.jp/assets/data/starter/audio/09/X_[09-05]_kiku3.mp3",      // ⬅️ suara
-    choices: [
-      { kanji: "8時じごろ起おきます。", hiragana: "はちじごろおきます" },
-      { kanji: "2時じに起おきます", hiragana: "にじにおきます" },
-      { kanji: "8時じごろ寝ねます。", hiragana: "はちじごろねます" }
-    ],
-  correct: 0
-},
-{
-  text: "	何なにを注ちゅうもん文したいですか。",
-  audio: "https://www.irodori.jpf.go.jp/assets/data/starter/audio/06/X_[06-02]_kiku2.mp3",      // ⬅️ suara
-    choices: [
-      { kanji: "チーズバーガー,てりやきバーガー,フィッシュバーガー", hiragana: "チーズバーガー,てりやきバーガー,フィッシュバーガー" },
-      { kanji: "チーズバーガー,てりやきバーガー,フライドポテトバーガー", hiragana: "チーズバーガー,てりやきバーガー,フライドポテトバーガー" },
-      { kanji: "ハンバーガー,てりやきバーガー,フィッシュバーガー", hiragana: "ハンバーガー,てりやきバーガー,フィッシュバーガー" }
-    ],
-  correct: 0
-},
-    {
-  text: "Dengarkan baik-baik.",
-  audio: "speechma-nanami-7-2026-02-13t08-51-56-744z_y9CQUMRS.mp3",
-  choices: [
-    { img: "https://i.pinimg.com/736x/f8/2b/95/f82b9571350bbf74ad38f8816186c7df.jpg", hiragana: "サッカーを する" },
-    { img: "https://i.pinimg.com/1200x/2c/45/bd/2c45bdac6ce0841e6290276e2efd7da5.jpg", hiragana: "にっきを かく" },
-    { img: "https://i.pinimg.com/736x/b5/f2/f3/b5f2f35b207b78ee6ba34a9aef63b3e3.jpg", hiragana: "すいえいを する" },
-  ],
-  correct: 0
-},
-{
-    audio: "https://www.irodori.jpf.go.jp/assets/data/starter/audio/15/X_[15-12]_kiku1.mp3",      // ⬅️ suara
-  text: "ドライヤーは、どこにありますか。",
-choices: [
-  { img: "Screenshot 2026-02-12 181019.png", label: "A" },
-  { img: "Screenshot 2026-02-12 181046.png", label: "B" },
-  { img: "img/c.png", label: "C" },
-],
-correct: 2
-},
-{
+  },
+  {
   text: "	どんな天てんき気ですか。",
   audio: "https://www.irodori.jpf.go.jp/assets/data/elementary01/audio/04/Y_[04-04]_kiku2.mp3",      // ⬅️ suara
     choices: [
@@ -1338,7 +1496,7 @@ correct: 2
       { kanji: "風かぜ／風かぜが吹ふく", hiragana: "かぜ／かぜがふく" }
     ],
   correct: 1
-}
+  }
   ],
 
   list: [
@@ -1351,7 +1509,7 @@ correct: 2
     { img: "https://i.pinimg.com/736x/b5/f2/f3/b5f2f35b207b78ee6ba34a9aef63b3e3.jpg", hiragana: "すいえいを する" },
   ],
   correct: 0
-},
+  },
     {
   text: "Dengarkan baik-baik.",
   audio: "speechma-nanami-6-2026-02-13t09-21-18-727z_aohUEoeR.mp3",
@@ -1370,33 +1528,50 @@ correct: 2
   image: "img/apple.jpg",
   choices: ["りんご", "みかん", "ばなな", "ぶどう"],
   correct: 1
-},
+  },
     {
       text: "こんばん ______。",
       choices: ["は", "を", "に", "で"],
       correct: 1
     }
   ]
-};
-// 🔀 ACAK SOAL + PILIHAN JAWABAN (SEKALI SAJA)
-for (let key in sections) {
-  shuffleArray(sections[key]);       // acak urutan soal
+  },
 
-  sections[key].forEach(q => {
-    shuffleChoices(q);               // 🔥 acak pilihan jawaban
-  });
-}
-let currentSection = "gra";
-let currentQuestion = 0;
-// simpan jawaban user
-let answered = {
-  gra: new Array(sections.gra.length).fill(null),
-  scri: new Array(sections.scri.length).fill(null),
-  co: new Array(sections.co.length).fill(null),
-  list: new Array(sections.list.length).fill(null),
-  rea: new Array(sections.rea.length).fill(null)
+  paket2: {
+    gra: [  {
+  image: "https://i.pinimg.com/736x/36/59/f5/3659f5fba5f3b9dae5b9f49ecdc30cbb.jpg",        // ⬅️ gambar
+  choices: [
+    { kanji: "運転車", hiragana: "うんてんしゃ" },
+    { kanji: "自転車", hiragana: "じてんしゃ"},
+    { kanji: "自動販売機", hiragana: "じどうはんばいき" }
+  ],
+  correct: 1
+  },
+  {
+    text: "({target})",
+   target: { kanji: "運んで", hiragana: "はこんで" },
+  choices: [
+      { kanji: "運んで", hiragana: "はこんで" },
+      { kanji: "よかった", hiragana: "よかった" },
+      { kanji: "はこんで", hiragana: "はこんで" }
+    ],
+    correct: 1
+  }],
+    scri: [],
+    co: [],
+    list: [],
+    rea: []
+  },
+  paket3: {
+    gra: [],
+    scri: [],
+    co: [],
+    list: [],
+    rea: []
+  }
 };
 
+let sections = {};
 let totalScore = 0;              // ✅ global
 const POINT_PER_QUESTION = 10;   // ✅ global
 
@@ -1896,16 +2071,40 @@ function initTimer() {
 }
 let selectedPackage = "";
 
-function selectPackage(sectionKey) {
+function selectPackage(packageKey) {
 
   clearInterval(timerInterval);
-timerInterval = null;
-  currentSection = sectionKey;
+  timerInterval = null;
+
+  // 🔥 SIMPAN PAKET TERPILIH
+  selectedPackage = packageKey;
+
+  // 🔥 AKTIFKAN DATA SOAL
+  sections = packages[packageKey];
+
+  // 🔀 ACAK SOAL + PILIHAN (PINDAH KE SINI)
+  for (let key in sections) {
+    shuffleArray(sections[key]);
+
+    sections[key].forEach(q => {
+      shuffleChoices(q);
+    });
+  }
+
+  // 🔥 RESET STATE
+  currentSection = Object.keys(sections)[0];
   currentQuestion = 0;
+  totalScore = 0;
 
-  // 🔥 INI WAJIB
+  answered = {
+    gra: new Array(sections.gra.length).fill(null),
+    scri: new Array(sections.scri.length).fill(null),
+    co: new Array(sections.co.length).fill(null),
+    list: new Array(sections.list.length).fill(null),
+    rea: new Array(sections.rea.length).fill(null)
+  };
+
   document.body.classList.remove("pre-start");
-
   document.getElementById("menu").classList.remove("active");
   document.getElementById("quiz").classList.add("active");
 
@@ -1914,6 +2113,7 @@ timerInterval = null;
   updateSideProgress();
   startTimer();
 }
+
 function saveScore(name, score) {
 
   let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
