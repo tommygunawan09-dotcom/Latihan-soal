@@ -709,16 +709,18 @@ audio::-webkit-media-controls-seek-forward-button {
 
   .leaderboard-overlay {
     padding: 25px 20px;
+    transform: translateY(10px);
   }
 
   .leaderboard-overlay li {
     padding: 10px 14px;
     font-size: 14px;
   }
-    .certificate-card.mobile-show .leaderboard-overlay {
-    opacity: 1;
-    pointer-events: auto;
-  }
+.certificate-card.mobile-show .leaderboard-overlay {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
   /* ===== FIX RESULT MOBILE CENTER ===== */
 
 body.result-mode #resultScreen {
@@ -958,6 +960,16 @@ body.pre-start .container {
   display: flex;
   flex-direction: column;
 }
+.leaderboard-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #444;
+}
 
 .certificate-card:hover .leaderboard-overlay {
   opacity: 1;
@@ -1141,6 +1153,7 @@ body.pre-start .container {
 
     <!-- ===== LEADERBOARD OVERLAY ===== -->
     <div class="leaderboard-overlay">
+      <button class="leaderboard-close">✕</button>
       <h2>🏆 Leaderboard</h2>
       <ul id="leaderboardList"></ul>
     </div>
@@ -1969,6 +1982,31 @@ certCard.addEventListener('click', function () {
   }
 });
 
+</script>
+<script>
+/* ===== LEADERBOARD MOBILE TOGGLE ===== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const certCard = document.querySelector(".certificate-card");
+  const closeBtn = document.querySelector(".leaderboard-close");
+
+  if (certCard) {
+    certCard.addEventListener("click", function () {
+      if (window.innerWidth <= 768) {
+        certCard.classList.add("mobile-show");
+      }
+    });
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      certCard.classList.remove("mobile-show");
+    });
+  }
+
+});
 </script>
 
 
