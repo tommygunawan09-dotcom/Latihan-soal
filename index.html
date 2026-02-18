@@ -699,15 +699,6 @@ audio::-webkit-media-controls-seek-forward-button {
   body.result-mode .certificate .photo img {
     max-height: 22vh;
   }
-    .result-wrapper .leaderboard {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-  }
-
-  .result-wrapper.show-leaderboard .leaderboard {
-    max-height: 300px;
-  }
 }
 /* ===============================
    PRE-START MODE (HIDE QUIZ UI)
@@ -986,7 +977,6 @@ body.pre-start .container {
   background: #cfd8dc;
   border-radius: 10px;
 }
-
   </style>
 </head>
 <body class="pre-start">
@@ -1034,40 +1024,38 @@ body.pre-start .container {
 <div class="step-column" id="stepColumn"></div>
 
   <!-- MAIN -->
-<div id="resultScreen" class="screen">
-  <div class="result-wrapper">
-    <div class="certificate">
-      <div class="header">
-        <h1>Sertifikat rumah</h1>
-        <h2>wkwkw</h2>
+   <div id="resultScreen" class="screen">
+    <div class="leaderboard">
+  <h2>🏆 Leaderboard</h2>
+  <ul id="leaderboardList"></ul>
+</div>
+  <div class="certificate">
+    <div class="header">
+      <h1>Sertifikat rumah</h1>
+      <h2>wkwkw</h2>
+    </div>
+
+    <div class="profile-section">
+      <div class="photo">
+        <img src="https://i.pinimg.com/736x/cb/9d/59/cb9d591f82200dabe76083716913c221.jpg" alt="Profile">
       </div>
-      <div class="profile-section">
-        <div class="photo">
-          <img src="https://i.pinimg.com/736x/cb/9d/59/cb9d591f82200dabe76083716913c221.jpg" alt="Profile">
-        </div>
-        <div class="info">
-          <p><strong>Name:</strong> Asep pacul</p>
-          <p><strong>Negara:</strong> Wakanda</p>
-        </div>
-      </div>
-      <div class="score-section">
-        <div class="score-title" id="totalScoreText"></div>
-        <div class="bar-container">
-          <div class="marker" id="scoreMarker"></div>
-        </div>
-        <div class="bar-labels">
-          <span>0</span>
-          <span>200 (Minimal bos)</span>
-          <span>250</span>
-        </div>
-      </div>
-      <div class="section-scores" id="sectionScores"></div>
-      <!-- LEADERBOARD DI DALAM CERTIFICATE -->
-      <div class="leaderboard">
-        <h2>🏆 Leaderboard</h2>
-        <ul id="leaderboardList"></ul>
+      <div class="info">
+        <p><strong>Name:</strong> Asep pacul</p>
+        <p><strong>Negara:</strong> Wakanda</p>
       </div>
     </div>
+    <div class="score-section">
+      <div class="score-title" id="totalScoreText"></div>
+      <div class="bar-container">
+        <div class="marker" id="scoreMarker"></div>
+      </div>
+      <div class="bar-labels">
+        <span>0</span>
+        <span>200 (Minimal bos)</span>
+        <span>250</span>
+      </div>
+    </div>
+    <div class="section-scores" id="sectionScores"></div>
   </div>
 </div>
   <div class="main">
@@ -1191,7 +1179,6 @@ const MAX_AUDIO_PLAY = 2;
 const audioPlaysPerQuestion = {}; // 🔥 kunci per soal
 const audioStarted = {};
 const audioLocked = {};
-const STRICT_AUDIO_MODE = false;
 const audioFinished = {}; // status audio per soal
 function renderQuestionText(q) {
   // 🔥 kalau tidak ada text, kembalikan string kosong
@@ -1522,6 +1509,7 @@ audio.addEventListener("play", () => {
   });
 
 audio.addEventListener("ended", () => {
+
   audioFinished[qIndex] = true; // 🔓 audio selesai → boleh jawab
 
   document.querySelectorAll("#choices button").forEach(btn => {
@@ -1608,7 +1596,7 @@ img.src = choice.img || choice.jp;
 });
 const qIndex = currentSection + "_" + currentQuestion;
 
-if (STRICT_AUDIO_MODE && q.audio && !audioFinished[qIndex]) {
+if (q.audio && !audioFinished[qIndex]) {
   document.querySelectorAll("#choices button").forEach(btn => {
     btn.disabled = true;
     btn.style.opacity = "0.6";
@@ -1628,7 +1616,7 @@ function checkAnswer(choice) {
   const qIndex = currentSection + "_" + currentQuestion;
   const q = sections[currentSection][currentQuestion];
   const previous = answered[currentSection][currentQuestion];
-if (STRICT_AUDIO_MODE && q.audio && !audioFinished[qIndex]) return;
+  if (q.audio && !audioFinished[qIndex]) return;
 
   // kurangi skor jika sebelumnya benar
   if (previous === q.correct) {
@@ -1958,6 +1946,7 @@ function enableChoices() {
     btn.style.pointerEvents = "auto";
   });
 }
+
 </script>
 
 
