@@ -420,7 +420,7 @@ body {
 ========================= */
 
 body.result-mode {
-  display: block;
+  height: 100dvh;
   overflow: hidden;
 }
 
@@ -439,14 +439,19 @@ body.result-mode .main {
 }
 
 body.result-mode #resultScreen {
+  position: fixed;
+  inset: 0;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+
   overflow: hidden;
-  padding: 24px;
+  padding: 12px;
   background: #f4f4f4;
 }
 .photo img {
@@ -678,6 +683,22 @@ audio::-webkit-media-controls-seek-forward-button {
   background: linear-gradient(to bottom, transparent, #f4f4f4);
   pointer-events: none;
 }
+  body.result-mode .certificate {
+    max-height: 100dvh;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  body.result-mode .certificate .profile-section {
+    margin: 12px 0;
+  }
+
+  body.result-mode .certificate .photo img {
+    max-height: 22vh;
+  }
 }
 /* ===============================
    PRE-START MODE (HIDE QUIZ UI)
