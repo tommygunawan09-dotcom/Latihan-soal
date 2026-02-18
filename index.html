@@ -1179,6 +1179,7 @@ const MAX_AUDIO_PLAY = 2;
 const audioPlaysPerQuestion = {}; // 🔥 kunci per soal
 const audioStarted = {};
 const audioLocked = {};
+const STRICT_AUDIO_MODE = false;
 const audioFinished = {}; // status audio per soal
 function renderQuestionText(q) {
   // 🔥 kalau tidak ada text, kembalikan string kosong
@@ -1596,7 +1597,7 @@ img.src = choice.img || choice.jp;
 });
 const qIndex = currentSection + "_" + currentQuestion;
 
-if (q.audio && !audioFinished[qIndex]) {
+if (STRICT_AUDIO_MODE && q.audio && !audioFinished[qIndex]) {
   document.querySelectorAll("#choices button").forEach(btn => {
     btn.disabled = true;
     btn.style.opacity = "0.6";
@@ -1616,7 +1617,7 @@ function checkAnswer(choice) {
   const qIndex = currentSection + "_" + currentQuestion;
   const q = sections[currentSection][currentQuestion];
   const previous = answered[currentSection][currentQuestion];
-  if (q.audio && !audioFinished[qIndex]) return;
+if (STRICT_AUDIO_MODE && q.audio && !audioFinished[qIndex]) return;
 
   // kurangi skor jika sebelumnya benar
   if (previous === q.correct) {
