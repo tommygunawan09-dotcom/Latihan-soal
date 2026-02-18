@@ -1156,7 +1156,9 @@ const SCRIPTS = ["kanji", "hiragana"];
 const ACTIVE_SCRIPT = SCRIPTS[Math.floor(Math.random() * SCRIPTS.length)];
 const MAX_AUDIO_PLAY = 2;
 const audioPlaysPerQuestion = {}; // 🔥 kunci per soal
+const audioStarted = {};
 const audioLocked = {};
+const audioFinished = {}; // status audio per soal
 function renderQuestionText(q) {
   // 🔥 kalau tidak ada text, kembalikan string kosong
   if (!q.text) return "";
@@ -1371,6 +1373,10 @@ function goToQuestion(index) {
 }
 
 function loadQuestion() {
+  document.querySelectorAll("audio").forEach(a => {
+  a.pause();
+  a.currentTime = 0;
+});
   const q = sections[currentSection][currentQuestion];
 
   document.getElementById("qNumber").textContent =
@@ -1430,6 +1436,21 @@ const qIndex = currentSection + "_" + currentQuestion;
   audio.src = q.audio;
   audio.controls = true;
   audio.preload = "auto";
+audio.addEventListener("play", () => {
+  const qIndex = currentSection + "_" + currentQuestion;
+
+  if (!audioStarted[qIndex]) {
+    audioStarted[qIndex] = true;
+    audioPlaysPerQuestion[qIndex]++;
+
+    if (audioPlaysPerQuestion[qIndex] >= MAX_AUDIO_PLAY) {
+      audioLocked[qIndex] = true;
+    }
+
+    info.textContent =
+      `Sisa putar: ${MAX_AUDIO_PLAY - audioPlaysPerQuestion[qIndex]}x`;
+  }
+});
   audio.controlsList = "nodownload noplaybackrate";
   audio.disableRemotePlayback = true;
 
@@ -1468,14 +1489,19 @@ const qIndex = currentSection + "_" + currentQuestion;
 
 audio.addEventListener("ended", () => {
 
-  audioPlaysPerQuestion[qIndex]++;
+  audioFinished[qIndex] = true; // 🔓 audio selesai → boleh jawab
+
+  document.querySelectorAll("#choices button").forEach(btn => {
+    btn.disabled = false;
+    btn.style.opacity = "1";
+    btn.style.pointerEvents = "auto";
+  });
 
   if (audioPlaysPerQuestion[qIndex] >= MAX_AUDIO_PLAY) {
     audioLocked[qIndex] = true;
-    loadQuestion(); // refresh UI → audio hilang
-  } else {
-    loadQuestion(); // update info sisa play
   }
+
+  loadQuestion();
 });
 
   // ===============================
@@ -1547,6 +1573,15 @@ img.src = choice.img || choice.jp;
 
   choicesEl.appendChild(btn);
 });
+const qIndex = currentSection + "_" + currentQuestion;
+
+if (q.audio && !audioFinished[qIndex]) {
+  document.querySelectorAll("#choices button").forEach(btn => {
+    btn.disabled = true;
+    btn.style.opacity = "0.6";
+    btn.style.pointerEvents = "none";
+  });
+}
 
 const saved = answered[currentSection][currentQuestion];
 if (saved !== null) {
@@ -1557,9 +1592,10 @@ if (saved !== null) {
 }
 
 function checkAnswer(choice) {
-
+  const qIndex = currentSection + "_" + currentQuestion;
   const q = sections[currentSection][currentQuestion];
   const previous = answered[currentSection][currentQuestion];
+  if (q.audio && !audioFinished[qIndex]) return;
 
   // kurangi skor jika sebelumnya benar
   if (previous === q.correct) {
@@ -1872,6 +1908,21 @@ function renderLeaderboard(data) {
     `;
 
     list.appendChild(li);
+  });
+}
+function disableChoices() {
+  document.querySelectorAll("#choices button").forEach(btn => {
+    btn.disabled = true;
+    btn.style.opacity = "0.6";
+    btn.style.pointerEvents = "none";
+  });
+}
+
+function enableChoices() {
+  document.querySelectorAll("#choices button").forEach(btn => {
+    btn.disabled = false;
+    btn.style.opacity = "1";
+    btn.style.pointerEvents = "auto";
   });
 }
 
