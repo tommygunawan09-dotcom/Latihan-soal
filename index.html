@@ -317,7 +317,7 @@ body {
   max-width: 100%;
   background: #fff;
   margin: auto;
-  padding: 30px;
+  padding: 16px;
   border-radius: 10px;
 }
 
@@ -476,12 +476,20 @@ audio::-webkit-media-controls-seek-forward-button {
 
   body {
     flex-direction: column;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  body.result-mode {
+    height: auto;
+    overflow-y: auto;
   }
 
   /* ===== MAIN ===== */
   .main {
     margin-top: 56px;
     padding: 12px;
+    padding-top: 64px;
+    padding-bottom: 64px;
   }
 
   /* ===== CONTAINER ===== */
@@ -676,6 +684,18 @@ audio::-webkit-media-controls-seek-forward-button {
     padding: 20px;
     align-items: flex-start;
   }
+
+.certificate-card {
+  position: relative;
+  width: 100%;
+  max-width: 700px;      /* desktop tetap besar */
+  margin: 0 auto;        /* center horizontal */
+  background: white;
+  border-radius: 20px;
+  padding: 24px 16px;    /* kurangi padding horizontal */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
 
   .cert-title {
     font-size: 20px;
@@ -883,7 +903,7 @@ body.pre-start .container {
   width: 700px;
   background: black;
   border-radius: 20px;
-  padding: 20px;
+  padding: 50px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.08);
   overflow: hidden;
   transition: 0.4s ease;
