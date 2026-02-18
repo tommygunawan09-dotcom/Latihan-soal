@@ -978,7 +978,22 @@ body.pre-start .container {
   z-index: 10;
 }
 
-.certificate-card:hover .leaderboard-overlay {
+.leaderboard-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+  padding: 40px;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  z-index: 20;
+}
+
+.leaderboard-overlay.active {
   opacity: 1;
   pointer-events: auto;
 }
@@ -2009,6 +2024,19 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 });
+const overlay = document.querySelector(".leaderboard-overlay");
+const closeBtn = document.querySelector(".leaderboard-close");
+
+// buka overlay
+function openLeaderboard() {
+  overlay.classList.add("active");
+}
+
+// tutup overlay
+closeBtn.addEventListener("click", () => {
+  overlay.classList.remove("active");
+});
+
 </script>
 
 </body>
