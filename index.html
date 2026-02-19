@@ -1094,15 +1094,27 @@ body.pre-start .container {
             </div>
             <button class="start-btn">Mulai Ujian</button>
           </div>
-              <div class="paket-card" onclick="selectPackage('KUTSUSHITA')">
+            <div class="paket-card" onclick="selectPackage('KUTSUSHITA')">
             <div class="paket-icon">🧦</div>
             <div class="paket-title">Paket KUTSUSHITA</div>
             <div class="paket-desc">
               Reading comprehension practice
             </div>
             <div class="paket-info">
-              <span>⏱ 60 Menit</span>
-              <span>📝 60 Soal</span>
+            <span>⏱ 60 Menit</span>
+            <span>📝 60 Soal</span>
+            </div>
+            <button class="start-btn">Mulai Ujian</button>
+          </div>
+            <div class="paket-card" onclick="selectPackage('OKIMASU')">
+            <div class="paket-icon">🥱</div>
+            <div class="paket-title">Paket OKIMASU</div>
+            <div class="paket-desc">
+              Reading comprehension practice
+            </div>
+            <div class="paket-info">
+            <span>⏱ 60 Menit</span>
+            <span>📝 60 Soal</span>
             </div>
             <button class="start-btn">Mulai Ujian</button>
           </div>
@@ -1227,7 +1239,7 @@ const MAX_AUDIO_PLAY = 2;
 const audioPlaysPerQuestion = {}; // 🔥 kunci per soal
 const audioStarted = {};
 const audioLocked = {};
-const STRICT_AUDIO_MODE = false;
+const STRICT_AUDIO_MODE = true;
 const audioFinished = {}; // status audio per soal
 function renderQuestionText(q) {
   // 🔥 kalau tidak ada text, kembalikan string kosong
@@ -2506,9 +2518,326 @@ const packages  = {
     list: [],
     rea: []
   },
-  paket1: {
-    gra: [],
-    scri: [],
+  OKIMASU: {
+    gra: [  {
+  image: "https://i.pinimg.com/736x/31/f5/a7/31f5a702cdab5fed29c57e3b6113a090.jpg",
+  choices: [
+      { kanji: "寝ます", hiragana: "ねます" },
+      { kanji: "起きます", hiragana: "おきます" },
+      { kanji: "座ります", hiragana: "すわります" }
+    ],
+    correct: 1
+  },
+  {
+  image: "https://i.pinimg.com/736x/76/3d/c8/763dc82d4746a1ccb157d11c57312fc8.jpg",
+  choices: [
+      { kanji: "暗い", hiragana: "くらい" },
+      { kanji: "明るい", hiragana: "あかるい" },
+      { kanji: "軽い", hiragana: "かるい" }
+    ],
+    correct: 0
+  },
+  {
+  image: "https://i.pinimg.com/736x/0e/39/9c/0e399c0a0de78c804a174c8da923c38a.jpg",
+  choices: [
+      { kanji: "池", hiragana: "くらい" },
+      { kanji: "島", hiragana: "しま" },
+      { kanji: "しまあ", hiragana: "しまあ" }
+    ],
+    correct: 1
+  },
+  {
+  text: "この 本 は 大切な ほんです",
+  choices: [
+      { kanji: "大切な", hiragana: "たいせつな" },
+      { kanji: "だいぜつな", hiragana: "だいぜつな" },
+      { kanji: "だいせつな", hiragana: "だいせつな" }
+    ],
+    correct: 0
+  },
+  {
+  text: "この 飲み物 は 無料 です",
+  choices: [
+      { kanji: "無料", hiragana: "むりょう" },
+      { kanji: "無理", hiragana: "むり" },
+      { kanji: "無理な", hiragana: "むりな" }
+    ],
+    correct: 0
+  },
+  {
+  text: "ジュース を 飲みたいん です. . . が 乾いたから",
+  choices: [
+      { kanji: "首", hiragana: "くび" },
+      { kanji: "喉", hiragana: "のど" },
+      { kanji: "指", hiragana: "ゆび" }
+    ],
+    correct: 1
+  },
+  {
+  text: "春 に 桜 が。。。。。",
+  choices: [
+      { kanji: "咲きます", hiragana: "さきます" },
+      { kanji: "泣きます", hiragana: "なきます" },
+      { kanji: "吹きます", hiragana: "ふきます" }
+    ],
+    correct: 0
+  },
+  {
+  text: "机の上に。。。。。ものを置いてください",
+  choices: [
+      { kanji: "重い", hiragana: "おもい" },
+      { kanji: "遠い", hiragana: "とおい" },
+      { kanji: "強い", hiragana: "つよい" }
+    ],
+    correct: 0
+  },
+  {
+  text: "かた が 痛い ときは、かたを。。。。いいです",
+  choices: [
+      { kanji: "まわすと", hiragana: "まわすと" },
+      { kanji: "まわってから", hiragana: "まわってから" },
+      { kanji: "まわるから", hiragana: "まわるから" }
+    ],
+    correct: 0
+  },
+  {
+  text: "休みなので 部屋 の。。。をしました",
+  choices: [
+      { kanji: "掃除", hiragana: "そうじ" },
+      { kanji: "洗濯", hiragana: "せんたく" },
+      { kanji: "なきます", hiragana: "なきます" }
+    ],
+    correct: 0
+  },
+  {
+  text: "休みの日は、音楽を聞いたり本を________しています",
+  choices: [
+      { kanji: "読むし", hiragana: "よむし" },
+      { kanji: "読んだり", hiragana: "よんだり" },
+      { kanji: "読んで", hiragana: "よんで" }
+    ],
+    correct: 1
+  },
+  {
+  text: "今日、台風ですから、風が____",
+  choices: [
+      { kanji: "拭きます", hiragana: "ふきます" },
+      { kanji: "引きます", hiragana: "ひきます" },
+      { kanji: "被ります", hiragana: "おおいます" }
+    ],
+    correct: 0
+  },
+  {
+  text: "あの ({target}) の人はかみのけが長いんです",
+  target: { kanji: "男", hiragana: "おとこ" },
+  choices: [
+      { kanji: "男", hiragana: "おとこ" },
+      { kanji: "女", hiragana: "おんな" },
+      { kanji: "子供", hiragana: "こども" }
+    ],
+    correct: 0
+  },
+  {
+  text: "明日のパーティーは ({target}) するつもりです",
+  target: { kanji: "中止する", hiragana: "ちゅうしする" },
+  choices: [
+      { kanji: "中止する", hiragana: "ちゅうしする" },
+      { kanji: "注意", hiragana: "ちゅうい" },
+      { kanji: "駐車", hiragana: "ちゅうしゃ" }
+    ],
+    correct: 0
+  },
+  {
+  text: "クラスで ({target}) がおおいです",
+  target: { kanji: "女性", hiragana: "じょせい" },
+  choices: [
+      { kanji: "男性", hiragana: "だんせい" },
+      { kanji: "女性", hiragana: "じょせい" },
+      { kanji: "先生", hiragana: "せんせい" }
+    ],
+    correct: 1
+  },
+  {
+  text: "ことばの ({target}) がわかりません",
+  target: { kanji: "意味", hiragana: "いみ" },
+  choices: [
+      { kanji: "海", hiragana: "うみ" },
+      { kanji: "意味", hiragana: "いみ" },
+      { kanji: "犬", hiragana: "いぬ" }
+    ],
+    correct: 1
+  },
+],
+    scri: [  {
+    text: "A: _______、あやかです。よろしくね \n" +
+    "B: やまぐちです。よろしく",
+    choices: [
+      { kanji: "もしもし", hiragana: "もしもし" },
+      { kanji: "初めまして", hiragana: "はじめまして" },
+      { kanji: "いらっしゃいませ", hiragana: "いらっしゃいませ" }
+    ],
+    correct: 1
+  },
+  {
+  image: "https://i.pinimg.com/736x/78/89/53/7889534c2d27e04be0b1884aa7b331b4.jpg",
+  text: "。。。町ですね",
+  choices: [
+      { kanji: "賑やか", hiragana: "にぎやか" },
+      { kanji: "にぎやかな", hiragana: "にぎやかな" },
+      { kanji: "にぎやかで", hiragana: "にぎやかで" }
+    ],
+    correct: 1
+  },
+  {
+    text:
+    "A: いらっしゃいませ！季節の変わり目で風邪をひく方が多いので、ご注意くださいね」 \n" +
+    "B: はい、分かりました！でも、具体的にどんなことに気をつけたらいいですか？」\n" +
+    "B: まず、人混みの中では ちゅうい。それから、手洗いやうがいも忘れないでくださいね」",
+    choices: [
+      { kanji: "注意", hiragana: "ちゅうい" },
+      { kanji: "風邪", hiragana: "かぜ" },
+      { kanji: "美味", hiragana: "おいしい" }
+    ],
+    correct: 0
+  },
+  {
+    text:
+    "A: タイ語。。。。人はさがしているんですがおしえていただけませんか \n" +
+    "B: タイ語ですね。さがしてみます\n" +
+    "B: ありがとうございます. よろしくお願いします。",
+    choices: [
+      { kanji: "話せる", hiragana: "はなせる" },
+      { kanji: "話す", hiragana: "はなす" },
+      { kanji: "話して", hiragana: "はなして" }
+    ],
+    correct: 0
+  },
+  {
+    text:
+    "A: 富士山 の 絵 きれいですね \n" +
+    "B: そうですね、私はとくに富士山の絵。。。。\n" +
+    "B: そうですね",
+    choices: [
+      { kanji: "すばらしい と 思います", hiragana: "すばらしい と おもいます" },
+      { kanji: "すばらしい そうです", hiragana: "すばらしい そうです" },
+      { kanji: "すばらしく なります", hiragana: "すばらしく なります" }
+    ],
+    correct: 0
+  },
+  {
+  text: "昨日の試合に勝ちました, 社長さんに。。。。",
+  choices: [
+      { kanji: "褒められる", hiragana: "ほめられる" },
+      { kanji: "褒められた", hiragana: "ほめられた" },
+      { kanji: "褒めました", hiragana: "ほめました" }
+    ],
+    correct: 1
+  },
+  {
+    text: "A: おべんと買って、温かくしてますか \n" +
+    "B: いいえ、。。。。",
+    choices: [
+      { kanji: "けっこうです", hiragana: "けっこうです" },
+      { kanji: "ちょっと", hiragana: "ちょっと" },
+      { kanji: "駄目です", hiragana: "だめです" }
+    ],
+    correct: 0
+  },
+  {
+    text: "A: すみません、ちょっとてつだってもらいませんか \n" +
+    "B: __________________。",
+    choices: [
+      { kanji: "ええ、おねがいします", hiragana: "ええ、おねがいします" },
+      { kanji: "ええ、どうも ありがとう", hiragana: "ええ、どうも ありがとう" },
+      { kanji: "ええ、いいですよ", hiragana: "ええ、いいですよ" }
+    ],
+    correct: 2
+  },
+    {
+    text:
+    "A: 明日何時にしますか \n" +
+    "B: 7時はどうですかにぎやか\n" +
+    "A: ちょっと早いです。8時でもいいですかにぎやかな \n" +
+    "B: __________",
+    choices: [
+      { kanji: "良かったです", hiragana: "よかったです" },
+      { kanji: "未だです", hiragana: "みだです" },
+      { kanji: "良いですよ", hiragana: "いいですよ" }
+    ],
+    correct: 2
+  },
+  {
+  text: "今日、友だちにかいものに________",
+  choices: [
+      { kanji: "参加します", hiragana: "さんかします" },
+      { kanji: "誘います", hiragana: "さそいます" },
+      { kanji: "行きます", hiragana: "いきます" }
+    ],
+    correct: 2
+  },
+  {
+    text: "A: 山田さんのおくさんはどんなひとですか \n" +
+    "B: そうでうね。とても__________親切な人です",
+    choices: [
+      { kanji: "綺麗な", hiragana: "きれいな" },
+      { kanji: "きれくて", hiragana: "きれくて" },
+      { kanji: "きれいで", hiragana: "きれいで" }
+    ],
+    correct: 2
+  },
+    {
+    text:
+    "A: そのカメラいいですね \n" +
+    "B: ありがとうございます\n" +
+    "A: どこで買ったんですか \n" +
+    "A: これは日本へ行く前に、ちちが買って_______ \n" +
+    "B: そうですか",
+    choices: [
+      { kanji: "上げました / 挙げました", hiragana: "あげました / あげました" },
+      { kanji: "貰いました", hiragana: "もらいました" },
+      { kanji: "くれました", hiragana: "くれました" }
+    ],
+    correct: 1
+  },
+    {
+    text:
+    "A: こちらはわたしのつまです \n" +
+    "つま: どうぞよろしくお願いします\n" +
+    "B: _______よろしく",
+    choices: [
+      { kanji: "こちらこそ", hiragana: "こちらこそ" },
+      { kanji: "こちらぞ", hiragana: "こちらぞ" },
+      { kanji: "こちら様", hiragana: "こちら様" }
+    ],
+    correct: 1
+  },
+    {
+    text:
+    "A: あのう、エスイズのセーターがありますか？ \n" +
+    "B: すみません、エスイズのはないんですがほかのセイズがあります。\n" +
+    "A: もうちょっと、おおきいのがありますか？ \n" +
+    "B: はい、あります。これです \n" +
+    "A: じゃ,______。",
+    choices: [
+      { kanji: "これにします", hiragana: "これにします" },
+      { kanji: "これです", hiragana: "これです" },
+      { kanji: "有難うございます", hiragana: "ありがとう ございます" }
+    ],
+    correct: 1
+  },
+    {
+    text:
+    "A: 今日の試験はどうでしたか？ \n" +
+    "B: よく_____________、ぜんぜんだめでした\n" +
+    "B: そうですか",
+    choices: [
+      { kanji: "勉強したから", hiragana: "べんきょうしたから" },
+      { kanji: "勉強したのに", hiragana: "べんきょうしたのに" },
+      { kanji: "勉強したら", hiragana: "べんきょうしたら" }
+    ],
+    correct: 1
+  },
+],
     co: [],
     list: [],
     rea: []
@@ -2752,7 +3081,7 @@ img.src = choice.img || choice.jp;
 });
 const qIndex = currentSection + "_" + currentQuestion;
 
-if (STRICT_AUDIO_MODE && q.audio && !audioFinished[qIndex]) {
+if (q.audio && !audioFinished[qIndex]) {
   document.querySelectorAll("#choices button").forEach(btn => {
     btn.disabled = true;
     btn.style.opacity = "0.6";
@@ -2772,7 +3101,7 @@ function checkAnswer(choice) {
   const qIndex = currentSection + "_" + currentQuestion;
   const q = sections[currentSection][currentQuestion];
   const previous = answered[currentSection][currentQuestion];
-if (STRICT_AUDIO_MODE && q.audio && !audioFinished[qIndex]) return;
+if (q.audio && !audioFinished[qIndex]) return;
 
   // kurangi skor jika sebelumnya benar
   if (previous === q.correct) {
