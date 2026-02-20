@@ -1238,7 +1238,7 @@ const ACTIVE_SCRIPT = SCRIPTS[Math.floor(Math.random() * SCRIPTS.length)];
 const MAX_AUDIO_PLAY = 2;
 const audioPlaysPerQuestion = {}; // 🔥 kunci per soal
 const audioLocked = {};
-const STRICT_AUDIO_MODE = true;
+const STRICT_AUDIO_MODE = false;
 function renderQuestionText(q) {
   // 🔥 kalau tidak ada text, kembalikan string kosong
   if (!q.text) return "";
