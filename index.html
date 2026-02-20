@@ -3077,19 +3077,19 @@ audio.addEventListener("play", () => {
     audioPlaysPerQuestion[qIndex] = 0;
   }
 
-  // kalau sudah limit → stop paksa
+  // Kalau sudah limit → stop paksa
   if (audioPlaysPerQuestion[qIndex] >= MAX_AUDIO_PLAY) {
     audio.pause();
     audio.currentTime = 0;
     return;
   }
 
-  // tambah play hanya kalau audio mulai dari awal
-  if (audio.currentTime === 0) {
+  // Tambah play hanya kalau mulai dari awal
+  if (audio.currentTime < 0.2) {
     audioPlaysPerQuestion[qIndex]++;
   }
 
-  // kalau sudah mencapai limit → kunci
+  // Kunci kalau sudah 2x
   if (audioPlaysPerQuestion[qIndex] >= MAX_AUDIO_PLAY) {
     audioLocked[qIndex] = true;
   }
@@ -3134,20 +3134,7 @@ audio.addEventListener("play", () => {
   });
 
 audio.addEventListener("ended", () => {
-
-  audioFinished[qIndex] = true; // 🔓 audio selesai → boleh jawab
-
-  document.querySelectorAll("#choices button").forEach(btn => {
-    btn.disabled = false;
-    btn.style.opacity = "1";
-    btn.style.pointerEvents = "auto";
-  });
-
-  if (audioPlaysPerQuestion[qIndex] >= MAX_AUDIO_PLAY) {
-    audioLocked[qIndex] = true;
-  }
-
-  loadQuestion();
+  enableChoices();
 });
 
   // ===============================
@@ -3221,12 +3208,8 @@ img.src = choice.img || choice.jp;
 });
 const qIndex = currentSection + "_" + currentQuestion;
 
-if (q.audio && !audioFinished[qIndex]) {
-  document.querySelectorAll("#choices button").forEach(btn => {
-    btn.disabled = true;
-    btn.style.opacity = "0.6";
-    btn.style.pointerEvents = "none";
-  });
+if (q.audio) {
+  disableChoices();
 }
 
 const saved = answered[currentSection][currentQuestion];
@@ -3241,7 +3224,6 @@ function checkAnswer(choice) {
   const qIndex = currentSection + "_" + currentQuestion;
   const q = sections[currentSection][currentQuestion];
   const previous = answered[currentSection][currentQuestion];
-if (q.audio && !audioFinished[qIndex]) return;
 
   // kurangi skor jika sebelumnya benar
   if (previous === q.correct) {
