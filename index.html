@@ -1238,6 +1238,7 @@ const ACTIVE_SCRIPT = SCRIPTS[Math.floor(Math.random() * SCRIPTS.length)];
 const MAX_AUDIO_PLAY = 2;
 const audioPlaysPerQuestion = {}; // 🔥 kunci per soal
 const audioStarted = {};
+let audioCountedOnLeave = {};
 const audioLocked = {};
 let currentPlayingAudio = null;
 let currentPlayingIndex = null;
@@ -3014,19 +3015,25 @@ function loadQuestion() {
 // 🔥 CEK JIKA ADA AUDIO YANG MASIH PLAY
 if (
   currentPlayingAudio &&
-  !currentPlayingAudio.paused &&
-  currentPlayingAudio.currentTime > 0
+  currentPlayingAudio.currentTime > 0 &&
+  audioStarted[currentPlayingIndex]
 ) {
-  currentPlayingAudio.pause();
+  // hitung play jika belum pernah dihitung
+  if (!audioCountedOnLeave[currentPlayingIndex]) {
 
-  // reset flag supaya play selanjutnya bisa dihitung
-  audioStarted[currentPlayingIndex] = false;
+    audioPlaysPerQuestion[currentPlayingIndex]++;
 
-  if (currentPlayingIndex) {
+    audioCountedOnLeave[currentPlayingIndex] = true;
+
     if (audioPlaysPerQuestion[currentPlayingIndex] >= MAX_AUDIO_PLAY) {
       audioLocked[currentPlayingIndex] = true;
     }
   }
+
+  currentPlayingAudio.pause();
+
+  // reset supaya play berikutnya bisa dihitung dari awal
+  audioStarted[currentPlayingIndex] = false;
 }
 
 // reset reference
@@ -3097,7 +3104,7 @@ audio.addEventListener("play", () => {
   if (audio.currentTime < 0.3 && !audioStarted[qIndex]) {
 
     audioStarted[qIndex] = true;
-
+    audioCountedOnLeave[qIndex] = false;
     audioPlaysPerQuestion[qIndex]++;
 
     if (audioPlaysPerQuestion[qIndex] >= MAX_AUDIO_PLAY) {
