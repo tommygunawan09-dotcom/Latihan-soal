@@ -3021,10 +3021,6 @@ if (
   // hitung play jika belum pernah dihitung
   if (!audioCountedOnLeave[currentPlayingIndex]) {
 
-    audioPlaysPerQuestion[currentPlayingIndex]++;
-
-    audioCountedOnLeave[currentPlayingIndex] = true;
-
     if (audioPlaysPerQuestion[currentPlayingIndex] >= MAX_AUDIO_PLAY) {
       audioLocked[currentPlayingIndex] = true;
     }
@@ -3157,6 +3153,7 @@ audio.addEventListener("play", () => {
 
 audio.addEventListener("ended", () => {
   audioStarted[qIndex] = false;
+  audioCountedOnLeave[qIndex] = true;
   audioFinished[qIndex] = true; // 🔓 audio selesai → boleh jawab
 
   document.querySelectorAll("#choices button").forEach(btn => {
