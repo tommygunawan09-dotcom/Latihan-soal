@@ -3075,17 +3075,29 @@ const qIndex = currentSection + "_" + currentQuestion;
 audio.addEventListener("play", () => {
   const qIndex = currentSection + "_" + currentQuestion;
 
-  if (!audioStarted[qIndex]) {
-    audioStarted[qIndex] = true;
-    audioPlaysPerQuestion[qIndex]++;
-
-    if (audioPlaysPerQuestion[qIndex] >= MAX_AUDIO_PLAY) {
-      audioLocked[qIndex] = true;
-    }
-
-    info.textContent =
-      `Sisa putar: ${MAX_AUDIO_PLAY - audioPlaysPerQuestion[qIndex]}x`;
+  if (!audioPlaysPerQuestion[qIndex]) {
+    audioPlaysPerQuestion[qIndex] = 0;
   }
+
+  // kalau sudah limit → stop paksa
+  if (audioPlaysPerQuestion[qIndex] >= MAX_AUDIO_PLAY) {
+    audio.pause();
+    audio.currentTime = 0;
+    return;
+  }
+
+  // tambah play hanya kalau audio mulai dari awal
+  if (audio.currentTime === 0) {
+    audioPlaysPerQuestion[qIndex]++;
+  }
+
+  // kalau sudah mencapai limit → kunci
+  if (audioPlaysPerQuestion[qIndex] >= MAX_AUDIO_PLAY) {
+    audioLocked[qIndex] = true;
+  }
+
+  info.textContent =
+    `Sisa putar: ${MAX_AUDIO_PLAY - audioPlaysPerQuestion[qIndex]}x`;
 });
   audio.controlsList = "nodownload noplaybackrate";
   audio.disableRemotePlayback = true;
