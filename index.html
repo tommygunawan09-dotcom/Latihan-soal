@@ -3579,10 +3579,13 @@ function displayLeaderboard() {
   leaderboard.forEach((player, index) => {
     const li = document.createElement("li");
     li.innerHTML = `
-      <strong>${index + 1}. ${player.name}</strong> 
-      - ${player.score} pts 
-      <small>(${player.date})</small>
-    `;
+  <strong>${index + 1}. ${player.name}</strong>
+  <br>
+  <small>Paket: ${player.package.toUpperCase()}</small>
+  <br>
+  ${player.score} pts
+  <small>(${player.date})</small>
+`;
     list.appendChild(li);
   });
 }
