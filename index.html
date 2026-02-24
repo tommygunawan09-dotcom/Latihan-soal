@@ -3556,6 +3556,7 @@ function saveScore(name, score) {
   leaderboard.push({
     name: name,
     score: score,
+    package: selectedPackage,
     date: new Date().toLocaleDateString()
   });
 
