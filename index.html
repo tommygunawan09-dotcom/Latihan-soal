@@ -1118,6 +1118,18 @@ body.pre-start .container {
             </div>
             <button class="start-btn">Mulai Ujian</button>
           </div>
+            <div class="paket-card" onclick="selectPackage('SAIFU')">
+            <div class="paket-icon">🗂️</div>
+            <div class="paket-title">SAIFU</div>
+            <div class="paket-desc">
+              Chokai dan Dokkai Belum tersedia
+            </div>
+            <div class="paket-info">
+            <span>⏱ 60 Menit</span>
+            <span>📝 60 Soal</span>
+            </div>
+            <button class="start-btn">Mulai Ujian</button>
+          </div>
         </div>
       </div>
     </div>
@@ -2018,11 +2030,6 @@ const packages  = {
   choices: ["りんご", "みかん", "ばなな", "ぶどう"],
   correct: 1
   },
-    {
-      text: "isi asaal aja biar sertifikatnya muncul",
-      choices: ["は", "を", "に", "で"],
-      correct: 1
-    }
 ],
     rea: [      {
   text: "isi asaal aja biar sertifikatnya muncul",
@@ -2030,11 +2037,7 @@ const packages  = {
   choices: ["りんご", "みかん", "ばなな", "ぶどう"],
   correct: 1
   },
-    {
-      text: "isi asaal aja biar sertifikatnya muncul",
-      choices: ["は", "を", "に", "で"],
-      correct: 1
-    }]
+]
   },
   KUROI: {
     gra: [  {
@@ -2296,11 +2299,6 @@ const packages  = {
   choices: ["りんご", "みかん", "ばなな", "ぶどう"],
   correct: 1
   },
-    {
-      text: "isi asaal aja biar sertifikatnya muncul",
-      choices: ["は", "を", "に", "で"],
-      correct: 1
-    }
 ],
     list: [
     {
@@ -2309,11 +2307,6 @@ const packages  = {
   choices: ["りんご", "みかん", "ばなな", "ぶどう"],
   correct: 1
   },
-    {
-      text: "isi asaal aja biar sertifikatnya muncul",
-      choices: ["は", "を", "に", "で"],
-      correct: 1
-    }
 ],
     rea: [      
     {
@@ -2322,11 +2315,6 @@ const packages  = {
   choices: ["りんご", "みかん", "ばなな", "ぶどう"],
   correct: 1
   },
-    {
-      text: "isi asaal aja biar sertifikatnya muncul",
-      choices: ["は", "を", "に", "で"],
-      correct: 1
-    }
 ]
   },
   KUTSUSHITA: {
@@ -2585,11 +2573,6 @@ const packages  = {
   choices: ["りんご", "みかん", "ばなな", "ぶどう"],
   correct: 1
   },
-    {
-      text: "isi asaal aja biar sertifikatnya muncul",
-      choices: ["は", "を", "に", "で"],
-      correct: 1
-    }
 ],
     list: [      
     {
@@ -2598,11 +2581,6 @@ const packages  = {
   choices: ["りんご", "みかん", "ばなな", "ぶどう"],
   correct: 1
   },
-    {
-      text: "isi asaal aja biar sertifikatnya muncul",
-      choices: ["は", "を", "に", "で"],
-      correct: 1
-    }
 ],
     rea: [      
   {
@@ -2611,11 +2589,6 @@ const packages  = {
   choices: ["りんご", "みかん", "ばなな", "ぶどう"],
   correct: 1
   },
-    {
-      text: "isi asaal aja biar sertifikatnya muncul",
-      choices: ["は", "を", "に", "で"],
-      correct: 1
-    }
 ]
   },
   OKIMASU: {
@@ -2945,11 +2918,6 @@ const packages  = {
   choices: ["りんご", "みかん", "ばなな", "ぶどう"],
   correct: 1
   },
-    {
-      text: "isi asaal aja biar sertifikatnya muncul",
-      choices: ["は", "を", "に", "で"],
-      correct: 1
-    }
 ],
     list: [      
   {
@@ -2958,11 +2926,6 @@ const packages  = {
   choices: ["りんご", "みかん", "ばなな", "ぶどう"],
   correct: 1
   },
-    {
-      text: "isi asaal aja biar sertifikatnya muncul",
-      choices: ["は", "を", "に", "で"],
-      correct: 1
-    }
   ],
     rea: [      
     {
@@ -2971,13 +2934,269 @@ const packages  = {
   choices: ["りんご", "みかん", "ばなな", "ぶどう"],
   correct: 1
   },
-    {
-      text: "isi asaal aja biar sertifikatnya muncul",
-      choices: ["は", "を", "に", "で"],
-      correct: 1
-    }
 ]
   },
+    SAIFU: {
+    gra: [  {
+  image: "https://i.pinimg.com/736x/1d/42/45/1d4245413048b7e2bfad354819b693a6.jpg",
+  choices: [
+      { kanji: "時計", hiragana: "とけい" },
+      { kanji: "財布", hiragana: "さいふ" },
+      { kanji: "布財", hiragana: "さいふう" }
+    ],
+    correct: 1
+  },
+  {
+    text: "A: 先週行った結婚式、とてもきれいだったね！披露宴の料理はどうだった？  \n" +
+    "B: うん、普通の和食や洋食もあったけど、__！特に手作りの和菓子が印象的だったよ  ",
+    choices: [
+      { kanji: "特別なメニューがあったよ", hiragana: "とくべつなメニューがあったよ" },
+      { kanji: "全然美味しくなかった", hiragana: "ぜんぜんおいしくなかった" },
+      { kanji: "バスが止まってびっくりした", hiragana: "バスがとまってびっくりした" }
+    ],
+    correct: 0
+  },
+  {
+    text: "({target}) さくらさんに日本へ散歩しました",
+   target: { kanji: "去年", hiragana: "きょねん" },
+  choices: [
+      { kanji: "去年", hiragana: "きょねん" },
+      { kanji: "来年", hiragana: "らいねん" },
+      { kanji: "今年", hiragana: "ことし" }
+    ],
+    correct: 0
+  },
+  {
+    text: "A: この和菓子、形も色も本当にきれいだね！どこで買ったの？  \n" +
+    "B: 実は、____んだよ。祖母が教えてくれたレシピだから  ",
+    choices: [
+      { kanji: "全然美味しくなくて", hiragana: "ぜんぜんおいしくなくて" },
+      { kanji: "店で売って", hiragana: "てんでうって" },
+      { kanji: "自分で作れて", hiragana: "じぶんでつくれて" }
+    ],
+    correct: 0
+  },
+  {
+  image: "https://i.pinimg.com/1200x/fb/b1/66/fbb166af2de769297721747eefc48315.jpg",
+  choices: [
+      { kanji: "壊れます", hiragana: "こわれます" },
+      { kanji: "被れます", hiragana: "かかれます" },
+      { kanji: "汚れます", hiragana: "よごれます" }
+    ],
+    correct: 2
+  },
+  {
+  image: "https://i.pinimg.com/1200x/83/00/31/8300313ad3d3c4a02211e41e5304a4d9.jpg",
+  choices: [
+      { kanji: "お皿", hiragana: "おさら" },
+      { kanji: "ハサミ", hiragana: "ハサミ" },
+      { kanji: "スプーン", hiragana: "スプーン" }
+    ],
+    correct: 2
+  },
+  {
+  image: "https://i.pinimg.com/736x/8e/db/20/8edb2044fd4dfc115d83a4dad6d1f615.jpg",
+  choices: [
+      { kanji: "怖い", hiragana: "こわい" },
+      { kanji: "可愛", hiragana: "かわい" },
+      { kanji: "甘い", hiragana: "あまい" }
+    ],
+    correct: 0
+  },
+  {
+    text: "この財布は ({target}) です",
+   target: { kanji: "安い", hiragana: "やすい" },
+  choices: [
+      { kanji: "眠い", hiragana: "ねむい" },
+      { kanji: "安い", hiragana: "やすい" },
+      { kanji: "高い", hiragana: "たかい" }
+    ],
+    correct: 1
+  },
+  {
+  text: "私の町へ。。。。にきてください",
+  choices: [
+      { kanji: "遊びます", hiragana: "あそびます" },
+      { kanji: "浴びます", hiragana: "あびます" },
+      { kanji: "散歩します", hiragana: "さんぽします" }
+    ],
+    correct: 1
+  },
+  {
+  text: "あそこは。。。。。ですから、はいらないでください",
+  choices: [
+      { kanji: "狭い", hiragana: "せまい" },
+      { kanji: "長い", hiragana: "ながい" },
+      { kanji: "危ない", hiragana: "あぶない" }
+    ],
+    correct: 1
+  },
+  {
+    text: "この ({target}) は高いので好きじゃない",
+   target: { kanji: "時計", hiragana: "とけい" },
+  choices: [
+      { kanji: "時計", hiragana: "とけい" },
+      { kanji: "お皿", hiragana: "おさら" },
+      { kanji: "鋏", hiragana: "はさみ" }
+    ],
+    correct: 0
+  },
+  {
+  text: "ピアノを。。。。",
+  choices: [
+      { kanji: "引く", hiragana: "ひく" },
+      { kanji: "叩く", hiragana: "たたく" },
+      { kanji: "泣く", hiragana: "なく" }
+    ],
+    correct: 0
+  },
+  {
+    text: "私はこの音楽を ({target})",
+   target: { kanji: "聞きました", hiragana: "ききました" },
+  choices: [
+      { kanji: "聞きました", hiragana: "ききました" },
+      { kanji: "見ました", hiragana: "みました" },
+      { kanji: "書きました", hiragana: "かきました" }
+    ],
+    correct: 0
+  },
+  {
+    text: "山田さんは ({target}) でゆめいです",
+   target: { kanji: "親切", hiragana: "しんせつ" },
+  choices: [
+      { kanji: "親切", hiragana: "しんせつ" },
+      { kanji: "季節", hiragana: "きせつ" },
+      { kanji: "大切", hiragana: "たいせつ" }
+    ],
+    correct: 0
+  },
+  {
+  text: "事務所で。。。。をすわないでください",
+  choices: [
+      { kanji: "本", hiragana: "ほん" },
+      { kanji: "お避け", hiragana: "おさけ" },
+      { kanji: "タバコ", hiragana: "タバコ" }
+    ],
+    correct: 2
+  },
+  {
+    text: " ({target}) 私は日本に行きました",
+   target: { kanji: "去年", hiragana: "きょねん" },
+  choices: [
+      { kanji: "去年", hiragana: "きょねん" },
+      { kanji: "来年", hiragana: "らいねん" },
+      { kanji: "今年", hiragana: "ことし" }
+    ],
+    correct: 0
+  },
+  {
+    text: " ({target}) へ行ってください",
+   target: { kanji: "東口", hiragana: "ひがしぐち" },
+  choices: [
+      { kanji: "東口", hiragana: "ひがしぐち" },
+      { kanji: "西口", hiragana: "にしぐち" },
+      { kanji: "南口", hiragana: "みなみぐち" }
+    ],
+    correct: 0
+  },
+  {
+    text: "A: 日本語の本を ({target}) もいいですか \n" +
+    "B: はい。。どうぞ",
+    target: { kanji: "貸して", hiragana: "かして" },
+    choices: [
+      { kanji: "貸して", hiragana: "かして" },
+      { kanji: "貰って", hiragana: "もらって" },
+      { kanji: "借りて", hiragana: "かりて" }
+    ],
+    correct: 0
+  },
+  {
+  text: "クラスが終わったら教室の電気を。。。。。？",
+  choices: [
+      { kanji: "消して", hiragana: "けして" },
+      { kanji: "酒して", hiragana: "おさけ" },
+      { kanji: "漬ける", hiragana: "つける" }
+    ],
+    correct: 0
+  },
+  {
+    text: "東京は ({target}) 町です",
+   target: { kanji: "古い", hiragana: "ふるい" },
+  choices: [
+      { kanji: "狭い", hiragana: "せまい" },
+      { kanji: "新しい", hiragana: "あたらしい" },
+      { kanji: "古い", hiragana: "ふるい" }
+    ],
+    correct: 2
+  },
+  {
+  text: "ここで。。。。をすいません",
+  choices: [
+      { kanji: "タバコ", hiragana: "タバコ" },
+      { kanji: "浴びる", hiragana: "あびる" },
+      { kanji: "洗う", hiragana: "あらう" }
+    ],
+    correct: 0
+  },
+  {
+    text: "そこの山はとて ({target}) しくみえます",
+   target: { kanji: "東口", hiragana: "ひがしぐち" },
+  choices: [
+      { kanji: "美しい", hiragana: "うつくしい" },
+      { kanji: "美しく", hiragana: "うつくしく" },
+      { kanji: "楽しく", hiragana: "たのしく" }
+    ],
+    correct: 1
+  },
+  {
+    text: "A: はじめまして。はなです \n" +
+    "B: はじめまして。マリアです。オスとラア。。。。 \
+よろしくおねがいします",
+  image: "https://i.pinimg.com/736x/c3/42/a0/c342a0137a4685e98773ad7fd93f425c.jpg",
+    choices: [
+      { kanji: "来ました", hiragana: "きました" },
+      { kanji: "からきました", hiragana: "からきました" },
+      { kanji: "行きました", hiragana: "いきました" }
+    ],
+    correct: 1
+  },
+],
+    scri: [    {
+  text: "isi asaal aja biar sertifikatnya muncul",
+  image: "img/apple.jpg",
+  choices: ["りんご", "みかん", "ばなな", "ぶどう"],
+  correct: 1
+  },
+],
+    co: [    {
+  text: "isi asaal aja biar sertifikatnya muncul",
+  image: "img/apple.jpg",
+  choices: ["りんご", "みかん", "ばなな", "ぶどう"],
+  correct: 1
+  },
+],
+    list: [    {
+  text: "isi asaal aja biar sertifikatnya muncul",
+  image: "img/apple.jpg",
+  choices: ["りんご", "みかん", "ばなな", "ぶどう"],
+  correct: 1
+  },
+],
+    rea: [    {
+  text: "isi asaal aja biar sertifikatnya muncul",
+  image: "img/apple.jpg",
+  choices: ["りんご", "みかん", "ばなな", "ぶどう"],
+  correct: 1
+  },
+]
+  },
+    paket2: {
+    gra: [ ],
+    scri: [ ],
+    co: [ ],
+    list: [ ],
+    rea: [ ]
+    },
 };
 
 let sections = {};
