@@ -1062,7 +1062,7 @@ body.pre-start .container {
             <div class="paket-icon">🚲</div>
             <div class="paket-title">JITENSHA </div>
             <div class="paket-desc">
-              Hanya latihan soal, Chokai dan Dokkai Belum tersedia
+            Dokkai Belum tersedia
             </div>
             <div class="paket-info">
               <span>⏱ 60 Menit</span>
@@ -1074,7 +1074,7 @@ body.pre-start .container {
             <div class="paket-icon">🍉</div>
             <div class="paket-title">KUDAMONO</div>
             <div class="paket-desc">
-              Chokai dan Dokkai Belum tersedia
+            Dokkai Belum tersedia
             </div>
             <div class="paket-info">
               <span>⏱ 60 Menit</span>
@@ -1086,7 +1086,7 @@ body.pre-start .container {
             <div class="paket-icon">🧑🏿</div>
             <div class="paket-title">Kuroi</div>
             <div class="paket-desc">
-              Chokai dan Dokkai Belum tersedia
+            Dokkai Belum tersedia
             </div>
             <div class="paket-info">
               <span>⏱ 60 Menit</span>
@@ -1098,7 +1098,7 @@ body.pre-start .container {
             <div class="paket-icon">🧦</div>
             <div class="paket-title">KUTSUSHITA</div>
             <div class="paket-desc">
-              Chokai dan Dokkai Belum tersedia
+            Dokkai Belum tersedia
             </div>
             <div class="paket-info">
             <span>⏱ 60 Menit</span>
@@ -1110,7 +1110,7 @@ body.pre-start .container {
             <div class="paket-icon">🥱</div>
             <div class="paket-title">OKIMASU</div>
             <div class="paket-desc">
-              Chokai dan Dokkai Belum tersedia
+            Dokkai Belum tersedia
             </div>
             <div class="paket-info">
             <span>⏱ 60 Menit</span>
@@ -1277,10 +1277,10 @@ const packages  = {
   JITENSHA: {
     gra: [
   {
-  image: "https://i.pinimg.com/736x/36/59/f5/3659f5fba5f3b9dae5b9f49ecdc30cbb.jpg",        // ⬅️ gambar
+  image: "https://i.pinimg.com/736x/36/59/f5/3659f5fba5f3b9dae5b9f49ecdc30cbb.jpg",
   choices: [
     { kanji: "運転車", hiragana: "うんてんしゃ" },
-    { kanji: "自転車", hiragana: "じてんしゃ"},
+    { kanji: "自転車", hiragana: "じてんしゃ"}, // ⬅️ gambar
     { kanji: "自動販売機", hiragana: "じどうはんばいき" }
   ],
   correct: 1
@@ -1296,10 +1296,20 @@ const packages  = {
     correct: 0
   },
   {
+    text: "({target})",
+   target: { kanji: "病院", hiragana: "びょういん" },
+  choices: [
+      { kanji: "病院", hiragana: "びょういん" },
+      { kanji: "学校", hiragana: "がっこう" },
+      { kanji: "図書館", hiragana: "としょかん" }
+    ],
+    correct: 0
+  },
+  {
     text: "({target})で手伝えません。",
    target: { kanji: "忙しい", hiragana: "いそがしい" },
   choices: [
-      { kanji: "忙しい", hiragana: "いそがしい" },
+      { kanji: "忙しい", hiragana: "いそがしい" }, // ⬅️ gambar
       { kanji: "楽しい", hiragana: "たのしい" },
       { kanji: "難しい", hiragana: "むずかしい" }
     ],
@@ -1309,7 +1319,7 @@ const packages  = {
   image: "https://i.pinimg.com/736x/3a/f4/eb/3af4ebe7c1549e2a7913e9eb95320ccf.jpg",
   choices: [
       { kanji: "乗せる", hiragana: "のせる" },
-      { kanji: "付ける", hiragana: "つける" },
+      { kanji: "付ける", hiragana: "つける" }, // ⬅️ gambar
       { kanji: "かける", hiragana: "かける" }
     ],
     correct: 1
@@ -1318,7 +1328,7 @@ const packages  = {
     text: "昨日は雨が降るのであまり________",
   choices: [
       { kanji: "面白い", hiragana: "おもしろい" },
-      { kanji: "面白くなかった", hiragana: "おもしろくなかった" },
+      { kanji: "面白くなかった", hiragana: "おもしろくなかった" }, // ⬅️ gambar
       { kanji: "おもしました", hiragana: "おもしました" }
     ],
     correct: 1
@@ -1328,7 +1338,7 @@ const packages  = {
   choices: [
       { kanji: "行きます", hiragana: "いきます" },
       { kanji: "乗ります", hiragana: "のります" },
-      { kanji: "浴びます", hiragana: "あびます" }
+      { kanji: "浴びます", hiragana: "あびます" } // ⬅️ gambar
     ],
     correct: 2
   },
@@ -1338,7 +1348,7 @@ const packages  = {
   choices: [
       { kanji: "博物館", hiragana: "はくぶつかん" },
       { kanji: "郵便局", hiragana: "ゆうびんきょく" },
-      { kanji: "図書館", hiragana: "としょかん" }
+      { kanji: "図書館", hiragana: "としょかん" } // ⬅️ gambar
     ],
     correct: 2
   },
@@ -1346,7 +1356,7 @@ const packages  = {
     text: "明日はいい ({target}) でしょう。",
    target: { kanji: "天気", hiragana: "てんき" },
   choices: [
-      { kanji: "天気", hiragana: "てんき" },
+      { kanji: "天気", hiragana: "てんき" }, // ⬅️ gambar
       { kanji: "電気", hiragana: "でんき" },
       { kanji: "転議", hiragana: "てんぎ" }
     ],
@@ -1355,7 +1365,7 @@ const packages  = {
       {
     text: "________かれのさいふは歩いているときに取られたかもしれない",
   choices: [
-      { kanji: "若しかしたら", hiragana: "もしかしたら" },
+      { kanji: "若しかしたら", hiragana: "もしかしたら" }, // ⬅️ gambar
       { kanji: "必ず", hiragana: "かならず" },
       { kanji: "出来れば", hiragana: "できれば" }
     ],
@@ -1365,7 +1375,7 @@ const packages  = {
     text: "きっと______ことができると思います",
   choices: [
       { kanji: "テーブル ", hiragana: "テーブル" },
-      { kanji: "みつける", hiragana: "みつける" },
+      { kanji: "みつける", hiragana: "みつける" }, 
       { kanji: "間に合わせる", hiragana: "まにあわせる" }
     ],
     correct: 1
@@ -1374,7 +1384,7 @@ const packages  = {
   image: "https://i.pinimg.com/1200x/4d/3b/3c/4d3b3c3e7ea6e77f215b19ddf1685f4b.jpg",
   choices: [
       { kanji: "頭", hiragana: "あたま" },
-      { kanji: "お腹", hiragana: "おなか" },
+      { kanji: "お腹", hiragana: "おなか" }, // ⬅️ gambar
       { kanji: "体", hiragana: "からだ" }
     ],
     correct: 1
@@ -1383,7 +1393,7 @@ const packages  = {
     text: "明日は ({target}) をみにきませんか",
    target: { kanji: "映画", hiragana: "えいが" },
   choices: [
-      { kanji: "映画", hiragana: "えいが" },
+      { kanji: "映画", hiragana: "えいが" }, // ⬅️ gambar
       { kanji: "学科", hiragana: "がっか" },
       { kanji: "英語", hiragana: "えいご" }
     ],
@@ -1395,7 +1405,7 @@ const packages  = {
   choices: [
       { kanji: "じめじめ", hiragana: "じめじめ" },
       { kanji: "多い", hiragana: "おおい" },
-      { kanji: "苦手", hiragana: "にがて" }
+      { kanji: "苦手", hiragana: "にがて" } // ⬅️ gambar
     ],
     correct: 2
   }
@@ -1408,7 +1418,7 @@ const packages  = {
     "A: どんな本ですか\n" +
     "B: ______ 歴史の本です",
     choices: [
-      { kanji: "特に", hiragana: "とくに" },
+      { kanji: "特に", hiragana: "とくに" }, // ⬅️ gambar
       { kanji: "確かに", hiragana: "たしかに" },
       { kanji: "其の儘に", hiragana: "そのままに" }
     ],
@@ -1419,15 +1429,15 @@ const packages  = {
   choices: [
       { kanji: "多すぎ", hiragana: "おおすぎ" },
       { kanji: "おおいすぎ", hiragana: "おおいすぎ" },
-      { kanji: "おすぎ", hiragana: "おすぎ" }
+      { kanji: "多すぎます", hiragana: "おおすぎます" } // ⬅️ gambar
     ],
-    correct: 0
+    correct: 2
   },
   {
     text: "予定いのほかのひとが_________",
   choices: [
       { kanji: "お知らせ", hiragana: "おしらせ" },
-      { kanji: "お知らせするために", hiragana: "おしらせするために" },
+      { kanji: "お知らせするために", hiragana: "おしらせするために" }, // ⬅️ gambar
       { kanji: "知れば", hiragana: "おしれば" }
     ],
     correct: 1
@@ -1435,7 +1445,7 @@ const packages  = {
         {
     text: "これはバナナの________, どうぞ",
   choices: [
-      { kanji: "料理です", hiragana: "りょうりです" },
+      { kanji: "料理です", hiragana: "りょうりです" }, // ⬅️ gambar
       { kanji: "料理でした", hiragana: "りょうりでした" },
       { kanji: "料理します", hiragana: "りょうりします" }
     ],
@@ -1449,7 +1459,7 @@ const packages  = {
     "B: はい、わかりました。",
     choices: [
       { kanji: "お世話になる", hiragana: "おせわになる" },
-      { kanji: "お知らせる", hiragana: "おしらせる" },
+      { kanji: "知らせるために", hiragana: "おしらせるために" }, // ⬅️ gambar
       { kanji: "送る", hiragana: "おくる" }
     ],
     correct: 1
@@ -1460,7 +1470,7 @@ const packages  = {
     choices: [
       { kanji: "いつですか", hiragana: "いつですか" },
       { kanji: "何ですか", hiragana: "なんですか" },
-      { kanji: "どこですか", hiragana: "どこですか" }
+      { kanji: "どこですか", hiragana: "どこですか" } // ⬅️ gambar
     ],
     correct: 2
   },
@@ -1470,7 +1480,7 @@ const packages  = {
     choices: [
       { kanji: "結婚 ", hiragana: "けっこん" },
       { kanji: "結婚するように", hiragana: "けっこんするように" },
-      { kanji: "結婚したそうです", hiragana: "けっこんしたそうです" }
+      { kanji: "結婚したそうです", hiragana: "けっこんしたそうです" } // ⬅️ gambar
     ],
     correct: 2
   },
@@ -1480,7 +1490,7 @@ const packages  = {
     choices: [
       { kanji: "してもらえませんか", hiragana: "してもらえませんか" },
       { kanji: "しています", hiragana: "しています" },
-      { kanji: "お願いします", hiragana: "お願いします" }
+      { kanji: "お願いします", hiragana: "おねがいします" } // ⬅️ gambar
     ],
     correct: 2
   },
@@ -1489,7 +1499,7 @@ const packages  = {
     "B: これから________???",
     choices: [
       { kanji: "どうしますか", hiragana: "どうしますか" },
-      { kanji: "どうしたんですか", hiragana: "どうしたんですか" },
+      { kanji: "どうしたんですか", hiragana: "どうしたんですか" }, // ⬅️ gambar
       { kanji: "どうですか", hiragana: "どうですか" }
     ],
     correct: 1
@@ -1497,7 +1507,7 @@ const packages  = {
   {
     text: "昨日のイベントはあまり。",
   choices: [
-      { kanji: "面白くなかった", hiragana: "おもしろくなかった" },
+      { kanji: "面白くなかった", hiragana: "おもしろくなかった" }, // ⬅️ gambar
       { kanji: "面白くない", hiragana: "おもしろくない" },
       { kanji: "面白い", hiragana: "おもしろい" }
     ],
@@ -1506,7 +1516,7 @@ const packages  = {
   {
     text: "仕事 を 。。。。",
     choices: [
-      { kanji: "休んでもいいですか?", hiragana: "やすんでもいいですか?" },
+      { kanji: "休んでもいいですか?", hiragana: "やすんでもいいですか?" }, // ⬅️ gambar
       { kanji: "何処", hiragana: "どこですか" },
       { kanji: "休み", hiragana: "やすみ" }
     ],
@@ -1515,16 +1525,16 @@ const packages  = {
   ],
 
   co: [
-        {
+    {
   text: "Dengarkan baik-baik.",
-  audio: "speechma-hyunsu-japanese-6-2026-02-13t10-36-33-199z_5HR7lT9i.mp3",
+  audio: "speechma-nanami-7-2026-02-13t08-51-56-744z_y9CQUMRS.mp3",
   choices: [
-    { img: "https://i.pinimg.com/736x/0d/cc/59/0dcc5941801725922375789ef321aabe.jpg", hiragana: "さっかーを する" },
-    { img: "https://i.pinimg.com/1200x/a7/ce/18/a7ce1842a967cefc6702cfdfe47b8fe7.jpg", hiragana: "にっきを かく" },
-    { img: "https://i.pinimg.com/1200x/4b/ec/1c/4bec1cdebb991b41398d7ed0e7553a97.jpg", hiragana: "すいえいを する" },
+    { img: "https://i.pinimg.com/736x/f8/2b/95/f82b9571350bbf74ad38f8816186c7df.jpg", hiragana: "サッカーをします" }, // ⬅️ gambar
+    { img: "https://i.pinimg.com/1200x/2c/45/bd/2c45bdac6ce0841e6290276e2efd7da5.jpg", hiragana: "にっきを かく" },
+    { img: "https://i.pinimg.com/736x/b5/f2/f3/b5f2f35b207b78ee6ba34a9aef63b3e3.jpg", hiragana: "すいえいを する" },
   ],
   correct: 0
-},
+  },
     {
   text: "Dengarkan baik-baik.",
   audio: "speechma-hyunsu-japanese-7-2026-02-13t10-06-08-375z_LDYmd6Z3.mp3",
@@ -1541,7 +1551,7 @@ const packages  = {
     choices: [
       { kanji: "それは汚れた皿の隣にあります", hiragana: "それは よごれた さらの となりに あります" },
       { kanji: "お茶の隣にあります", hiragana: "おちゃの となりに あります" },
-      { kanji: "コーヒーカップの隣にあります", hiragana: "コーヒーカップの となりに あります" }
+      { kanji: "コーヒーカップの隣にあります", hiragana: "コーヒーカップの となりに あります" } // ⬅️ gambar
     ],
       correct: 2
     },
@@ -1549,7 +1559,7 @@ const packages  = {
   text: "Dengarkan baik-baik.",
   audio: "speechma-hyunsu-japanese-6-2026-02-13t10-36-33-199z_5HR7lT9i.mp3",
   choices: [
-    { img: "https://i.pinimg.com/736x/fe/90/37/fe9037834873a3c0c7850391f7497213.jpg", hiragana: "ちゃいろのはこ" },
+    { img: "https://i.pinimg.com/736x/fe/90/37/fe9037834873a3c0c7850391f7497213.jpg", hiragana: "ちゃいろのはこ" }, // ⬅️ gambar
     { img: "https://i.pinimg.com/1200x/60/ba/c8/60bac8dab5fb45849a16c01980059539.jpg", hiragana: "黄色の箱" },
     { img: "https://i.pinimg.com/1200x/a7/ce/18/a7ce1842a967cefc6702cfdfe47b8fe7.jpg", hiragana: "くろいろのはこ" },
   ],
@@ -1559,17 +1569,17 @@ const packages  = {
   text: "Dengarkan baik-baik.",
   audio: "speechma-keita-6-2026-02-13t12-36-51-996z_fpG1tVQg.mp3",
   choices: [
-    { img: "https://i.pinimg.com/736x/e5/e2/d0/e5e2d0af5780cc0e9fad0af4ddb6c2d6.jpg", hiragana: "あめでも ずっと だいびんぐを しました。" },
+    { img: "https://i.pinimg.com/736x/e5/e2/d0/e5e2d0af5780cc0e9fad0af4ddb6c2d6.jpg", hiragana: "あめでも ずっと だいびんぐを しました。" }, // ⬅️ gambar
     { img: "https://i.pinimg.com/736x/8a/22/e4/8a22e48cbba5b05e8cd6935e8d149184.jpg", hiragana: "だいびんぐを してから、ふねに のりました。" },
     { img: "https://i.pinimg.com/736x/37/6a/69/376a69dfd1ac45c27a16b4f944c48881.jpg", hiragana: "だいびんぐは しないで、ずっと かいものを しました。" },
   ],
-  correct: 1
+  correct: 0
 },
   {
   text: "Dengarkan baik-baik.",
   audio: "speechma-emma-japanese-5-2026-02-13t13-37-10-158z_Y0pfXwbu.mp3",
     choices: [
-      { kanji: "250円", hiragana: "にひゃくごじゅうえん" },
+      { kanji: "250円", hiragana: "にひゃくごじゅうえん" }, // ⬅️ gambar
       { kanji: "500円", hiragana: "ごひゃくえん" },
       { kanji: "100円", hiragana: "ひゃくえん" }
     ],
@@ -1580,7 +1590,7 @@ const packages  = {
   audio: "speechma-brian-japanese-6-2026-02-13t13-58-32-102z_RGEWIwXu.mp3",
     choices: [
       { kanji: "水曜日", hiragana: "すいようび" },
-      { kanji: "土曜日", hiragana: "どようび" },
+      { kanji: "土曜日", hiragana: "どようび" }, // ⬅️ gambar
       { kanji: "木曜日", hiragana: "もくようび" }
     ],
   correct: 1
@@ -1589,7 +1599,7 @@ const packages  = {
   text: "Dengarkan baik-baik.",
   audio: "speechma-keita-6-2026-02-13t14-25-59-971z_7KQgFgBM.mp3",
   choices: [
-    { img: "https://i.pinimg.com/736x/38/81/59/388159d66fefcd2b3e346f812a9b5bd3.jpg", hiragana: "くだものをだします" },
+    { img: "https://i.pinimg.com/736x/38/81/59/388159d66fefcd2b3e346f812a9b5bd3.jpg", hiragana: "くだものをだします" }, // ⬅️ gambar
     { img: "https://i.pinimg.com/736x/5f/3a/1f/5f3a1f91ee2b21fe35a40b8be3c1360c.jpg", hiragana: "でんげんをきる " },
     { img: "https://i.pinimg.com/1200x/59/80/24/598024829b7840375336b24610ac367d.jpg", hiragana: "くだものを すてます" },
   ],
@@ -1600,38 +1610,38 @@ const packages  = {
   audio: "speechma-emma-japanese-6-2026-02-13t14-40-12-606z_Cl77TMYT.mp3",
   choices: [
     { img: "https://i.pinimg.com/736x/ef/21/38/ef2138e1b56c57697986f8859f4075e6.jpg", hiragana: "りんご" },
-    { img: "https://i.pinimg.com/1200x/24/0c/80/240c8038f9749f24da78544ecbcaa825.jpg", hiragana: "バナナ" },
+    { img: "https://i.pinimg.com/1200x/24/0c/80/240c8038f9749f24da78544ecbcaa825.jpg", hiragana: "バナナ" }, // ⬅️ gambar
     { img: "https://i.pinimg.com/736x/95/9c/3e/959c3e1df5d02a5064e77580ba90734a.jpg", hiragana: "いちご" },
   ],
   correct: 1
 },
       {
-  text: "10時に何をするか???",
+  text: "Dengarkan baik-baik.",
   audio: "speechma-keita-2-2026-02-13t15-11-15-117z_x8kPtM2q.mp3",
     choices: [
     { img: "https://i.pinimg.com/736x/66/38/63/66386376b1910df9a7f1a820713ee4f9.jpg", hiragana: "かいしゃ" },
-    { img: "https://i.pinimg.com/1200x/3c/aa/00/3caa00983aa51af66ad8101adab4ebf4.jpg", hiragana: "受付 " },
+    { img: "https://i.pinimg.com/1200x/3c/aa/00/3caa00983aa51af66ad8101adab4ebf4.jpg", hiragana: "受付 " }, // ⬅️ gambar
     { img: "https://i.pinimg.com/1200x/3c/02/4c/3c024c5bbbb925e4a2511fb9fbc154f1.jpg", hiragana: "ロビー" },
     ],
   correct: 1
 },
     {
-  text: "お弁当の食材はどこで使われていますか？",
+  text: "Dengarkan baik-baik.",
   audio: "speechma-nanami-6-2026-02-13t15-23-15-953z_DSbjAjUC.mp3",
   choices: [
-    { img: "https://i.pinimg.com/736x/ee/93/54/ee9354e3cc1f86b258ea55d4b5bd0059.jpg", hiragana: "居酒屋" },
+    { img: "https://i.pinimg.com/736x/ee/93/54/ee9354e3cc1f86b258ea55d4b5bd0059.jpg", hiragana: "居酒屋" }, // ⬅️ gambar
     { img: "https://i.pinimg.com/736x/d3/20/df/d320dfb312273ea98f608771e224b132.jpg", hiragana: "カフェ" },
     { img: "https://i.pinimg.com/736x/82/b7/a6/82b7a67994bc19b0c742eb50270382eb.jpg", hiragana: "レストラン" },
   ],
   correct: 0
 },
     {
-  text: "朝はどんな薬を飲みますか？",
+  text: "Dengarkan baik-baik.",
   audio: "speechma-andrew-japanese-5-2026-02-13t15-03-02-237z_AO4WJ6Uq.mp3",
     choices: [
-      { kanji: "一白い、一赤い", hiragana: "いちしろい、いちあかい" },
-      { kanji: "二白い、一赤い", hiragana: "にしろい、いちあかい" },
-      { kanji: "一白い、二赤い", hiragana: "いちしろい、にあかい" }
+      { kanji: "一白い薬と一赤い薬", hiragana: "いちしろい、いちあかい" },
+      { kanji: "二白い薬と一赤い薬", hiragana: "にしろい、いちあかい" },
+      { kanji: "一白い薬と二赤い薬", hiragana: "いちしろい、にあかい" } // ⬅️ gambar
     ],
   correct: 2
 },
@@ -1641,10 +1651,13 @@ const packages  = {
     choices: [
       { kanji: "図書館", hiragana: "としょかん" },
       { kanji: "事務室", hiragana: "じむしつ" },
-      { kanji: "会議室", hiragana: "かいぎしつ" }
+      { kanji: "会議室", hiragana: "かいぎしつ" } // ⬅️ gambar
     ],
   correct: 1
 },
+  ],
+
+  list: [
   {
   text: "Dengarkan baik-baik.",
   audio: "liecio-classic-90x27s-ring-telefone-132277-0nwstow0_wOuNUvJq.mp3",
@@ -1654,22 +1667,8 @@ const packages  = {
       { kanji: "すずきさんからでんわがじゃない", hiragana: "すずきさんからでんわがじゃない" }
     ],
   correct: 0
-}
-  ],
-
-  list: [
-    {
-  text: "Dengarkan baik-baik.",
-  audio: "speechma-nanami-7-2026-02-13t08-51-56-744z_y9CQUMRS.mp3",
-  choices: [
-    { img: "https://i.pinimg.com/736x/f8/2b/95/f82b9571350bbf74ad38f8816186c7df.jpg", hiragana: "さっかーを する" },
-    { img: "https://i.pinimg.com/1200x/2c/45/bd/2c45bdac6ce0841e6290276e2efd7da5.jpg", hiragana: "にっきを かく" },
-    { img: "https://i.pinimg.com/736x/b5/f2/f3/b5f2f35b207b78ee6ba34a9aef63b3e3.jpg", hiragana: "すいえいを する" },
-  ],
-  correct: 0
-  }
-  ],
-
+},
+],
   rea: [
     {
   text: "これは なん ですか。",
@@ -1677,12 +1676,7 @@ const packages  = {
   choices: ["りんご", "みかん", "ばなな", "ぶどう"],
   correct: 1
   },
-    {
-      text: "こんばん ______。",
-      choices: ["は", "を", "に", "で"],
-      correct: 1
-    }
-  ]
+]
   },
 
   KUDAMONO: {
