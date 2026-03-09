@@ -220,42 +220,47 @@ body {
 /* WRAPPER */
 .question-image {
   width: 100%;
-  max-height: 220px;
+  min-height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 12px 0 16px;
 }
 
-/* IMG DI DALAMNYA */
-.question-image img {
-  max-width: 100%;
-  max-height: 220px;
-  object-fit: contain;
+.question-image img{
+  display:block;
+  margin:auto;
+  max-width:100%;
+  height:auto;
+  object-fit:contain;
 }
-    .choices { list-style: none; padding: 0; }
-    .choices li { margin-bottom: 12px; }
 
-    .result { margin-top: 15px; font-weight: bold; }
-    .correct { color: #2e7d32; }
+.question-image:empty{
+  display:none;
+}
+  .choices { list-style: none; padding: 0; }
+  .choices li { margin-bottom: 12px; }
+
+  .result { margin-top: 15px; font-weight: bold; }
+  .correct { color: #2e7d32; }
     .wrong { color: #c62828; }
 
-    .navigation {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 25px;
-    }
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+  }
 
-    .nav-btn {
-      padding: 10px 18px;
-      font-size: 14px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      background: #1f4fa3;
-      color: white;
-    }
-    .step.done {
+  .nav-btn {
+    padding: 10px 18px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background: #1f4fa3;
+    color: white;
+  }
+  .step.done {
   background: #CD5C5C;   /* = sudah dijawab */
 }
 /* =========================
@@ -948,9 +953,10 @@ body.pre-start .container {
   padding: 40px;
   opacity: 0;
   pointer-events: none;
-  transition: 0.4s ease;
+  transition: 0.3s ease;
   display: flex;
   flex-direction: column;
+  z-index: 20;
 }
 .leaderboard-close {
   position: sticky;
@@ -965,21 +971,6 @@ body.pre-start .container {
   border-radius: 8px;
   cursor: pointer;
   z-index: 10;
-}
-
-.leaderboard-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(6px);
-  border-radius: 20px;
-  padding: 40px;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  z-index: 20;
 }
 
 .leaderboard-overlay.active {
@@ -1208,9 +1199,6 @@ body.pre-start .container {
 </div>
 
 <script>
-// =====================
-// 1️⃣ HELPER FUNCTIONS
-// =====================
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -1220,7 +1208,6 @@ function shuffleArray(array) {
 
 function shuffleChoices(question) {
 
-  // 🔥 JIKA bukan kanji/hiragana, JANGAN DIAPA-APAIN
   if (
     !question.choices ||
     typeof question.choices[0] === "string" ||
@@ -1260,7 +1247,7 @@ let currentPlayingIndex = null;
 const STRICT_AUDIO_MODE = true;
 const audioFinished = {}; // status audio per soal
 function renderQuestionText(q) {
-  // 🔥 kalau tidak ada text, kembalikan string kosong
+
   if (!q.text) return "";
 
   if (!q.target) return q.text;
@@ -3497,13 +3484,62 @@ const packages  = {
   choices: ["りんご", "みかん", "ばなな", "ぶどう"],
   correct: 1
   },
+{
+variants:[
+
+{
+image: "https://i.pinimg.com/736x/36/59/f5/3659f5fba5f3b9dae5b9f49ecdc30cbb.jpg",
+choices: [
+  { kanji: "運転車", hiragana: "うんてんしゃ" },
+  { kanji: "自転車", hiragana: "じてんしゃ"},
+  { kanji: "自動販売機", hiragana: "じどうはんばいき" }
 ],
-    rea: [    {
-  text: "isi asaal aja biar sertifikatnya muncul",
-  image: "img/apple.jpg",
+correct: 1
+},
+
+{
+image: "https://i.pinimg.com/736x/31/f5/a7/31f5a702cdab5fed29c57e3b6113a090.jpg",
+choices: [
+  { kanji: "寝ます", hiragana: "ねます" },
+  { kanji: "起きます", hiragana: "おきます"},
+  { kanji: "座ります", hiragana: "すわります" }
+],
+correct: 1
+}
+
+]
+}
+],
+  rea: [    {
+image: "Bestie Message Your Story.png",
+imgWidth: "900px",
+imgHeight: "650px",
   choices: ["りんご", "みかん", "ばなな", "ぶどう"],
   correct: 1
   },
+{
+  text: "Dengarkan baik-baik.",
+  questions: [
+    {
+      text: "1. 今日の試験はどうでしたか？",
+      choices: [
+        { kanji:"運転車", hiragana:"うんてんしゃ"},
+        { kanji:"自転車", hiragana:"じてんしゃ"},
+        { kanji:"自動販売機", hiragana:"じどうはんばいき"}
+      ],
+      correct: 1
+    },
+    {
+      text: "2. 何で行きますか",
+      choices: [
+        { kanji:"寝ます", hiragana:"ねます"},
+        { kanji:"起きます", hiragana:"おきます"},
+        { kanji:"座ります", hiragana:"すわります"}
+      ],
+      correct: 1
+    }
+  ]
+}
 ]
   },
     paket2: {
@@ -3512,7 +3548,7 @@ const packages  = {
     co: [ ],
     list: [ ],
     rea: [ ]
-    },
+  },
 };
 
 let sections = {};
@@ -3520,7 +3556,7 @@ let totalScore = 0;              // ✅ global
 const POINT_PER_QUESTION = 10;   // ✅ global
 
 function goToSection(sectionKey) {
-  if (currentSection === sectionKey) return; // ⛔ stop
+  if (currentSection === sectionKey) return;
 
   currentSection = sectionKey;
   currentQuestion = 0;
@@ -3539,7 +3575,6 @@ function goToSection(sectionKey) {
   updateSideProgress();
 }
 
-  // 👉 pindah soal berdasarkan nomor step
 function goToQuestion(index) {
   currentQuestion = index;
 
@@ -3550,13 +3585,11 @@ function goToQuestion(index) {
 }
 
 function loadQuestion() {
-// 🔥 CEK JIKA ADA AUDIO YANG MASIH PLAY
 if (
   currentPlayingAudio &&
   currentPlayingAudio.currentTime > 0 &&
   audioStarted[currentPlayingIndex]
 ) {
-  // hitung play jika belum pernah dihitung
   if (!audioCountedOnLeave[currentPlayingIndex]) {
 
     if (audioPlaysPerQuestion[currentPlayingIndex] >= MAX_AUDIO_PLAY) {
@@ -3565,22 +3598,36 @@ if (
   }
 
   currentPlayingAudio.pause();
-
-  // reset supaya play berikutnya bisa dihitung dari awal
   audioStarted[currentPlayingIndex] = false;
 }
 
-// reset reference
 currentPlayingAudio = null;
 currentPlayingIndex = null;
-  const q = sections[currentSection][currentQuestion];
+let q = sections[currentSection][currentQuestion];
+
+if (q.questions) {
+
+  document.getElementById("qNumber").textContent =
+    `Question ${currentQuestion + 1} / ${sections[currentSection].length}`;
+
+  const questionText = document.getElementById("questionText");
+  questionText.textContent = renderQuestionText(q);
+  questionText.style.whiteSpace = "pre-line";
+
+  document.getElementById("imageContainer").innerHTML = "";
+  document.getElementById("audioContainer").innerHTML = "";
+
+  renderSubQuestions(q);
+
+  return;
+}
 
   document.getElementById("qNumber").textContent =
     `Question ${currentQuestion + 1} / ${sections[currentSection].length}`;
 
 const questionText = document.getElementById("questionText");
 questionText.textContent = renderQuestionText(q);
-questionText.style.whiteSpace = "pre-line"; // 🔥 INI KUNCINYA
+questionText.style.whiteSpace = "pre-line";
 
   document.getElementById("examSection").textContent =
     currentSection.toUpperCase();
@@ -3588,14 +3635,9 @@ questionText.style.whiteSpace = "pre-line"; // 🔥 INI KUNCINYA
   document.getElementById("examProgress").textContent =
     `Question ${currentQuestion + 1} / ${sections[currentSection].length}`;
 
-
-  // ===== IMAGE =====
   const imageBox = document.getElementById("imageContainer");
   imageBox.innerHTML = "";
-  // ===== FIX EMPTY IMAGE SPACE (MOBILE ONLY) =====
 const container = document.querySelector(".container");
-
-// reset dulu
 container.classList.remove("no-image-question");
 
 if (!q.image) {
@@ -3603,7 +3645,10 @@ if (!q.image) {
 }
   if (q.image) {
     const img = document.createElement("img");
-    img.src = q.image;
+img.src = q.image;
+
+if(q.imgWidth) img.style.width = q.imgWidth;
+if(q.imgHeight) img.style.height = q.imgHeight;
     imageBox.appendChild(img);
   }
 
@@ -3634,7 +3679,6 @@ const qIndex = currentSection + "_" + currentQuestion;
   audio.preload = "auto";
 audio.addEventListener("play", () => {
 
-  // hanya hitung kalau start dari awal
   if (audio.currentTime < 0.3 && !audioStarted[qIndex]) {
 
     audioStarted[qIndex] = true;
@@ -3656,9 +3700,6 @@ audio.addEventListener("play", () => {
   audio.controlsList = "nodownload noplaybackrate";
   audio.disableRemotePlayback = true;
 
-  // ===============================
-  // ✅ ANTI SEEK (iOS & lainnya)
-  // ===============================
   let lastTime = 0;
   let isSeeking = false;
 
@@ -3682,9 +3723,6 @@ audio.addEventListener("play", () => {
     isSeeking = false;
   });
 
-  // ===============================
-  // 🚫 TIDAK BISA UBAH SPEED
-  // ===============================
   audio.addEventListener("ratechange", () => {
     audio.playbackRate = 1;
   });
@@ -3707,9 +3745,6 @@ audio.addEventListener("ended", () => {
   loadQuestion();
 });
 
-  // ===============================
-  // ℹ️ INFO SISA PLAY
-  // ===============================
   const info = document.createElement("div");
   info.style.fontSize = "12px";
   info.style.opacity = "0.7";
@@ -3721,14 +3756,11 @@ audio.addEventListener("ended", () => {
   audioBox.appendChild(info);
 }
 
-  // ===== CHOICES =====
 const choicesEl = document.getElementById("choices");
 choicesEl.innerHTML = "";
 
-/* 🔥 RESET CLASS */
 choicesEl.className = "choices";
 
-/* 🔥 CEK APAKAH PILIHAN GAMBAR */
 if (
   q.choices &&
   typeof q.choices[0] === "object" &&
@@ -3741,26 +3773,19 @@ q.choices.forEach((choice, i) => {
   const btn = document.createElement("button");
   btn.onclick = () => checkAnswer(i);
 
-  // 🔹 PILIHAN DENGAN GAMBAR
-// 🔹 JAWABAN GAMBAR
 if (typeof choice === "object" && (choice.img || choice.jp)) {
 
-  // 1. bikin kotak gambar
   const box = document.createElement("div");
   box.className = "choice-img-box";
 
-  // 2. bikin elemen <img>
   const img = document.createElement("img");
 img.src = choice.img || choice.jp;
   img.alt = "choice image";
 
-  // 3. masukin img ke kotak
   box.appendChild(img);
 
-  // 4. masukin kotak ke tombol
   btn.appendChild(box);
 
-  // 5. label (A, B, C, D)
   if (choice.label) {
     const label = document.createElement("div");
     label.className = "choice-label";
@@ -3769,7 +3794,6 @@ img.src = choice.img || choice.jp;
   }
 }
 
-  // 🔹 PILIHAN TEKS BIASA
   else {
     btn.textContent = choice;
   }
@@ -3800,12 +3824,10 @@ function checkAnswer(choice) {
   const previous = answered[currentSection][currentQuestion];
 if (LOCK_ANSWER_UNTIL_AUDIO_END && q.audio && !audioFinished[qIndex]) return;
 
-  // kurangi skor jika sebelumnya benar
   if (previous === q.correct) {
     totalScore -= POINT_PER_QUESTION;
   }
 
-  // tambah skor jika sekarang benar
   if (choice === q.correct) {
     totalScore += POINT_PER_QUESTION;
   }
@@ -3822,6 +3844,105 @@ if (LOCK_ANSWER_UNTIL_AUDIO_END && q.audio && !audioFinished[qIndex]) return;
   if (checkAllFinished()) {
     showResult();
   }
+}
+
+function renderSubQuestions(q){
+
+const choicesEl = document.getElementById("choices");
+choicesEl.innerHTML = "";
+
+if(!window.subAnswered) window.subAnswered = {};
+
+q.questions.forEach((sub,qIndex)=>{
+
+const wrapper = document.createElement("div");
+wrapper.style.marginBottom = "20px";
+
+const title = document.createElement("div");
+title.textContent = sub.text || "";
+wrapper.appendChild(title);
+
+sub.choices.forEach((choice,cIndex)=>{
+
+const btn = document.createElement("button");
+
+if(typeof choice === "object"){
+btn.textContent = choice[ACTIVE_SCRIPT];
+}else{
+btn.textContent = choice;
+}
+
+const key = currentSection + "_" + currentQuestion + "_" + qIndex;
+
+if(window.subAnswered[key] === cIndex){
+btn.classList.add("selected");
+}
+
+btn.onclick = ()=>{
+
+window.subAnswered[key] = cIndex;
+
+wrapper.querySelectorAll("button").forEach(b=>{
+b.classList.remove("selected");
+});
+
+btn.classList.add("selected");
+
+checkSubAnswer(qIndex,cIndex);
+
+};
+
+wrapper.appendChild(btn);
+
+});
+
+choicesEl.appendChild(wrapper);
+
+});
+
+}
+
+function checkSubAnswer(qIndex, choice){
+
+const q = sections[currentSection][currentQuestion];
+const sub = q.questions[qIndex];
+
+if(!window.subAnswered) window.subAnswered = {};
+
+const key = currentSection + "_" + currentQuestion + "_" + qIndex;
+
+const prev = window.subAnswered[key];
+
+if(prev === sub.correct){
+  totalScore -= POINT_PER_QUESTION;
+}
+
+if(choice === sub.correct){
+  totalScore += POINT_PER_QUESTION;
+}
+
+window.subAnswered[key] = choice;
+
+let allAnswered = true;
+
+q.questions.forEach((_,i)=>{
+const k = currentSection + "_" + currentQuestion + "_" + i;
+if(window.subAnswered[k] === undefined){
+allAnswered = false;
+}
+});
+
+if(allAnswered){
+answered[currentSection][currentQuestion] = 1;
+}
+
+updateSideProgress();
+renderSteps();
+
+if (checkAllFinished()) {
+  showResult();
+}
+
 }
 
 function updateSideProgress() {
@@ -3865,7 +3986,6 @@ function prevQuestion() {
 function goToIntro() {
   document.getElementById("quiz").classList.remove("active");
 
-  // matikan highlight step
   document.querySelectorAll(".step")
     .forEach(s => s.classList.remove("active"));
 }
@@ -3894,36 +4014,91 @@ function renderSteps() {
 }
 window.addEventListener("DOMContentLoaded", () => {
 
-  // matikan semua screen
   document.querySelectorAll(".screen").forEach(s =>
     s.classList.remove("active")
   );
 
-  // tampilkan menu dulu
   document.getElementById("menu").classList.add("active");
 
 });
 function checkAllFinished() {
-  for (let key in sections) {
-    if (answered[key].length === 0) return false;
-    if (answered[key].includes(null)) return false;
+
+  for (let section in sections) {
+
+    for (let i = 0; i < sections[section].length; i++) {
+
+      const q = sections[section][i];
+
+      if (!q.questions) {
+        if (answered[section][i] === null) {
+          return false;
+        }
+      }
+
+      else {
+
+        for (let j = 0; j < q.questions.length; j++) {
+
+          const key = section + "_" + i + "_" + j;
+
+          if (!window.subAnswered || window.subAnswered[key] === undefined) {
+            return false;
+          }
+
+        }
+
+      }
+
+    }
+
   }
+
   return true;
 }
 
 function showResult() {
-  // ===== HITUNG SKOR (TETAP) =====
   let totalCorrect = 0;
   let totalQuestions = 0;
   let sectionHTML = "";
 
   for (let key in sections) {
     let correct = 0;
-    sections[key].forEach((q, i) => {
-      if (answered[key][i] === q.correct) correct++;
+sections[key].forEach((q, i) => {
+
+  if (!q.questions) {
+    if (answered[key][i] === q.correct) correct++;
+    totalQuestions++;
+  }
+
+  else {
+
+    q.questions.forEach((sub, j) => {
+
+      const keySub = key + "_" + i + "_" + j;
+
+      if (window.subAnswered && window.subAnswered[keySub] === sub.correct) {
+        correct++;
+      }
+
+      totalQuestions++;
     });
 
-    let percent = Math.round((correct / sections[key].length) * 100);
+  }
+
+});
+
+let totalSectionQuestions = 0;
+
+sections[key].forEach(q=>{
+  if(!q.questions){
+    totalSectionQuestions++;
+  }else{
+    totalSectionQuestions += q.questions.length;
+  }
+});
+
+let percent = Math.round((correct / totalSectionQuestions) * 100);
+percent = Math.min(percent,100);
     totalCorrect += correct;
     totalQuestions += sections[key].length;
     sectionHTML += `
@@ -3950,7 +4125,6 @@ function showResult() {
   document.getElementById("sectionScores").innerHTML =
     sectionHTML;
 
-  // ===== 🔥 INI KUNCI UTAMA 🔥 =====
 document.body.classList.add("pre-start");
 document.getElementById("quiz").classList.remove("active");
 document.getElementById("resultScreen").classList.add("active");
@@ -3968,13 +4142,13 @@ displayLeaderboard();
 // =============================
 // ⏱ TIMER ANTI FREEZE MOBILE
 // =============================
-let duration = 60 * 60; // 30 menit
+let duration = 60 * 60; 
 let endTime = 0;
 let timerInterval = null;
 
 function startTimer() {
 
-  if (timerInterval !== null) return; // 🔥 PENGAMAN UTAMA
+  if (timerInterval !== null) return;
 
   endTime = Date.now() + duration * 1000;
 
@@ -3998,13 +4172,11 @@ function updateTimer() {
   }
 }
 
-// pause timer
 function pauseTimer() {
   clearInterval(timerInterval);
   timerInterval = null;
 }
 
-// warna saat mepet
 function updateTimerColor() {
 
   if (remainingTime <= 60) {
@@ -4015,7 +4187,6 @@ function updateTimerColor() {
   }
 }
 
-// pindah tab → pause
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) {
     pauseTimer();
@@ -4024,15 +4195,13 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
-// auto submit
 function finishExam() {
   localStorage.removeItem(TIMER_KEY);
 
   alert("Waktu habis!");
-  showResultScreen(); // 🔥 pakai function kamu yang sudah ada
+  showResultScreen();
 }
 
-// init
 function initTimer() {
 
   loadTimer();
@@ -4046,22 +4215,27 @@ function selectPackage(packageKey) {
   clearInterval(timerInterval);
   timerInterval = null;
 
-  // 🔥 SIMPAN PAKET TERPILIH
   selectedPackage = packageKey;
 
-  // 🔥 AKTIFKAN DATA SOAL
   sections = packages[packageKey];
 
-  // 🔀 ACAK SOAL + PILIHAN (PINDAH KE SINI)
-  for (let key in sections) {
-    shuffleArray(sections[key]);
+for (let key in sections) {
+  shuffleArray(sections[key]);
 
-    sections[key].forEach(q => {
-      shuffleChoices(q);
-    });
-  }
+  sections[key] = sections[key].map(q => {
 
-  // 🔥 RESET STATE
+    if (q.variants) {
+      const randomIndex = Math.floor(Math.random()*q.variants.length);
+
+      q = JSON.parse(JSON.stringify(q.variants[randomIndex]));
+    }
+
+    shuffleChoices(q);
+
+    return q;
+  });
+}
+
   currentSection = Object.keys(sections)[0];
   currentQuestion = 0;
   totalScore = 0;
@@ -4095,12 +4269,8 @@ function saveScore(name, score) {
     date: new Date().toLocaleDateString()
   });
 
-  // urutkan dari skor tertinggi
   leaderboard.sort((a, b) => b.score - a.score);
-
-  // ambil 10 terbaik saja
   leaderboard = leaderboard.slice(0, 10);
-
   localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
 }
 
